@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electro Mais Instalações</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #ff8c00;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      display: block;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background-color: #444;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #ff8c00;
+      margin-bottom: 20px;
+    }
+    ul {
+      margin-left: 20px;
+    }
+    .formulario form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    button {
+      background-color: #ff8c00;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover {
+      background-color: #e67600;
+    }
+    footer {
+      background-color: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+    }
+    @media (max-width: 768px) {
+      header, section, footer {
+        padding: 20px;
+      }
+      nav a {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Electro Mais Instalações</h1>
+    <p>Onde a energia encontra a qualidade</p>
+  </header>
+
+  <nav>
+    <a href="#servicos">Serviços</a>
+    <a href="#contato">Contato</a>
+    <a href="#diferenciais">Diferenciais</a>
+    <a href="#formulario">Orçamento</a>
+  </nav>
+
+  <section id="servicos">
+    <h2>Serviços</h2>
+    <h3>Instalação Elétrica</h3>
+    <ul>
+      <li>Fiações</li>
+      <li>Quadros elétricos</li>
+      <li>Tomadas e interruptores</li>
+    </ul>
+    <h3>Iluminação</h3>
+    <ul>
+      <li>Luminárias</li>
+      <li>Fitas LED</li>
+    </ul>
+    <h3>Manutenção Elétrica</h3>
+    <ul>
+      <li>Troca de fiação</li>
+      <li>Reparo de curtos</li>
+      <li>Revisão geral</li>
+    </ul>
+  </section>
+
+  <section id="contato">
+    <h2>Contato</h2>
+    <p>Chimoio, Manica e arredores</p>
+    <p>WhatsApp: <a href="https://wa.me/258842127214">842127214</a></p>
+    <p>Email: <a href="mailto:Electro.mais@instalacoes.co.mz">Electro.mais@instalacoes.co.mz</a></p>
+    <p>Instagram: <a href="https://instagram.com/Electro.mais" target="_blank">@Electro.mais</a></p>
+  </section>
+
+  <section id="diferenciais">
+    <h2>Diferenciais</h2>
+    <ul>
+      <li>Profissionais qualificados</li>
+      <li>Material de alta qualidade</li>
+      <li>Atendimento personalizado</li>
+    </ul>
+  </section>
+
+  <section class="formulario" id="formulario">
+    <h2>Solicite um Orçamento</h2>
+    <form action="#" method="post">
+      <input type="text" name="nome" placeholder="Seu nome" required>
+      <input type="email" name="email" placeholder="Seu email" required>
+      <textarea name="mensagem" rows="5" placeholder="Descreva seu pedido" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Electro Mais Instalações. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
