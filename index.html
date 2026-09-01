@@ -1,27 +1,344 @@
-<!doctype html>
-<html lang="pt">
+<!DOCTYPE html>
+<html lang="pt-MZ">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Electro Mais Moçambique</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Electro Mais Moçambique — soluções elétricas, materiais e técnicos qualificados.">
+<title>Electro Mais Moçambique ⚡</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f7f7f7;color:#111}a{text-decoration:none;color:inherit}.wrap{max-width:1150px;margin:auto;padding:0 20px}
-header{position:sticky;top:0;background:#fff;border-bottom:1px solid #ddd;z-index:5}.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-weight:900}.logo{background:#ff8c00;border-radius:12px;padding:10px;font-size:22px}.brand span,h2 span{color:#ff8c00}.links{display:flex;gap:20px;font-size:14px;font-weight:700}.hamb{display:none;border:0;background:none;font-size:24px}
-.hero{background:#111;color:#fff}.hero .grid{min-height:590px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}.tag{color:#ffb84d;font-size:11px;font-weight:bold;letter-spacing:1px}.hero h1{font-size:clamp(45px,6vw,75px);line-height:.98;margin:20px 0}.hero h1 span{color:#ff8c00}.hero p{color:#bbb;font-size:18px;line-height:1.6}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.btn{border:0;border-radius:12px;padding:14px 20px;font-weight:900;cursor:pointer}.orange{background:#ff8c00}.dark{background:#111;color:#fff}.white{background:#fff}.visual{height:400px;border:1px solid #333;border-radius:30px;display:grid;place-items:center;text-align:center;background:radial-gradient(circle,#ff8c0030,transparent 55%)}.bolt{font-size:70px;background:#ff8c00;border-radius:50%;padding:30px;box-shadow:0 0 80px #ff8c0060}
-section{padding:75px 0}.eyebrow{color:#ff8c00;font-weight:900;font-size:12px;letter-spacing:2px;text-transform:uppercase}h2{font-size:clamp(35px,5vw,55px);line-height:1;margin:8px 0 18px}.muted{color:#666;line-height:1.7}
-.cards,.products{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:35px}.cards{grid-template-columns:repeat(5,1fr)}.card,.product,.tech,.form{background:#fff;border:1px solid #ddd;border-radius:22px;padding:20px}.icon{font-size:27px}.card h3{margin-bottom:8px}.card p,.product p{color:#666;font-size:13px;line-height:1.6}.card button{border:0;background:none;color:#ff8c00;font-weight:bold}
-.gray{background:#eee}.techgrid,.contactgrid,.aboutgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.search{background:#fff;border:1px solid #ddd;border-radius:14px;padding:15px;margin-top:20px}.search input{border:0;outline:0;width:90%;font-size:15px}.techs{display:grid;gap:12px}.tech{display:flex;gap:14px;align-items:center}.avatar{width:52px;height:52px;border-radius:15px;background:#111;color:#fff;display:grid;place-items:center;font-weight:bold}.techinfo{flex:1}.techinfo small{color:#777}.verified{font-size:9px;color:#087c3e;background:#e9f8ef;padding:4px;border-radius:10px}.pic{height:180px;border-radius:16px;background:linear-gradient(135deg,#222,#555);display:grid;place-items:center;font-size:55px}.product{padding:12px}.productbody{padding:8px}.price{font-size:20px;font-weight:900}.prodfoot{display:flex;justify-content:space-between;align-items:center;margin-top:15px}.mini{border:0;border-radius:10px;background:#ff8c00;padding:10px;font-weight:900}.banner{margin-top:25px;padding:25px;border-radius:22px;background:#111;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px}.about{background:#ff8c00}.stats{background:#111;color:#fff;border-radius:22px;padding:30px;display:flex;justify-content:space-around}.stats b{font-size:27px}.stats small{color:#999}.form input,.form select,.form textarea{width:100%;padding:13px;margin:6px 0;border:1px solid #ddd;border-radius:10px}.form textarea{height:110px}.form button{width:100%;margin-top:5px}footer{background:#111;color:#fff;padding:40px 0}.foot{display:flex;justify-content:space-between}.cart{display:none;position:fixed;right:15px;bottom:15px;background:#111;color:#fff;padding:14px;border-radius:15px;z-index:10}.cart.show{display:flex;gap:10px;align-items:center}
-@media(max-width:850px){.links{display:none}.hamb{display:block}.hero .grid,.techgrid,.contactgrid,.aboutgrid{grid-template-columns:1fr}.visual{display:none}.cards,.products{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.cards,.products{grid-template-columns:1fr}.stats{flex-direction:column;gap:20px}.foot{flex-direction:column;gap:15px}}
-</style></head>
+:root{--orange:#ff8c00;--dark:#111;--yellow:#ffd21f;--blue:#1677ff;--red:#e53935;--light:#f6f7f9;--white:#fff;--muted:#697386;--line:#e5e7eb;--green:#20a464}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--dark)}
+a{text-decoration:none;color:inherit}.container{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(17,17,17,.97);color:#fff;border-bottom:3px solid var(--orange)}
+.nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;align-items:center;gap:10px;font-weight:900}.brand img{width:48px;height:48px;object-fit:contain;border-radius:50%;background:#fff}.brand small{display:block;color:#ccc;font-weight:500;font-size:10px;letter-spacing:1px}
+nav{display:flex;gap:18px;font-size:14px}nav a:hover{color:var(--orange)}.menu{display:none;background:none;border:1px solid #555;color:#fff;border-radius:8px;padding:8px}
+.hero{background:linear-gradient(135deg,#111 0%,#171717 55%,#3a2100 100%);color:#fff;padding:78px 0 70px;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}.badge{display:inline-block;background:#2b220f;color:var(--yellow);border:1px solid #6b4d00;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:700}
+h1{font-size:clamp(38px,6vw,68px);line-height:1;margin:18px 0}.hero h1 span{color:var(--orange)}.hero p{font-size:18px;line-height:1.7;color:#ddd;max-width:650px}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.btn{border:0;border-radius:10px;padding:13px 18px;font-weight:800;cursor:pointer;display:inline-block}.primary{background:var(--orange);color:#111}.secondary{background:#fff;color:#111}.outline{border:1px solid #555;color:#fff;background:transparent}.hero-card{background:#fff;color:#111;border-radius:22px;padding:20px;box-shadow:0 20px 60px #0008;text-align:center}.hero-card img{width:100%;max-width:300px;display:block;margin:auto;border-radius:18px}.hero-card h3{margin:10px 0 4px}.verified{color:var(--blue);font-weight:800;font-size:13px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{background:var(--light);padding:13px;border-radius:12px;text-align:center}.stat b{font-size:21px;display:block}
+section{padding:70px 0}.section-head{text-align:center;margin-bottom:35px}.section-head h2{font-size:34px;margin:0 0 10px}.section-head p{color:var(--muted);margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 8px 25px #111108}.icon{font-size:32px}.card h3{margin:12px 0 8px}.card p{color:var(--muted);line-height:1.55}
+.official{background:#fff}.official-box{border:2px solid var(--orange);border-radius:22px;padding:25px;display:grid;grid-template-columns:.8fr 1.2fr;gap:25px;background:linear-gradient(120deg,#fff7eb,#fff)}.official-logo{min-height:300px;border-radius:18px;background:#111;display:grid;place-items:center;padding:15px}.official-logo img{width:100%;max-width:330px;border-radius:50%}.official-info h2{margin-top:0}.check{color:var(--blue);font-weight:900}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}.chip{padding:7px 10px;background:#f0f2f5;border-radius:999px;font-size:12px;font-weight:700}
+.market{background:#f0f2f5}.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin-bottom:20px}.input,.select,textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:10px;padding:13px;font:inherit}.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.tech{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}.avatar{width:58px;height:58px;border-radius:50%;background:var(--orange);display:grid;place-items:center;font-weight:900;font-size:21px}.tech-top{display:flex;gap:12px;align-items:center}.stars{color:#f5a400}.available{color:var(--green);font-size:12px;font-weight:800}.tech-actions{display:flex;gap:8px;margin-top:14px}.mini{padding:9px 11px;border-radius:8px;border:0;font-weight:700;cursor:pointer}.wa{background:#e9f8ef}.dark{background:#111;color:#fff}
+.store{background:#fff}.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.product{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fff}.product-img{height:145px;background:#eef0f3;display:grid;place-items:center;font-size:55px}.product-body{padding:15px}.price{font-size:20px;font-weight:900;color:var(--orange);margin:8px 0}.stock{font-size:12px;color:var(--green)}.buy{width:100%;margin-top:10px;background:#111;color:#fff;border:0;padding:11px;border-radius:9px;font-weight:800;cursor:pointer}
+.banner{margin-top:25px;background:#111;color:#fff;border-radius:20px;padding:28px;display:flex;align-items:center;justify-content:space-between;gap:20px}.banner h3{margin:0 0 6px;color:var(--yellow)}.banner p{margin:0;color:#ddd}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.step{background:#fff;border-radius:15px;padding:20px;text-align:center;border:1px solid var(--line)}.num{width:36px;height:36px;margin:auto;border-radius:50%;background:var(--orange);display:grid;place-items:center;font-weight:900}
+.contact{background:#f0f2f5}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.form{background:#fff;padding:24px;border-radius:18px}.form label{font-size:13px;font-weight:800;display:block;margin:12px 0 6px}.form textarea{min-height:110px}.form button{margin-top:15px;width:100%}
+.admin{background:#111;color:#fff}.admin .section-head p{color:#bbb}.admin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.admin-card{background:#1c1c1c;border:1px solid #333;border-radius:15px;padding:18px}.admin-card b{font-size:28px;color:var(--orange)}
+footer{background:#090909;color:#fff;padding:35px 0}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:25px}.footer-grid p,.footer-grid a{color:#aaa;line-height:1.7}.copyright{border-top:1px solid #292929;margin-top:25px;padding-top:20px;color:#888;font-size:12px}
+.cart{position:fixed;right:18px;bottom:18px;z-index:60;background:var(--orange);color:#111;border:0;border-radius:50px;padding:13px 17px;font-weight:900;box-shadow:0 10px 30px #0004;cursor:pointer}.toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:#111;color:#fff;padding:12px 17px;border-radius:10px;display:none;z-index:70}
+@media(max-width:850px){nav{display:none}.menu{display:block}.hero-grid,.official-box,.contact-grid{grid-template-columns:1fr}.cards,.tech-grid{grid-template-columns:1fr 1fr}.product-grid{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr 1fr}.admin-grid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.nav{min-height:62px}nav.open{display:flex;position:absolute;top:62px;left:0;right:0;background:#111;flex-direction:column;padding:18px}.cards,.tech-grid,.product-grid,.filters,.flow,.admin-grid,.footer-grid{grid-template-columns:1fr}section{padding:50px 0}.hero{padding:55px 0}.hero-card{padding:12px}.banner{display:block}.banner .btn{margin-top:15px}}
+</style>
+</head>
 <body>
-<header><div class="wrap nav"><a class="brand" href="#"><div class="logo">⚡</div><div>ELECTRO <span>MAIS</span><small style="display:block;font-size:8px;letter-spacing:2px;color:#777">MOÇAMBIQUE</small></div></a><nav class="links"><a href="#">Início</a><a href="#servicos">Serviços</a><a href="#tecnicos">Encontrar Técnico</a><a href="#loja">Loja</a><a href="#sobre">Sobre Nós</a><a href="#contactos">Contactos</a></nav><button class="hamb" onclick="alert('Serviços • Técnicos • Loja • Sobre Nós • Contactos')">☰</button></div></header>
-<section class="hero"><div class="wrap grid"><div><div class="tag">⚡ ONDE A ENERGIA ENCONTRA A QUALIDADE</div><h1>Soluções elétricas que <span>movem</span> o seu mundo.</h1><p>Instalação, manutenção, reparação e assistência técnica — com profissionais qualificados e materiais de qualidade, numa só plataforma.</p><div class="buttons"><a class="btn orange" href="#contactos">Solicitar Serviço →</a><a class="btn white" href="#loja">Visitar Loja</a></div></div><div class="visual"><div><div class="bolt">⚡</div><h3>Energia. Qualidade. Confiança.</h3><p style="font-size:13px">Feito para Moçambique 🇲🇿</p></div></div></div></section>
-<section id="servicos"><div class="wrap"><div class="eyebrow">O que fazemos</div><h2>Serviços elétricos<br>sem complicação.</h2><div class="cards"><div class="card"><div class="icon">💡</div><h3>Instalações</h3><p>Instalações seguras para casas, empresas e indústrias.</p><button onclick="location.href='#contactos'">Solicitar →</button></div><div class="card"><div class="icon">🔧</div><h3>Manutenção</h3><p>Manutenção preventiva e corretiva.</p><button onclick="location.href='#contactos'">Solicitar →</button></div><div class="card"><div class="icon">🛠️</div><h3>Reparações</h3><p>Diagnóstico e reparação de avarias.</p><button onclick="location.href='#contactos'">Solicitar →</button></div><div class="card"><div class="icon">🔌</div><h3>Assistência</h3><p>Suporte técnico especializado.</p><button onclick="location.href='#contactos'">Solicitar →</button></div><div class="card"><div class="icon">⚙️</div><h3>Projetos</h3><p>Planeamento e execução à medida.</p><button onclick="location.href='#contactos'">Solicitar →</button></div></div></div></section>
-<section class="gray" id="tecnicos"><div class="wrap techgrid"><div><div class="eyebrow">Marketplace</div><h2>Encontre o técnico certo.</h2><p class="muted">Pesquise por localização, especialidade e avaliação.</p><div class="search">🔎 <input id="q" oninput="filterTech()" placeholder="Ex.: Chimoio"></div></div><div class="techs" id="techs"><div class="tech"><div class="avatar">CM</div><div class="techinfo"><b>Carlos Manuel <span class="verified">VERIFICADO</span></b><small>Eletricista residencial · Chimoio</small><div>⭐ 4.9 · 128 serviços</div></div><button class="btn dark" onclick="alert('Perfil do técnico')">Ver perfil</button></div><div class="tech"><div class="avatar">EA</div><div class="techinfo"><b>Edson António <span class="verified">VERIFICADO</span></b><small>Instalações industriais · Maputo</small><div>⭐ 4.8 · 96 serviços</div></div><button class="btn dark" onclick="alert('Perfil do técnico')">Ver perfil</button></div><div class="tech"><div class="avatar">NJ</div><div class="techinfo"><b>Nelson Júnior <span class="verified">VERIFICADO</span></b><small>Manutenção · Beira</small><div>⭐ 4.9 · 143 serviços</div></div><button class="btn dark" onclick="alert('Perfil do técnico')">Ver perfil</button></div></div></div></section>
-<section id="loja"><div class="wrap"><div class="eyebrow">Electro Mais Shop</div><h2>Materiais para fazer acontecer.</h2><div class="products"><div class="product"><div class="pic">💡</div><div class="productbody"><small>Iluminação</small><h3>Lâmpada LED 12W</h3><p>LED eficiente para uso residencial.</p><div>⭐ 4.8 · 24 em stock</div><div class="prodfoot"><span class="price">350 MT</span><button class="mini" onclick="add()">Adicionar</button></div></div></div><div class="product"><div class="pic">🔌</div><div class="productbody"><small>Tomadas</small><h3>Tomada Dupla Premium</h3><p>Tomada resistente e moderna.</p><div>⭐ 4.7 · 18 em stock</div><div class="prodfoot"><span class="price">420 MT</span><button class="mini" onclick="add()">Adicionar</button></div></div></div><div class="product"><div class="pic">⚡</div><div class="productbody"><small>Proteção</small><h3>Disjuntor 20A</h3><p>Proteção para circuitos elétricos.</p><div>⭐ 4.9 · 31 em stock</div><div class="prodfoot"><span class="price">650 MT</span><button class="mini" onclick="add()">Adicionar</button></div></div></div><div class="product"><div class="pic">🧰</div><div class="productbody"><small>Ferramentas</small><h3>Kit Ferramentas</h3><p>Kit para manutenção e instalação.</p><div>⭐ 4.8 · 7 em stock</div><div class="prodfoot"><span class="price">4.900 MT</span><button class="mini" onclick="add()">Adicionar</button></div></div></div></div><div class="banner"><div><div class="eyebrow">Diferencial</div><h3>Compre o material + contrate o técnico.</h3></div><a class="btn orange" href="#tecnicos">Encontrar técnico</a></div></div></section>
-<section class="about" id="sobre"><div class="wrap aboutgrid"><div><div class="eyebrow" style="color:#111">Construída para crescer</div><h2>Uma startup moçambicana com visão nacional.</h2><p>Conectamos clientes, técnicos e materiais elétricos numa experiência simples e confiável.</p></div><div class="stats"><div><b>24/7</b><br><small>Plataforma</small></div><div><b>MT</b><br><small>Pagamentos locais</small></div><div><b>🇲🇿</b><br><small>Foco nacional</small></div></div></div></section>
-<section id="contactos"><div class="wrap contactgrid"><div><div class="eyebrow">Contactos</div><h2>Vamos resolver isso?</h2><p class="muted">Solicite um serviço, peça um orçamento ou fale com a equipa Electro Mais.</p><p>📞 <b>Atendimento</b><br><span class="muted">WhatsApp · Telefone · Email</span></p><p>📍 <b>Moçambique</b><br><span class="muted">Expansão nacional</span></p></div><form class="form" onsubmit="sendForm(event)"><h3>Solicitar Serviço</h3><input required placeholder="Nome"><input required placeholder="Telefone"><select><option>Escolha o serviço</option><option>Instalações</option><option>Manutenção</option><option>Reparações</option><option>Assistência técnica</option><option>Projetos elétricos</option></select><textarea placeholder="Descreva o que precisa..."></textarea><button class="btn orange">Enviar Pedido</button></form></div></section>
-<footer><div class="wrap foot"><div><b style="font-size:24px">ELECTRO <span>MAIS</span></b><p style="color:#777">Onde a Energia Encontra a Qualidade 🇲🇿⚡</p></div><small style="color:#777">© 2026 Electro Mais Moçambique</small></div></footer>
-<div id="cart" class="cart">🛒 <b id="n">0</b> item(ns) <button class="mini" onclick="alert('Checkout será ligado na versão com pagamentos.')">Carrinho</button></div>
-<script>let n=0;function add(){n++;document.getElementById('n').textContent=n;document.getElementById('cart').classList.add('show')}function sendForm(e){e.preventDefault();alert('Pedido recebido!');e.target.reset()}function filterTech(){let q=document.getElementById('q').value.toLowerCase();document.querySelectorAll('.tech').forEach(x=>x.style.display=x.innerText.toLowerCase().includes(q)?'flex':'none')}</script>
-</body></html>
+<header><div class="container nav">
+<a class="brand" href="#inicio"><img src="data:image/png;base64,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")<small>Moçambique</small></div>
+<nav id="menu">
+<a href="#inicio">Início</a>
+<a href="#materiais">Materiais</a>
+<a href="#tecnicos">Técnicos</a>
+<a href="#loja">Loja</a>
+<a href="#como-funciona">Como Funciona</a>
+<a href="#contacto">Contacto</a>
+<a href="#admin">Admin</a>
+</nav>
+<button class="menu" id="menuBtn">☰</button>
+</div></header>
+<main>
+<section id="inicio" class="hero"><div class="container hero-grid">
+<div>
+<span class="badge">⚡ Soluções Elétricas Profissionais em Moçambique</span>
+<h1>Eletricidade com Segurança para Sua <span>Casa e Empresa</span></h1>
+<p>Encontre técnicos qualificados, compre material elétrico certificado e solicite serviços residenciais ou industriais com rapidez e garantia.</p>
+<div class="buttons">
+<a href="#loja" class="btn primary">Ver Materiais</a>
+<a href="#tecnicos" class="btn secondary">Contratar Técnico</a>
+<a href="#contacto" class="btn outline">Pedir Orçamento</a>
+</div>
+</div>
+<div class="hero-card">
+<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23ffd21f'/%3E%3Ccircle cx='150' cy='150' r='120' fill='%23111'/%3E%3Cpath d='M140 60L90 160h60l-20 80 70-110h-60z' fill='%23ffd21f'/%3E%3C/svg%3E" alt="Electro Mais Moçambique">
+<h3>Electro Mais Moçambique</h3>
+<div class="verified">✔ Plataforma Verificada & Autorizada</div>
+<p style="font-size:13px;color:#666;margin:8px 0">Segurança, eficiência e profissionais de confiança ao seu dispor.</p>
+<div class="stats">
+<div class="stat"><b>+450</b><span style="font-size:11px;color:#666">Clientes</span></div>
+<div class="stat"><b>+30</b><span style="font-size:11px;color:#666">Técnicos</span></div>
+<div class="stat"><b>100%</b><span style="font-size:11px;color:#666">Garantia</span></div>
+</div>
+</div>
+</div></section>
+
+<section class="cards-section container">
+<div class="cards">
+<div class="card"><div class="icon">🔌</div><h3>Material Certificado</h3><p>Cabos, disjuntores, tomadas e iluminação com padrões de qualidade garantidos.</p></div>
+<div class="card"><div class="icon">👨‍🔧</div><h3>Técnicos Credenciados</h3><p>Eletricistas profissionais para reparações, instalações e manutenção preventiva.</p></div>
+<div class="card"><div class="icon">🚀</div><h3>Atendimento Rápido</h3><p>Suporte pronto para emergências elétricas e agendamento de serviços.</p></div>
+</div>
+</section>
+
+<section id="official" class="official"><div class="container">
+<div class="section-head">
+<h2>Parceiro Oficial & Confiança</h2>
+<p>Compromisso com a excelência no setor elétrico nacional</p>
+</div>
+<div class="official-box">
+<div class="official-logo">
+<img src="data:image/svg+xml,%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23111'/%3E%3Cpolygon points='150,50 190,130 280,140 215,200 230,290 150,245 70,290 85,200 20,140 110,130' fill='%23ff8c00'/%3E%3C/svg%3E" alt="Selo Oficial">
+</div>
+<div class="official-info">
+<h2>Electro Mais Moçambique <span class="check">✔</span></h2>
+<p>Líder em soluções integradas de eletricidade, fornecimento de material técnico e agenciamento de profissionais qualificados em todo o território nacional.</p>
+<div class="chips">
+<span class="chip">Instalações Residenciais</span>
+<span class="chip">Redes Industriais</span>
+<span class="chip">Material Elétrico</span>
+<span class="chip">Manutenção 24/7</span>
+</div>
+<a href="#contacto" class="btn primary">Fale Connosco</a>
+</div>
+</div>
+</div></section>
+
+<section id="tecnicos" class="market"><div class="container">
+<div class="section-head">
+<h2>Técnicos Qualificados</h2>
+<p>Encontre profissionais disponíveis na sua zona</p>
+</div>
+<div class="filters">
+<input type="text" class="input" id="searchTech" placeholder="Pesquisar por nome ou especialidade...">
+<select class="select" id="filterProv"><option value="">Todas Províncias</option><option>Maputo</option><option>Sofala</option><option>Nampula</option><option>Manica</option><option>Zambézia</option></select>
+<select class="select" id="filterSpec"><option value="">Especialidade</option><option>Residencial</option><option>Industrial</option><option>Energ Solar</option></select>
+<button class="btn primary" id="btnFilter">Filtrar</button>
+</div>
+<div class="tech-grid" id="techGrid">
+<div class="tech">
+<div class="tech-top">
+<div class="avatar">JM</div>
+<div>
+<h4>João Macamo</h4>
+<p style="margin:0;font-size:12px;color:var(--muted)">Maputo • Instalações</p>
+<div class="stars">⭐⭐⭐⭐⭐ (4.9)</div>
+</div>
+</div>
+<p style="font-size:13px;color:var(--muted);margin:12px 0">Especialista em quadros elétricos e certificação de moradias.</p>
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span class="available">● Disponível</span>
+<span style="font-weight:800;font-size:14px">1.200 MT / visita</span>
+</div>
+<div class="tech-actions">
+<button class="mini wa" onclick="alert('A abrir WhatsApp para contacto com o técnico...')">💬 WhatsApp</button>
+<button class="mini dark" onclick="alert('Solicitação enviada com sucesso!')">Contratar</button>
+</div>
+</div>
+
+<div class="tech">
+<div class="tech-top">
+<div class="avatar" style="background:var(--blue);color:#fff">AN</div>
+<div>
+<h4>Armindo Nkomo</h4>
+<p style="margin:0;font-size:12px;color:var(--muted)">Sofala • Industrial</p>
+<div class="stars">⭐⭐⭐⭐⭐ (4.8)</div>
+</div>
+</div>
+<p style="font-size:13px;color:var(--muted);margin:12px 0">Manutenção de motores trifásicos e redes de alta tensão.</p>
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span class="available">● Disponível</span>
+<span style="font-weight:800;font-size:14px">1.800 MT / visita</span>
+</div>
+<div class="tech-actions">
+<button class="mini wa" onclick="alert('A abrir WhatsApp para contacto com o técnico...')">💬 WhatsApp</button>
+<button class="mini dark" onclick="alert('Solicitação enviada com sucesso!')">Contratar</button>
+</div>
+</div>
+
+<div class="tech">
+<div class="tech-top">
+<div class="avatar" style="background:var(--green);color:#fff">CS</div>
+<div>
+<h4>Cândido Siquete</h4>
+<p style="margin:0;font-size:12px;color:var(--muted)">Nampula • Solar</p>
+<div class="stars">⭐⭐⭐⭐⭐ (5.0)</div>
+</div>
+</div>
+<p style="font-size:13px;color:var(--muted);margin:12px 0">Montagem de painéis solares e inversores híbridos.</p>
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span class="available">● Disponível</span>
+<span style="font-weight:800;font-size:14px">1.500 MT / visita</span>
+</div>
+<div class="tech-actions">
+<button class="mini wa" onclick="alert('A abrir WhatsApp para contacto com o técnico...')">💬 WhatsApp</button>
+<button class="mini dark" onclick="alert('Solicitação enviada com sucesso!')">Contratar</button>
+</div>
+</div>
+</div>
+</div></section>
+
+<section id="loja" class="store"><div class="container">
+<div class="section-head">
+<h2>Loja de Materiais Elétricos</h2>
+<p>Compre online com entrega rápida em Moçambique</p>
+</div>
+<div class="product-grid">
+<div class="product">
+<div class="product-img">🔌</div>
+<div class="product-body">
+<span style="font-size:11px;color:var(--muted)">Disjuntores</span>
+<h4 style="margin:4px 0">Disjuntor Bipolar 32A</h4>
+<div class="price">450 MT</div>
+<div class="stock">Em Stock</div>
+<button class="buy" onclick="addToCart('Disjuntor Bipolar 32A', 450)">Adicionar</button>
+</div>
+</div>
+
+<div class="product">
+<div class="product-img">🧵</div>
+<div class="product-body">
+<span style="font-size:11px;color:var(--muted)">Cabos</span>
+<h4 style="margin:4px 0">Cabo Flexível 2.5mm (100m)</h4>
+<div class="price">3.200 MT</div>
+<div class="stock">Em Stock</div>
+<button class="buy" onclick="addToCart('Cabo Flexível 2.5mm', 3200)">Adicionar</button>
+</div>
+</div>
+
+<div class="product">
+<div class="product-img">💡</div>
+<div class="product-body">
+<span style="font-size:11px;color:var(--muted)">Iluminação</span>
+<h4 style="margin:4px 0">Painel LED 18W Embutir</h4>
+<div class="price">350 MT</div>
+<div class="stock">Em Stock</div>
+<button class="buy" onclick="addToCart('Painel LED 18W', 350)">Adicionar</button>
+</div>
+</div>
+
+<div class="product">
+<div class="product-img">⚡</div>
+<div class="product-body">
+<span style="font-size:11px;color:var(--muted)">Acessórios</span>
+<h4 style="margin:4px 0">Tomada Dupla Com Terra</h4>
+<div class="price">180 MT</div>
+<div class="stock">Em Stock</div>
+<button class="buy" onclick="addToCart('Tomada Dupla Com Terra', 180)">Adicionar</button>
+</div>
+</div>
+</div>
+
+<div class="banner">
+<div>
+<h3>Precisa de um orçamento para grandes obras?</h3>
+<p>Fornecemos lotes completos para empreiteiros, empresas e condomínios com descontos especiais.</p>
+</div>
+<a href="#contacto" class="btn secondary">Solicitar Cotação</a>
+</div>
+</div></section>
+
+<section id="como-funciona"><div class="container">
+<div class="section-head">
+<h2>Como Funciona</h2>
+<p>Simples, transparente e seguro</p>
+</div>
+<div class="flow">
+<div class="step"><div class="num">1</div><h4>Escolha</h4><p style="font-size:13px;color:var(--muted)">Selecione o material desejado ou o técnico ideal.</p></div>
+<div class="step"><div class="num">2</div><h4>Solicite</h4><p style="font-size:13px;color:var(--muted)">Adicione ao carrinho ou clique em contratar via WhatsApp.</p></div>
+<div class="step"><div class="num">3</div><h4>Confirme</h4><p style="font-size:13px;color:var(--muted)">Ajuste os detalhes de entrega ou morada do serviço.</p></div>
+<div class="step"><div class="num">4</div><h4>Receba</h4><p style="font-size:13px;color:var(--muted)">Material entregue ou serviço executado com garantia.</p></div>
+</div>
+</div></section>
+
+<section id="contacto" class="contact"><div class="container">
+<div class="section-head">
+<h2>Fale Connosco</h2>
+<p>Estamos prontos para atender o seu pedido</p>
+</div>
+<div class="contact-grid">
+<div class="form" style="background:#111;color:#fff">
+<h3>Informações de Contacto</h3>
+<p style="color:#aaa;line-height:1.7">Entre em contacto connosco para dúvidas, parcerias ou suporte técnico imediato.</p>
+<p style="margin:20px 0 10px">📍 <strong>Endereço:</strong> Av. Julius Nyerere, Maputo, Moçambique</p>
+<p style="margin:10px 0">📞 <strong>Telefone / WhatsApp:</strong> +258 84 000 0000</p>
+<p style="margin:10px 0">✉️ <strong>Email:</strong> contacto@electromais.co.mz</p>
+<p style="margin:10px 0">⏰ <strong>Horário:</strong> Seg - Sáb: 07:30 - 18:00</p>
+</div>
+<div class="form">
+<h3>Envie uma Mensagem</h3>
+<label>Seu Nome</label>
+<input type="text" class="input" placeholder="Digite seu nome">
+<label>Seu Contacto</label>
+<input type="text" class="input" placeholder="Telemóvel ou Email">
+<label>Mensagem</label>
+<textarea class="input" placeholder="Como podemos ajudar?"></textarea>
+<button class="btn primary" onclick="alert('Mensagem enviada com sucesso! Retornaremos brevemente.')">Enviar Mensagem</button>
+</div>
+</div>
+</div></section>
+
+<section id="admin" class="admin"><div class="container">
+<div class="section-head">
+<h2>Painel Administrativo (Simulação)</h2>
+<p>Estatísticas em tempo real da plataforma Electro Mais</p>
+</div>
+<div class="admin-grid">
+<div class="admin-card"><p style="margin:0;color:#aaa">Total de Clientes</p><b>482</b><span style="font-size:12px;color:var(--green)">+12% este mês</span></div>
+<div class="admin-card"><p style="margin:0;color:#aaa">Técnicos Ativos</p><b>34</b><span style="font-size:12px;color:var(--green)">Online agora</span></div>
+<div class="admin-card"><p style="margin:0;color:#aaa">Vendas na Loja</p><b>1.250 MT</b><span style="font-size:12px;color:var(--orange)">Hoje</span></div>
+<div class="admin-card"><p style="margin:0;color:#aaa">Serviços Concluídos</p><b>315</b><span style="font-size:12px;color:var(--green)">99% satisfação</span></div>
+</div>
+</div></section>
+</main>
+
+<footer><div class="container">
+<div class="footer-grid">
+<div>
+<div class="brand" style="color:#fff;margin-bottom:12px"><img src="data:image/png;base64,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")<small>Moçambique</small></div>
+<p>Electro Mais Moçambique. A sua melhor escolha em materiais elétricos e serviços técnicos especializados.</p>
+</div>
+<div>
+<h4>Links Rápidos</h4>
+<p><a href="#inicio">Início</a><br><a href="#materiais">Materiais</a><br><a href="#tecnicos">Técnicos</a><br><a href="#contacto">Contacto</a></p>
+</div>
+<div>
+<h4>Segurança & Qualidade</h4>
+<p>Profissionais certificados e produtos testados sob rigorosos padrões de segurança elétrica.</p>
+</div>
+</div>
+<div class="copyright">
+© 2026 Electro Mais Moçambique. Todos os direitos reservados.
+</div>
+</div></footer>
+
+<button class="cart" id="cartBtn" onclick="toggleCart()">🛒 Carrinho (<span id="cartCount">0</span>)</button>
+<div class="toast" id="toast">Produto adicionado ao carrinho!</div>
+
+<script>
+let cart = [];
+const menuBtn = document.getElementById('menuBtn');
+const menu = document.getElementById('menu');
+
+menuBtn.addEventListener('click', () => {
+  menu.classList.toggle('open');
+});
+
+function addToCart(name, price) {
+  cart.push({name, price});
+  document.getElementById('cartCount').innerText = cart.length;
+  showToast();
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 2000);
+}
+
+function toggleCart() {
+  if(cart.length === 0) {
+    alert('O seu carrinho está vazio.');
+  } else {
+    let items = cart.map(i => `- ${i.name} (${i.price} MT)`).join('\n');
+    alert('Itens no Carrinho:\n\n' + items);
+  }
+}
+</script>
+</body>
+</html>
