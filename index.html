@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electro Mais Moçambique</title>
+<meta name="description" content="Electro Mais Moçambique — soluções elétricas, técnicos qualificados, serviços e loja.">
+<meta name="theme-color" content="#f58220">
+<style>
+:root{--orange:#f58220;--dark:#1f2937;--black:#111827;--light:#f8fafc;--white:#fff;--gray:#6b7280;--green:#16a34a;--red:#dc2626;--shadow:0 10px 30px rgba(0,0,0,.08)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--dark);line-height:1.6}
+a{text-decoration:none;color:inherit}button{border:0;cursor:pointer;font:inherit}
+header{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 15px rgba(0,0,0,.08)}
+.navbar{max-width:1200px;margin:auto;min-height:75px;display:flex;align-items:center;justify-content:space-between;padding:10px 20px}
+.logo-area{display:flex;align-items:center;gap:10px}.logo{width:52px;height:52px;border-radius:50%;object-fit:cover}.logo-text strong{display:block;font-size:18px}.logo-text small{color:var(--orange);font-size:10px}
+nav{display:flex;gap:18px;align-items:center}nav a{font-size:14px;font-weight:600}nav a:hover{color:var(--orange)}.menu-btn{display:none;background:var(--dark);color:#fff;padding:9px 12px;border-radius:8px}
+.btn{display:inline-block;padding:13px 20px;border-radius:10px;font-weight:bold;transition:.2s}.btn-primary{background:var(--orange);color:white}.btn-dark{background:var(--dark);color:white}.btn-outline{border:2px solid var(--orange);color:var(--orange);background:white}.btn-danger{background:var(--red);color:white}.btn:hover{transform:translateY(-2px)}
+.hero{background:linear-gradient(135deg,#111827,#374151);color:white;padding:90px 20px}.hero-content{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.05;margin-bottom:20px}.hero h1 span{color:var(--orange)}.hero p{max-width:650px;color:#e5e7eb;font-size:18px;margin-bottom:28px}.hero-card{background:white;color:var(--dark);padding:30px;border-radius:20px;box-shadow:var(--shadow)}.hero-card img{width:100%;max-width:250px;display:block;margin:auto}
+section{padding:75px 20px}.container{max-width:1200px;margin:auto}.section-title{text-align:center;margin-bottom:45px}.section-title h2{font-size:34px;margin-bottom:8px}.section-title p{color:var(--gray)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.card{background:white;padding:25px;border-radius:16px;box-shadow:var(--shadow)}.card-icon{font-size:35px;margin-bottom:15px}.card h3{margin-bottom:8px}.card p{color:var(--gray);font-size:14px}
+.official{background:#111827;color:white}.official-box{max-width:900px;margin:auto;background:#1f2937;padding:35px;border-radius:22px;display:flex;gap:30px;align-items:center}.official-logo{width:130px;height:130px;border-radius:50%;object-fit:cover;background:white}.verified{color:#60a5fa;font-weight:bold;font-size:14px}
+.technicians{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.tech{background:white;border-radius:16px;padding:25px;box-shadow:var(--shadow)}.avatar{width:70px;height:70px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:15px}.rating{color:#f59e0b}.available{color:var(--green);font-weight:bold;font-size:13px}
+.store{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.product{background:white;border-radius:16px;padding:20px;box-shadow:var(--shadow)}.product-img{height:140px;background:#f3f4f6;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:50px;margin-bottom:15px}.price{color:var(--orange);font-weight:bold;margin:10px 0}
+.role-grid,.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.role,.admin-card,.profile-box,.login{background:white;padding:30px;border-radius:18px;box-shadow:var(--shadow)}.role{text-align:center}.role span{font-size:45px}
+.login{max-width:500px;margin:auto}.login input,.login select{width:100%;padding:14px;margin:8px 0 15px;border:1px solid #d1d5db;border-radius:9px}
+.profile-box{max-width:700px;margin:auto}.profile-box p{margin:8px 0}.badge{display:inline-block;padding:5px 10px;border-radius:20px;background:#fff3e8;color:var(--orange);font-weight:bold;font-size:12px}
+.dashboard{display:none;background:#111827;color:white}.dashboard-box{max-width:1100px;margin:auto}.admin-card{background:#1f2937;color:white}.message{text-align:center;margin-top:15px;font-weight:bold}.success{color:var(--green)}.error{color:var(--red)}
+.cart-count{background:var(--orange);color:white;border-radius:20px;padding:2px 7px;font-size:11px}footer{background:#0f172a;color:white;padding:45px 20px}.footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}footer p{color:#cbd5e1;font-size:14px}
+@media(max-width:850px){nav{display:none;position:absolute;top:75px;left:0;width:100%;background:white;padding:20px;flex-direction:column;box-shadow:var(--shadow)}nav.active{display:flex}.menu-btn{display:block}.hero-content{grid-template-columns:1fr}.cards,.technicians,.store{grid-template-columns:repeat(2,1fr)}.official-box{flex-direction:column;text-align:center}.footer-grid{grid-template-columns:1fr}}
+@media(max-width:550px){.cards,.technicians,.store,.role-grid,.admin-grid{grid-template-columns:1fr}.hero{padding:65px 20px}section{padding:55px 20px}}
+</style>
+</head>
+<body>
+<header><div class="navbar">
+<a href="#inicio" class="logo-area"><img src="logo.png" class="logo" alt="Electro Mais Moçambique"><div class="logo-text"><strong>ELECTRO MAIS</strong><small>ONDE A ENERGIA ENCONTRA A QUALIDADE</small></div></a>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<nav id="menu"><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#tecnicos">Encontrar Técnico</a><a href="#loja">Loja</a><a href="#empresa">Sobre Nós</a><a href="#contactos">Contactos</a><a href="#acesso">👤 Conta</a></nav>
+</div></header>
+
+<section class="hero" id="inicio"><div class="hero-content"><div><p style="color:#f58220;font-weight:bold">🇲🇿 ELECTRO MAIS MOÇAMBIQUE</p><h1>Soluções elétricas que <span>movem o seu mundo.</span></h1><p>Instalações, manutenção, reparações, assistência técnica, profissionais qualificados e produtos elétricos num só lugar.</p><a href="#servicos" class="btn btn-primary">Explorar serviços</a> <a href="#tecnicos" class="btn btn-outline">Encontrar técnico</a></div><div class="hero-card"><img src="logo.png" alt="Electro Mais"><h3 style="text-align:center;margin-top:15px">Energia. Qualidade. Confiança.</h3></div></div></section>
+
+<section id="servicos"><div class="container"><div class="section-title"><h2>Nossos Serviços</h2><p>Soluções para residências, empresas e indústrias.</p></div><div class="cards">
+<div class="card"><div class="card-icon">⚡</div><h3>Instalações Elétricas</h3><p>Instalações elétricas residenciais, comerciais e industriais.</p></div><div class="card"><div class="card-icon">🔧</div><h3>Manutenção</h3><p>Manutenção preventiva e corretiva de sistemas elétricos.</p></div><div class="card"><div class="card-icon">🛠️</div><h3>Reparações</h3><p>Diagnóstico e reparação de problemas elétricos.</p></div><div class="card"><div class="card-icon">👷</div><h3>Assistência Técnica</h3><p>Conectamos clientes a técnicos qualificados.</p></div>
+</div></div></section>
+
+<section class="official" id="empresa"><div class="section-title"><h2>Perfil Oficial</h2><p style="color:#cbd5e1">A presença oficial da Electro Mais Moçambique na plataforma.</p></div><div class="official-box"><img src="logo.png" class="official-logo" alt="Electro Mais Moçambique"><div><h2>Electro Mais Moçambique <span class="verified">✓ Oficial</span></h2><p style="margin:12px 0;color:#d1d5db">Empresa de soluções elétricas que oferece instalações, manutenção, reparações e assistência técnica para residências, empresas e indústrias.</p><p style="color:#f58220;font-weight:bold">Onde a Energia Encontra a Qualidade.</p></div></div></section>
+
+<section id="tecnicos"><div class="container"><div class="section-title"><h2>Encontrar Técnico</h2><p>Encontre profissionais de acordo com a sua necessidade.</p></div><div class="technicians" id="techniciansList"></div></div></section>
+
+<section id="loja"><div class="container"><div class="section-title"><h2>Loja Electro Mais <span id="cartCount" class="cart-count">0</span></h2><p>Materiais e equipamentos elétricos.</p></div><div class="store">
+<div class="product"><div class="product-img">💡</div><h3>Lâmpada LED</h3><p>Iluminação LED.</p><div class="price">250 MT</div><button class="btn btn-primary" onclick="addCart('Lâmpada LED',250)">🛒 Adicionar</button></div>
+<div class="product"><div class="product-img">🔌</div><h3>Tomada</h3><p>Tomada elétrica.</p><div class="price">350 MT</div><button class="btn btn-primary" onclick="addCart('Tomada',350)">🛒 Adicionar</button></div>
+<div class="product"><div class="product-img">⚡</div><h3>Disjuntor</h3><p>Proteção elétrica.</p><div class="price">500 MT</div><button class="btn btn-primary" onclick="addCart('Disjuntor',500)">🛒 Adicionar</button></div>
+<div class="product"><div class="product-img">🧰</div><h3>Kit de ferramentas</h3><p>Ferramentas para electricistas.</p><div class="price">2.500 MT</div><button class="btn btn-primary" onclick="addCart('Kit de ferramentas',2500)">🛒 Adicionar</button></div>
+</div><p id="cartMessage" class="message"></p></div></section>
+
+<section id="acesso"><div class="container"><div class="section-title"><h2>Conta Electro Mais</h2><p>Crie uma conta ou entre na sua área.</p></div><div class="login">
+<label>Tipo de conta</label><select id="accountRole"><option value="cliente">👤 Cliente</option><option value="eletricista">👷 Eletricista</option></select>
+<label>Nome</label><input type="text" id="userName" placeholder="Seu nome"><label>E-mail</label><input type="email" id="userEmail" placeholder="seuemail@gmail.com"><label>Senha</label><input type="password" id="userPassword" placeholder="Mínimo de 6 caracteres">
+<button class="btn btn-primary" style="width:100%;margin-bottom:10px" onclick="createAccount()">Criar conta</button><button class="btn btn-dark" style="width:100%" onclick="loginUser()">Entrar</button><p id="authMessage" class="message"></p>
+</div></div></section>
+
+<section id="minha-conta" style="display:none"><div class="container"><div class="section-title"><h2>Minha Conta</h2><p>Dados da sua conta Electro Mais.</p></div><div class="profile-box"><h3 id="profileName"></h3><p id="profileEmail"></p><p>Tipo: <span id="profileRole" class="badge"></span></p><button class="btn btn-danger" style="margin-top:15px" onclick="logoutUser()">Sair da conta</button></div></div></section>
+
+<section id="adminLoginSection"><div class="container"><div class="section-title"><h2>Área Administrativa</h2><p>Acesso reservado à equipa autorizada.</p></div><div class="login"><label>E-mail administrativo</label><input type="email" id="adminEmail" placeholder="electromaismoz@gmail.com"><label>Senha</label><input type="password" id="adminPassword" placeholder="Senha da conta Firebase"><button class="btn btn-dark" style="width:100%" onclick="adminLogin()">🔐 Entrar no painel</button><p id="adminMessage" class="message"></p></div></div></section>
+
+<section class="dashboard" id="dashboard"><div class="dashboard-box"><h2>⚡ Painel Electro Mais</h2><p style="color:#cbd5e1">Área administrativa da plataforma.</p><div class="admin-grid">
+<div class="admin-card"><h3>👷 Eletricistas</h3><p>Gerir profissionais cadastrados.</p></div><div class="admin-card"><h3>📋 Pedidos</h3><p>Acompanhar solicitações de clientes.</p></div><div class="admin-card"><h3>🛒 Loja</h3><p>Gerir produtos e stock.</p></div><div class="admin-card"><h3>👤 Clientes</h3><p>Gerir utilizadores.</p></div><div class="admin-card"><h3>🏢 Empresa</h3><p>Editar o perfil oficial.</p></div><div class="admin-card"><h3>⚙️ Configurações</h3><p>Configurações da plataforma.</p></div>
+</div><button class="btn btn-danger" style="margin-top:25px" onclick="logoutUser()">Sair do painel</button></div></section>
+
+<section id="contactos"><div class="container"><div class="section-title"><h2>Contactos</h2><p>Fale diretamente com a Electro Mais.</p></div><div class="cards">
+<div class="card"><div class="card-icon">📧</div><h3>E-mail</h3><p>electromaismoz@gmail.com</p><br><a class="btn btn-primary" href="mailto:electromaismoz@gmail.com">Enviar e-mail</a></div>
+<div class="card"><div class="card-icon">📱</div><h3>WhatsApp</h3><p>867783175</p><br><a class="btn btn-primary" href="https://wa.me/258867783175" target="_blank">WhatsApp</a></div>
+<div class="card"><div class="card-icon">🇲🇿</div><h3>Moçambique</h3><p>Soluções elétricas para residências, empresas e indústrias.</p></div><div class="card"><div class="card-icon">⚡</div><h3>Electro Mais</h3><p>Onde a Energia Encontra a Qualidade.</p></div>
+</div></div></section>
+
+<footer><div class="footer-grid"><div><h2>⚡ ELECTRO MAIS</h2><p>Soluções elétricas que movem o seu mundo.</p><p style="margin-top:10px">Onde a Energia Encontra a Qualidade.</p></div><div><h3>Plataforma</h3><p>Serviços</p><p>Encontrar Técnico</p><p>Loja</p><p>Perfil Oficial</p></div><div><h3>Contacto</h3><p>electromaismoz@gmail.com</p><p>+258 867 783 175</p></div></div><p style="text-align:center;margin-top:35px">© 2026 Electro Mais Moçambique. Todos os direitos reservados.</p></footer>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {getAnalytics} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {getFirestore,doc,setDoc,getDoc,collection,getDocs} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const firebaseConfig={apiKey:"AIzaSyBR3l3CxiWXv7ZEriIMo833p8oWJ_mTw74",authDomain:"electro-mais-mocambique.firebaseapp.com",projectId:"electro-mais-mocambique",storageBucket:"electro-mais-mocambique.firebasestorage.app",messagingSenderId:"620596361441",appId:"1:620596361441:web:fadde283aa7978c2585fa0",measurementId:"G-YNYY117RKE"};
+const app=initializeApp(firebaseConfig);getAnalytics(app);const auth=getAuth(app);const db=getFirestore(app);
+const ADMIN_UID="QSnHZagz9jVo4r21WHtoX1T5R9u2";
+
+window.toggleMenu=()=>document.getElementById("menu").classList.toggle("active");
+function msg(id,text,type){const e=document.getElementById(id);e.textContent=text;e.className="message "+type}
+
+window.createAccount=async()=>{
+ const name=userName.value.trim(),email=userEmail.value.trim(),password=userPassword.value,role=accountRole.value;
+ if(!name||!email||!password)return msg("authMessage","Preencha todos os campos.","error");
+ if(password.length<6)return msg("authMessage","A senha deve ter pelo menos 6 caracteres.","error");
+ try{const c=await createUserWithEmailAndPassword(auth,email,password);
+ await setDoc(doc(db,"users",c.user.uid),{uid:c.user.uid,name,email,role,active:true,createdAt:new Date().toISOString()});
+ if(role==="eletricista")await setDoc(doc(db,"technicians",c.user.uid),{uid:c.user.uid,name,email,available:true,rating:0,services:0});
+ msg("authMessage","Conta criada com sucesso!","success");
+ }catch(e){msg("authMessage",firebaseError(e.code),"error")}
+};
+window.loginUser=async()=>{
+ try{await signInWithEmailAndPassword(auth,userEmail.value.trim(),userPassword.value);msg("authMessage","Login efetuado com sucesso!","success")}
+ catch(e){msg("authMessage",firebaseError(e.code),"error")}
+};
+window.adminLogin=async()=>{
+ try{const c=await signInWithEmailAndPassword(auth,adminEmail.value.trim(),adminPassword.value);
+ if(c.user.uid!==ADMIN_UID){await signOut(auth);return msg("adminMessage","Esta conta não tem acesso administrativo.","error")}
+ msg("adminMessage","Acesso autorizado.","success")
+ }catch(e){msg("adminMessage",firebaseError(e.code),"error")}
+};
+window.logoutUser=()=>signOut(auth);
+window.addCart=(p,price)=>{let c=JSON.parse(localStorage.getItem("electroCart")||"[]");c.push({product:p,price});localStorage.setItem("electroCart",JSON.stringify(c));document.getElementById("cartCount").textContent=c.length;msg("cartMessage",p+" foi adicionado ao carrinho.","success")};
+window.requestService=(id,name)=>{if(!auth.currentUser){alert("Entre na sua conta para solicitar um serviço.");location.hash="acesso";return}alert("Pedido para "+name+" será ligado ao sistema de pedidos na próxima etapa.")};
+
+function firebaseError(c){return({"auth/email-already-in-use":"Este e-mail já está cadastrado.","auth/invalid-email":"O e-mail não é válido.","auth/weak-password":"A senha deve ter pelo menos 6 caracteres.","auth/invalid-credential":"E-mail ou senha incorretos.","auth/user-not-found":"Utilizador não encontrado.","auth/wrong-password":"Senha incorreta."}[c]||"Ocorreu um erro. Tente novamente.")}
+
+async function loadTechnicians(){
+ const box=document.getElementById("techniciansList");
+ try{const s=await getDocs(collection(db,"technicians"));
+ if(s.empty){box.innerHTML='<div class="tech"><div class="avatar">👷</div><h3>Seja o primeiro técnico</h3><p>Os eletricistas cadastrados aparecerão aqui.</p></div>';return}
+ box.innerHTML="";s.forEach(d=>{const t=d.data();box.innerHTML+=`<div class="tech"><div class="avatar">👷🏾</div><h3>${safe(t.name||"Eletricista")}</h3><p>Profissional Electro Mais</p><p class="rating">★★★★★</p><p class="available">● ${t.available===false?"Indisponível":"Disponível"}</p><br><button class="btn btn-primary" onclick="requestService('${d.id}','${js(t.name||"Eletricista")}')">Solicitar serviço</button></div>`})}
+ catch(e){console.error(e)}
+}
+function safe(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function js(s){return String(s).replace(/\/g,"\\").replace(/'/g,"\'")}
+
+onAuthStateChanged(auth,async u=>{
+ const dash=document.getElementById("dashboard"),adm=document.getElementById("adminLoginSection"),acc=document.getElementById("minha-conta");
+ if(!u){dash.style.display="none";acc.style.display="none";adm.style.display="block";return}
+ if(u.uid===ADMIN_UID){dash.style.display="block";adm.style.display="none";acc.style.display="none";dash.scrollIntoView({behavior:"smooth"});return}
+ dash.style.display="none";adm.style.display="block";acc.style.display="block";
+ try{const s=await getDoc(doc(db,"users",u.uid)),d=s.exists()?s.data():{};profileName.textContent=d.name||u.email;profileEmail.textContent="E-mail: "+u.email;profileRole.textContent=d.role==="eletricista"?"Eletricista":"Cliente"}catch(e){console.error(e)}
+});
+document.getElementById("cartCount").textContent=JSON.parse(localStorage.getItem("electroCart")||"[]").length;loadTechnicians();
+</script>
+</body>
+</html>
