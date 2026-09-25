@@ -1085,6 +1085,22 @@ function adminLogin(){
 }
 
 </script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyBR3l3CxiWXv7ZEriIMo833p8oWJ_mTw74",
+    authDomain: "electro-mais-mocambique.firebaseapp.com",
+    projectId: "electro-mais-mocambique",
+    storageBucket: "electro-mais-mocambique.firebasestorage.app",
+    messagingSenderId: "620596361441",
+    appId: "1:620596361441:web:fadde283aa7978c2585fa0",
+    measurementId: "G-YNYY117RKE"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </body>
   </html>
