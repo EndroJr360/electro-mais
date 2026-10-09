@@ -309,7 +309,13 @@ section{scroll-margin-top:82px}
   <div class="card"><div class="product-img">🏠⚡</div><h3>Instalação residencial</h3><p>Antes → Depois · Serviço realizado · Localização geral · Equipa responsável.</p></div>
   <div class="card"><div class="product-img">🏢💡</div><h3>Projeto de iluminação</h3><p>Fotos, descrição do trabalho, materiais utilizados e resultado final.</p></div>
   <div class="card"><div class="product-img">🏭🔧</div><h3>Manutenção técnica</h3><p>Registo de intervenção, solução aplicada e equipa responsável.</p></div>
-</div><div class="notice">📌 Quando os projetos reais forem cadastrados, esta área deverá mostrar apenas trabalhos autorizados e informações públicas.</div></div></section>
+</div>
+<div class="em-moments-teaser">
+  <div class="em-moments-teaser-icon">📸🎬</div>
+  <div class="em-moments-teaser-copy"><span class="em-moments-kicker">A NOSSA TRAJETÓRIA</span><h3>Nossos Momentos</h3><p>Conheça a história da Electro Mais, os marcos da nossa caminhada e os momentos que ajudam a construir esta visão.</p></div>
+  <button type="button" class="btn btn-primary em-moments-open" onclick="window.openElectroMoments()">Ver a nossa história ↗</button>
+</div>
+<div class="notice">📌 Quando os projetos reais forem cadastrados, esta área deverá mostrar apenas trabalhos autorizados e informações públicas.</div></div></section>
 
 <section id="aprende"><div class="container"><div class="section-title"><h2>📚 Electro Mais Aprende</h2><p>Conteúdo para ajudar clientes e profissionais a compreender melhor o mundo elétrico.</p></div><div class="cards">
   <div class="card"><div class="card-icon">🛡️</div><h3>Segurança elétrica</h3><p>Boas práticas, prevenção de riscos e cuidados básicos.</p></div>
@@ -982,13 +988,21 @@ window.resetModernPassword=async()=>{const id=val('loginIdentifier');if(!id||!id
 function firebaseError(c){return({'auth/email-already-in-use':'Este e-mail já está cadastrado.','auth/invalid-email':'O e-mail não é válido.','auth/weak-password':'A palavra-passe deve ter pelo menos 6 caracteres.','auth/invalid-credential':'Dados de acesso incorretos.','auth/user-not-found':'Utilizador não encontrado.','auth/wrong-password':'Palavra-passe incorreta.','auth/invalid-phone-number':'Número de telefone inválido.','auth/too-many-requests':'Muitas tentativas. Aguarde um pouco e tente novamente.','auth/quota-exceeded':'O limite de SMS foi atingido. Tente novamente mais tarde.','auth/captcha-check-failed':'A verificação de segurança falhou. Tente novamente.'}[c]||'Ocorreu um erro. Tente novamente.')}
 </script>
 <script type="module">
-/* v15 — Electro Mais IA: modelos principal/fallback, streaming e recuperação por pedido */
+/* v17 — Electro Mais IA: tentativas de até 10s e alternância automática entre modelos */
 import {getApp} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import {getAI,getGenerativeModel,GoogleAIBackend} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-ai.js";
 try{
  const app=getApp();
  const ai=getAI(app,{backend:new GoogleAIBackend()});
- const systemInstruction=`Você é a Electro Mais IA, assistente oficial da Electro Mais Moçambique. Converse naturalmente, não apenas responda por palavras-chave. Responda em português claro e natural, podendo ser detalhado quando a pergunta pedir. Você pode responder cumprimentos como Olá, perguntas gerais como o que é eletricidade, matemática básica, explicações, aprendizagem, tecnologia e dúvidas do dia a dia, além de eletricidade e serviços da Electro Mais. Quando o assunto for eletricidade, explique de forma didática e segura. Para trabalhos que envolvam risco de choque, incêndio, quadros elétricos ou instalações energizadas, não dê instruções perigosas para execução por leigos; priorize desligar a energia somente se for seguro e procurar profissional qualificado. Sobre a Electro Mais, explique serviços, pedidos, técnicos, loja, pagamentos, M-Pesa, e-Mola e funcionamento da plataforma sem inventar preços, disponibilidade, pagamentos concluídos ou dados privados. Se não souber um dado específico da plataforma, diga que precisa ser confirmado. A Electro Mais foi criada em 2025 e ambiciona levar soluções elétricas a todo Moçambique. A sua participação no Descola Manica em 2026 faz parte da sua evolução. O slogan é “Onde a Energia Encontra a Qualidade”. Seja útil e converse como um verdadeiro assistente, não como um menu de respostas fixas.`;
+ const systemInstruction=`Você é a Electro Mais IA, assistente oficial da Electro Mais Moçambique. Converse naturalmente, não apenas responda por palavras-chave. Responda em português claro e natural, podendo ser detalhado quando a pergunta pedir. Pode responder a cumprimentos, perguntas gerais, matemática básica, explicações, aprendizagem, tecnologia e dúvidas do dia a dia, além de eletricidade e serviços da Electro Mais. Quando o assunto for eletricidade, explique de forma didática e segura. Para trabalhos com risco de choque, incêndio, quadros elétricos ou instalações energizadas, não dê instruções perigosas para execução por leigos; priorize desligar a energia somente se for seguro e procurar profissional qualificado. Sobre a Electro Mais, explique serviços, pedidos, técnicos, loja, pagamentos, M-Pesa, e-Mola e funcionamento da plataforma sem inventar preços, disponibilidade, pagamentos concluídos ou dados privados. Se não souber um dado específico da plataforma, diga que precisa ser confirmado.
+
+HISTÓRIA OFICIAL DA ELECTRO MAIS MOÇAMBIQUE: A Electro Mais nasceu em 2025, a partir de uma ideia simples: criar uma empresa de soluções elétricas e construir uma presença própria no mundo digital. No início, o objetivo era ter uma empresa e um site para apresentar os seus serviços. A ideia evoluiu para uma startup de soluções elétricas focada em facilitar o acesso a serviços, profissionais e produtos de qualidade. A proposta contempla instalações elétricas, manutenção, reparações, assistência técnica e projetos elétricos, aproximando clientes de profissionais capazes de prestar esses serviços.
+
+Depois de 31 de dezembro, Endro decidiu que não queria deixar a Electro Mais apenas como uma ideia ou projeto pessoal e começou a dedicar-se mais seriamente ao projeto, trabalhando no modelo de negócio, identidade, proposta de valor, presença digital, clientes, técnicos e visão de crescimento. Em 2026, Endro candidatou-se ao Descola Manica, iniciativa da Orange Corners Mozambique, e foi selecionado. Nos dias 14 e 15 de maio de 2026, participou presencialmente no workshop realizado no Inter Hotel Chimoio, na sala de conferências. O Descola procurou ajudar participantes a adquirir conhecimentos, ferramentas e competências, estruturar e validar ideias de negócio e desenvolver planos práticos de implementação. Para a Electro Mais, foi um marco de aprendizagem, crescimento, validação e confirmação de que a ideia podia ser trabalhada como negócio.
+
+A visão passou de uma empresa prestadora de serviços para uma plataforma que conecta clientes, técnicos, serviços, produtos e tecnologia. A estrutura digital planeada inclui contas de clientes, perfis profissionais de eletricistas, verificação de profissionais, pedidos de serviços, chat entre clientes e técnicos, notificações, avaliações, loja de materiais elétricos, assistência urgente, Electro Mais Aprende, Palavra do Dia, Electro Mais IA e Perfil Oficial da Electro Mais. A visão futura inclui uma loja física e uma aplicação móvel. Não afirmes que estas funcionalidades, a loja física ou a aplicação estão concluídas se isso não estiver confirmado.
+
+A Electro Mais tem raízes em Manica e Chimoio, mas ambiciona crescer em Moçambique e tornar-se uma referência nacional no setor elétrico moçambicano. A empresa ainda está em construção e a história continua a ser escrita. Frase de apresentação: “Soluções elétricas que movem o seu mundo.” Slogan: “Onde a Energia Encontra a Qualidade.” Fecho institucional: “Uma história que começou em 2025 — e que ainda está a ser escrita.” Não inventes datas, prémios, resultados, fotos, vídeos ou acontecimentos. Seja útil e converse como um verdadeiro assistente, não como um menu de respostas fixas.`;
  const generationConfig={maxOutputTokens:420,temperature:0.55};
  const primaryModel=getGenerativeModel(ai,{model:"gemini-3.8-flash",systemInstruction});
  const fallbackModel=getGenerativeModel(ai,{model:"gemini-3.5-flash-lite",systemInstruction});
@@ -996,56 +1010,60 @@ try{
  let fallbackChat=fallbackModel.startChat({generationConfig});
  const form=document.getElementById('aiForm'),input=document.getElementById('aiInput'),box=document.getElementById('aiMessages');
  const conversation=[];
+ const FALLBACK_KEY='electroMaisAI.fallbackUntil.v1';
+ const FALLBACK_DURATION=15*60*1000;
+ const ATTEMPT_TIMEOUT=10000;
+ let activeRequestId=0;let activeAttemptId=0;
+ function getFallbackUntil(){try{return Number(localStorage.getItem(FALLBACK_KEY)||0)}catch{return 0}}
+ function setFallbackUntil(ts){try{localStorage.setItem(FALLBACK_KEY,String(ts))}catch{}}
+ function clearFallbackUntil(){try{localStorage.removeItem(FALLBACK_KEY)}catch{}}
  function add(text,who){const d=document.createElement('div');d.className='ai-msg '+who;d.textContent=text;box.appendChild(d);box.scrollTop=box.scrollHeight;return d}
- function isTemporaryModelError(e){
-   const code=String(e?.code||'').toLowerCase();
-   const msg=String(e?.message||e||'').toLowerCase();
-   const status=Number(e?.status||e?.statusCode||0);
-   return status===429||status>=500||/timeout|timed out|resource[_ ]exhausted|unavailable|deadline[_ ]exceeded|internal|temporar|overloaded|503|502|500|429/.test(code+' '+msg);
- }
- function rebuildChat(model,history){
-   const prior=history.map(m=>({role:m.role,parts:[{text:m.text}]}));
-   return model.startChat({generationConfig,history:prior});
- }
- async function streamAnswer(chat,text,loading){
-   const result=await chat.sendMessageStream(text);
-   let full='';
-   for await (const chunk of result.stream){
-     const piece=chunk?.text?.()||'';
-     if(piece){full+=piece;loading.textContent=full;box.scrollTop=box.scrollHeight;}
-   }
-   const response=await result.response;
-   if(!full) full=response?.text?.()||'';
-   if(!full.trim()) throw new Error('A resposta veio vazia.');
-   loading.textContent=full;
-   return full;
+ function rebuildChat(model,history){const prior=history.map(m=>({role:m.role,parts:[{text:m.text}]}));return model.startChat({generationConfig,history:prior})}
+ async function streamAnswer(chat,text,loading,isCurrent){
+   const result=await chat.sendMessageStream(text);let full='';
+   for await(const chunk of result.stream){const piece=chunk?.text?.()||'';if(piece){full+=piece;if(isCurrent()){loading.textContent=full;box.scrollTop=box.scrollHeight}}}
+   const response=await result.response;if(!full)full=response?.text?.()||'';
+   if(!full.trim())throw new Error('A resposta veio vazia.');
+   if(isCurrent())loading.textContent=full;return full;
  }
  async function withTimeout(promise,ms,label){let timer;try{return await Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>{const e=new Error(label+' excedeu '+Math.round(ms/1000)+' segundos');e.code='ai/timeout';reject(e)},ms)})])}finally{clearTimeout(timer)}}
+ async function attempt(model,text,loading,label,requestId){
+   const attemptId=++activeAttemptId;
+   const isCurrent=()=>requestId===activeRequestId&&attemptId===activeAttemptId;
+   const chat=rebuildChat(model,conversation);
+   return await withTimeout(streamAnswer(chat,text,loading,isCurrent),ATTEMPT_TIMEOUT,label);
+ }
  async function ask(text){
    if(!text||!text.trim()||ask.busy)return;
-   text=text.trim();ask.busy=true;if(input)input.disabled=true;const submit=form?.querySelector('button[type="submit"]');if(submit)submit.disabled=true;
-   add(text,'user');
-   const loading=add('A preparar resposta…','bot');loading.classList.add('ai-loading');
+   text=text.trim();ask.busy=true;const requestId=++activeRequestId;
+   if(input)input.disabled=true;const submit=form?.querySelector('button[type="submit"]');if(submit)submit.disabled=true;
+   add(text,'user');const loading=add('A preparar resposta…','bot');loading.classList.add('ai-loading');
    try{
-     let answer;
-     try{
-       primaryChat=rebuildChat(primaryModel,conversation);
-       answer=await withTimeout(streamAnswer(primaryChat,text,loading),16000,'Modelo principal');
-     }catch(primaryError){
-       if(!isTemporaryModelError(primaryError))throw primaryError;
-       console.warn('Electro Mais IA: modelo principal lento/indisponível; a tentar fallback.',primaryError);
-       window.reportFirebaseError?.(primaryError,'Electro Mais IA',{severity:'warning',event:'fallback_activated'}).catch(()=>{});
-       loading.textContent='A tentar uma alternativa mais rápida…';
-       fallbackChat=rebuildChat(fallbackModel,conversation);
-       answer=await withTimeout(streamAnswer(fallbackChat,text,loading),12000,'Modelo alternativo');
+     let answer;const fallbackActive=Date.now()<getFallbackUntil();
+     if(fallbackActive){
+       loading.textContent='A usar temporariamente o modelo alternativo…';
+       answer=await attempt(fallbackModel,text,loading,'Modelo alternativo',requestId);
+     }else{
+       try{
+         answer=await attempt(primaryModel,text,loading,'Modelo principal',requestId);
+         clearFallbackUntil();
+       }catch(primaryError){
+         // Qualquer falha do principal ativa o alternativo durante 15 minutos.
+         setFallbackUntil(Date.now()+FALLBACK_DURATION);
+         console.warn('Electro Mais IA: modelo principal falhou; alternativo ativado durante 15 minutos.',primaryError);
+         window.reportFirebaseError?.(primaryError,'Electro Mais IA',{severity:'warning',event:'fallback_activated',fallbackMinutes:15}).catch(()=>{});
+         loading.textContent='A tentar o modelo alternativo…';
+         answer=await attempt(fallbackModel,text,loading,'Modelo alternativo',requestId);
+       }
      }
+     if(requestId!==activeRequestId)return;
      loading.classList.remove('ai-loading');loading.textContent=answer;
      conversation.push({role:'user',text},{role:'model',text:answer});
    }catch(e){
      console.error('Electro Mais IA — falha de resposta:',e);
-     window.reportFirebaseError?.(e,'Electro Mais IA',{severity:'critical',event:'answer_failed'}).catch(()=>{});
-     loading.classList.remove('ai-loading');loading.textContent='❌ Ocorreu um problema ao responder. Tente novamente.';
-   }finally{ask.busy=false;if(input)input.disabled=false;if(submit)submit.disabled=false;if(input)input.focus();}
+     window.reportFirebaseError?.(e,'Electro Mais IA',{severity:'critical',event:'answer_failed',fallbackUntil:getFallbackUntil()||null}).catch(()=>{});
+     if(requestId===activeRequestId){loading.classList.remove('ai-loading');loading.textContent='❌ Ocorreu um problema. Tente novamente.';}
+   }finally{if(requestId===activeRequestId){ask.busy=false;if(input)input.disabled=false;if(submit)submit.disabled=false;if(input)input.focus();}}
  }
  window.electroAskAI=ask;
  if(form){form.addEventListener('submit',e=>{e.preventDefault();const t=input.value.trim();input.value='';ask(t)});document.querySelectorAll('[data-ai]').forEach(b=>b.addEventListener('click',()=>ask(b.dataset.ai)));}
@@ -1207,6 +1225,48 @@ const ADMIN13='QSnHZagz9jVo4r21WHtoX1T5R9u2';window.electroAdminLoadVendors=asyn
 // expose an admin shortcut only after authenticated admin sign-in
 onAuthStateChanged(auth13,u=>{if(u?.uid===ADMIN13){const dash=$13('dashboard');if(dash&&!$13('adminVendorsButton13')){const b=document.createElement('button');b.id='adminVendorsButton13';b.className='btn btn-primary';b.textContent='🏪 Gerir Vendedores';b.style.margin='10px 0';b.onclick=window.electroAdminLoadVendors;dash.prepend(b)}}});
 loadPublicVendors13();
+</script>
+
+
+<!-- ===== Electro Mais Moçambique: Nossos Momentos ===== -->
+<div id="electroMomentsModal" class="em-moments-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="emMomentsTitle">
+  <div class="em-moments-backdrop" onclick="window.closeElectroMoments()"></div>
+  <div class="em-moments-dialog" role="document">
+    <div class="em-moments-header"><div><span class="em-moments-kicker">ELECTRO MAIS MOÇAMBIQUE · 🇲🇿</span><h2 id="emMomentsTitle">Nossos Momentos</h2><p>Uma história que começou em 2025 — e que ainda está a ser escrita.</p></div><button type="button" class="em-moments-close" aria-label="Fechar janela" onclick="window.closeElectroMoments()">✕</button></div>
+    <div class="em-moments-content">
+      <div class="em-moments-intro"><div class="em-moments-bolt">⚡</div><div><h3>De uma ideia a uma visão nacional</h3><p>A Electro Mais nasceu com a vontade de criar uma empresa de soluções elétricas e, passo a passo, começou a transformar-se numa startup com ambição de conectar clientes, técnicos, serviços, produtos e tecnologia.</p></div></div>
+      <div class="em-moments-timeline" aria-label="Linha do tempo da Electro Mais">
+        <article class="em-moment"><span class="em-moment-year">2025</span><div><h3>⚡ Nasce a Electro Mais</h3><p>Uma ideia simples: criar uma empresa de soluções elétricas e construir uma presença própria no mundo digital. O primeiro objetivo era apresentar os serviços através de um site.</p></div></article>
+        <article class="em-moment"><span class="em-moment-year">NOVA FASE</span><div><h3>🚀 A decisão de levar o projeto a sério</h3><p>Depois de 31 de dezembro, Endro decidiu dedicar-se verdadeiramente ao projeto. A identidade, o modelo de negócio, a proposta de valor, a presença digital e a visão de crescimento começaram a ganhar mais estrutura.</p></div></article>
+        <article class="em-moment em-moment-highlight"><span class="em-moment-year">14–15 MAI 2026</span><div><h3>🏆 Descola Manica — uma verdadeira vitória</h3><p>Endro candidatou-se ao Descola Manica, iniciativa da Orange Corners Mozambique, e foi selecionado. Participou presencialmente no workshop no Inter Hotel Chimoio, na sala de conferências. A experiência trouxe aprendizagem, ferramentas para estruturar e validar a ideia e um marco especial na trajetória da Electro Mais.</p><p class="em-moment-location">📍 Inter Hotel Chimoio · Manica, Moçambique</p></div></article>
+        <article class="em-moment"><span class="em-moment-year">EVOLUÇÃO</span><div><h3>💻 De uma empresa para uma plataforma</h3><p>A visão ampliou-se: aproximar clientes e profissionais, permitir pedidos de serviços e conversas, e preparar funcionalidades como perfis, verificação de técnicos, notificações, avaliações, loja de materiais elétricos, assistência urgente, Electro Mais Aprende, Palavra do Dia e Electro Mais IA.</p></div></article>
+        <article class="em-moment"><span class="em-moment-year">O FUTURO</span><div><h3>🇲🇿 Uma visão para Moçambique</h3><p>Com raízes em Manica e Chimoio, a ambição é crescer para todo o país e tornar a Electro Mais uma referência nacional no setor elétrico. A loja física e a aplicação móvel fazem parte da visão futura; a história continua em construção.</p></div></article>
+      </div>
+      <section class="em-moments-gallery"><div class="em-moments-gallery-heading"><div><span class="em-moments-kicker">MEMÓRIAS DA NOSSA CAMINHADA</span><h3>Fotos, vídeos e registos</h3><p>Este espaço está preparado para receber fotografias e vídeos reais da equipa, do Descola Manica, dos bastidores e de outros momentos importantes.</p></div></div>
+        <div class="em-media-grid">
+          <div class="em-media-slot"><div class="em-media-symbol">📷</div><strong>Fotografias da equipa</strong><span>Os registos reais serão apresentados aqui.</span></div>
+          <div class="em-media-slot"><div class="em-media-symbol">🏆</div><strong>Descola Manica</strong><span>Fotos e memórias do workshop de 14 e 15 de maio de 2026.</span></div>
+          <div class="em-media-slot"><div class="em-media-symbol">🎬</div><strong>Vídeos dos nossos momentos</strong><span>Vídeos dos bastidores, encontros e atividades da Electro Mais.</span></div>
+        </div>
+        <p class="em-moments-media-note">📌 Os espaços de galeria são marcadores iniciais. As fotografias e os vídeos reais serão adicionados quando os ficheiros forem disponibilizados, para não apresentar imagens ilustrativas como se fossem registos verdadeiros.</p>
+      </section>
+      <div class="em-moments-footer-quote"><p>“Soluções elétricas que movem o seu mundo.”</p><strong>Onde a Energia Encontra a Qualidade.</strong></div>
+    </div>
+  </div>
+</div>
+<style>
+.em-moments-teaser{margin:24px 0 8px;padding:22px;display:flex;align-items:center;gap:18px;border:1px solid #fed7aa;border-radius:20px;background:linear-gradient(120deg,#fff7ed,#fff 70%);box-shadow:0 8px 28px rgba(31,41,55,.06)}
+.em-moments-teaser-icon{flex:0 0 62px;width:62px;height:62px;display:grid;place-items:center;border-radius:18px;background:#1f2937;color:#fff;font-size:27px}.em-moments-teaser-copy{flex:1}.em-moments-kicker{font-size:10px;font-weight:900;letter-spacing:1.8px;color:#ea580c}.em-moments-teaser h3{margin:4px 0 6px;font-size:23px;color:#111827}.em-moments-teaser p{margin:0;color:#4b5563;font-size:14px;line-height:1.6}.em-moments-open{white-space:nowrap;border:0;cursor:pointer}
+.em-moments-modal{position:fixed;inset:0;z-index:99990;display:none;align-items:center;justify-content:center;padding:16px}.em-moments-modal.is-open{display:flex}.em-moments-backdrop{position:absolute;inset:0;background:rgba(3,7,18,.78);backdrop-filter:blur(5px)}.em-moments-dialog{position:relative;width:min(980px,100%);max-height:min(92vh,900px);overflow:auto;border-radius:22px;background:#fff;color:#111827;box-shadow:0 24px 90px rgba(0,0,0,.4);overscroll-behavior:contain}.em-moments-header{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:24px 26px;background:rgba(17,24,39,.97);color:#fff;border-bottom:3px solid #f58220}.em-moments-header h2{margin:5px 0;font-size:clamp(26px,4vw,36px);color:#fff}.em-moments-header p{margin:0;color:#d1d5db;font-size:14px}.em-moments-header .em-moments-kicker{color:#fdba74}.em-moments-close{flex:0 0 40px;width:40px;height:40px;border:1px solid #4b5563;border-radius:50%;background:#273244;color:#fff;font-size:20px;cursor:pointer}.em-moments-content{padding:26px}.em-moments-intro{display:flex;gap:16px;align-items:flex-start;padding:20px;border-radius:18px;background:#fff7ed;border:1px solid #fed7aa}.em-moments-bolt{width:48px;height:48px;flex:0 0 48px;display:grid;place-items:center;border-radius:14px;background:#f58220;color:white;font-size:25px}.em-moments-intro h3{margin:0 0 8px;font-size:21px}.em-moments-intro p,.em-moment p{margin:0;color:#4b5563;line-height:1.75;font-size:14px}.em-moments-timeline{position:relative;margin:26px 0 32px;padding-left:24px;border-left:3px solid #fed7aa}.em-moment{position:relative;margin:0 0 20px;padding:18px 20px;border:1px solid #e5e7eb;border-radius:16px;background:#fff}.em-moment:before{content:"";position:absolute;left:-33px;top:22px;width:14px;height:14px;border-radius:50%;background:#f58220;border:3px solid #fff;box-shadow:0 0 0 2px #fed7aa}.em-moment-year{display:inline-block;margin-bottom:7px;color:#ea580c;font-size:10px;font-weight:900;letter-spacing:1.2px}.em-moment h3{margin:0 0 7px;font-size:18px}.em-moment-highlight{border-color:#fdba74;background:#fffaf5}.em-moment-location{margin-top:8px!important;font-weight:700;color:#9a3412!important}.em-moments-gallery{padding-top:8px}.em-moments-gallery-heading h3{margin:5px 0;font-size:24px}.em-moments-gallery-heading p{margin:0;color:#6b7280;font-size:14px;line-height:1.6}.em-media-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}.em-media-slot{min-height:165px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;padding:18px;border:1px dashed #d1d5db;border-radius:16px;background:linear-gradient(145deg,#f9fafb,#fff)}.em-media-symbol{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:#ffedd5;font-size:22px}.em-media-slot strong{font-size:14px}.em-media-slot span{font-size:12px;color:#6b7280;line-height:1.55}.em-moments-media-note{margin-top:14px;color:#6b7280;font-size:12px;line-height:1.6}.em-moments-footer-quote{margin-top:28px;padding:24px;text-align:center;border-radius:18px;background:#1f2937;color:#fff}.em-moments-footer-quote p{margin:0 0 8px;font-size:20px;font-weight:800}.em-moments-footer-quote strong{color:#fdba74;font-size:13px;letter-spacing:.4px}
+@media(max-width:640px){.em-moments-teaser{align-items:flex-start;flex-wrap:wrap;padding:17px}.em-moments-teaser-icon{width:50px;height:50px;flex-basis:50px;font-size:23px}.em-moments-teaser-copy{min-width:calc(100% - 75px)}.em-moments-open{width:100%;white-space:normal}.em-moments-modal{padding:7px}.em-moments-dialog{max-height:96vh;border-radius:16px}.em-moments-header{padding:18px 16px}.em-moments-content{padding:16px}.em-moments-intro{padding:15px;gap:11px}.em-moments-intro h3{font-size:18px}.em-moments-timeline{margin-left:7px;padding-left:18px}.em-moment{padding:15px}.em-moment:before{left:-27px}.em-media-grid{grid-template-columns:1fr}.em-media-slot{min-height:125px}}
+</style>
+<script>
+(function(){
+ const modal=document.getElementById('electroMomentsModal');let previousFocus=null;
+ window.openElectroMoments=function(){if(!modal)return;previousFocus=document.activeElement;modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';modal.querySelector('.em-moments-close')?.focus()};
+ window.closeElectroMoments=function(){if(!modal)return;modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(previousFocus&&typeof previousFocus.focus==='function')previousFocus.focus()};
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal?.classList.contains('is-open'))window.closeElectroMoments()});
+})();
 </script>
 
 </body>
