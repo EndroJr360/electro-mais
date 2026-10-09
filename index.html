@@ -946,17 +946,74 @@ window.resetModernPassword=async()=>{const id=val('loginIdentifier');if(!id||!id
 function firebaseError(c){return({'auth/email-already-in-use':'Este e-mail já está cadastrado.','auth/invalid-email':'O e-mail não é válido.','auth/weak-password':'A palavra-passe deve ter pelo menos 6 caracteres.','auth/invalid-credential':'Dados de acesso incorretos.','auth/user-not-found':'Utilizador não encontrado.','auth/wrong-password':'Palavra-passe incorreta.','auth/invalid-phone-number':'Número de telefone inválido.','auth/too-many-requests':'Muitas tentativas. Aguarde um pouco e tente novamente.','auth/quota-exceeded':'O limite de SMS foi atingido. Tente novamente mais tarde.','auth/captcha-check-failed':'A verificação de segurança falhou. Tente novamente.'}[c]||'Ocorreu um erro. Tente novamente.')}
 </script>
 <script type="module">
-/* v10 — Electro Mais IA: conversa livre com Gemini 3.8 Flash */
+/* v15 — Electro Mais IA: modelos principal/fallback, streaming e recuperação por pedido */
 import {getApp} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import {getAI,getGenerativeModel,GoogleAIBackend} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-ai.js";
 try{
  const app=getApp();
  const ai=getAI(app,{backend:new GoogleAIBackend()});
- const model=getGenerativeModel(ai,{model:"gemini-2.5-flash",systemInstruction:`Você é a Electro Mais IA, assistente oficial da Electro Mais Moçambique. Converse naturalmente, não apenas responda por palavras-chave. Responda em português claro e natural, podendo ser detalhado quando a pergunta pedir. Você pode responder cumprimentos como Olá, perguntas gerais como o que é eletricidade, matemática básica, explicações, aprendizagem, tecnologia e dúvidas do dia a dia, além de eletricidade e serviços da Electro Mais. Quando o assunto for eletricidade, explique de forma didática e segura. Para trabalhos que envolvam risco de choque, incêndio, quadros elétricos ou instalações energizadas, não dê instruções perigosas para execução por leigos; priorize desligar a energia somente se for seguro e procurar profissional qualificado. Sobre a Electro Mais, explique serviços, pedidos, técnicos, loja, pagamentos, M-Pesa, e-Mola e funcionamento da plataforma sem inventar preços, disponibilidade, pagamentos concluídos ou dados privados. Se não souber um dado específico da plataforma, diga que precisa ser confirmado. Seja útil e converse como um verdadeiro assistente, não como um menu de respostas fixas.`});
- const chat=model.startChat({generationConfig:{maxOutputTokens:900,temperature:0.55}});
+ const systemInstruction=`Você é a Electro Mais IA, assistente oficial da Electro Mais Moçambique. Converse naturalmente, não apenas responda por palavras-chave. Responda em português claro e natural, podendo ser detalhado quando a pergunta pedir. Você pode responder cumprimentos como Olá, perguntas gerais como o que é eletricidade, matemática básica, explicações, aprendizagem, tecnologia e dúvidas do dia a dia, além de eletricidade e serviços da Electro Mais. Quando o assunto for eletricidade, explique de forma didática e segura. Para trabalhos que envolvam risco de choque, incêndio, quadros elétricos ou instalações energizadas, não dê instruções perigosas para execução por leigos; priorize desligar a energia somente se for seguro e procurar profissional qualificado. Sobre a Electro Mais, explique serviços, pedidos, técnicos, loja, pagamentos, M-Pesa, e-Mola e funcionamento da plataforma sem inventar preços, disponibilidade, pagamentos concluídos ou dados privados. Se não souber um dado específico da plataforma, diga que precisa ser confirmado. A Electro Mais foi criada em 2025 e ambiciona levar soluções elétricas a todo Moçambique. A sua participação no Descola Manica em 2026 faz parte da sua evolução. O slogan é “Onde a Energia Encontra a Qualidade”. Seja útil e converse como um verdadeiro assistente, não como um menu de respostas fixas.`;
+ const generationConfig={maxOutputTokens:550,temperature:0.55};
+ const primaryModel=getGenerativeModel(ai,{model:"gemini-3.8-flash",systemInstruction});
+ const fallbackModel=getGenerativeModel(ai,{model:"gemini-3.5-flash-lite",systemInstruction});
+ let primaryChat=primaryModel.startChat({generationConfig});
+ let fallbackChat=fallbackModel.startChat({generationConfig});
  const form=document.getElementById('aiForm'),input=document.getElementById('aiInput'),box=document.getElementById('aiMessages');
+ const conversation=[];
  function add(text,who){const d=document.createElement('div');d.className='ai-msg '+who;d.textContent=text;box.appendChild(d);box.scrollTop=box.scrollHeight;return d}
- async function ask(text){if(!text)return;add(text,'user');const loading=add('A preparar resposta…','bot');loading.classList.add('ai-loading');let timer;try{const timeout=new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('timeout')),20000)});const r=await Promise.race([chat.sendMessage(text),timeout]);clearTimeout(timer);loading.classList.remove('ai-loading');loading.textContent=r?.response?.text?.()||'Não consegui gerar uma resposta. Tente reformular a pergunta.'}catch(e){clearTimeout(timer);console.error('Electro Mais IA',e);loading.classList.remove('ai-loading');loading.textContent=e?.message==='timeout'?'A resposta está a demorar. Verifique a ligação à internet e tente novamente.':'A IA não conseguiu responder. Confirme no Firebase se o AI Logic está ativado, se o modelo é permitido e se as regras/App Check estão configuradas.'}}
+ function isTemporaryModelError(e){
+   const code=String(e?.code||'').toLowerCase();
+   const msg=String(e?.message||e||'').toLowerCase();
+   const status=Number(e?.status||e?.statusCode||0);
+   return status===429||status>=500||/resource[_ ]exhausted|unavailable|deadline[_ ]exceeded|internal|temporar|overloaded|503|502|500|429/.test(code+' '+msg);
+ }
+ function rebuildChat(model,history){
+   const prior=history.map(m=>({role:m.role,parts:[{text:m.text}]}));
+   return model.startChat({generationConfig,history:prior});
+ }
+ async function streamAnswer(chat,text,loading){
+   const result=await chat.sendMessageStream(text);
+   let full='';
+   for await (const chunk of result.stream){
+     const piece=chunk?.text?.()||'';
+     if(piece){full+=piece;loading.textContent=full;box.scrollTop=box.scrollHeight;}
+   }
+   const response=await result.response;
+   if(!full) full=response?.text?.()||'';
+   if(!full.trim()) throw new Error('A resposta veio vazia.');
+   loading.textContent=full;
+   return full;
+ }
+ async function ask(text){
+   if(!text||!text.trim())return;
+   text=text.trim(); add(text,'user');
+   const loading=add('A preparar resposta…','bot');loading.classList.add('ai-loading');
+   let timer;
+   const timeout=new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('timeout')),25000)});
+   try{
+     let answer;
+     try{
+       // Tenta sempre o modelo principal primeiro, reconstruindo o histórico comum.
+       primaryChat=rebuildChat(primaryModel,conversation);
+       answer=await Promise.race([streamAnswer(primaryChat,text,loading),timeout]);
+     }catch(primaryError){
+       if(!isTemporaryModelError(primaryError)) throw primaryError;
+       console.warn('Electro Mais IA: erro temporário no modelo principal; a tentar fallback.',primaryError);
+       loading.textContent='A tentar uma alternativa…';
+       fallbackChat=rebuildChat(fallbackModel,conversation);
+       answer=await Promise.race([streamAnswer(fallbackChat,text,loading),timeout]);
+     }
+     clearTimeout(timer);loading.classList.remove('ai-loading');loading.textContent=answer;
+     conversation.push({role:'user',text},{role:'model',text:answer});
+   }catch(e){
+     clearTimeout(timer);console.error('Electro Mais IA — falha de resposta:',e);
+     loading.classList.remove('ai-loading');
+     if(e?.message==='timeout') loading.textContent='A resposta está a demorar mais do que o esperado. Verifique a ligação e tente novamente.';
+     else if(/permission|403|app.?check|unauthenticated|401/i.test(String(e?.message||''))) loading.textContent='A IA não tem autorização para responder. Verifique Firebase AI Logic, o fornecedor/modelo e a configuração do App Check.';
+     else if(/not found|404|model/i.test(String(e?.message||''))) loading.textContent='O modelo configurado não está disponível para este projecto. Confirme o nome do modelo e o fornecedor no Firebase AI Logic.';
+     else loading.textContent='A IA não conseguiu responder desta vez. Tente novamente; se continuar, verifique o erro detalhado na consola do navegador e no Firebase.';
+   }
+ }
  window.electroAskAI=ask;
  if(form){form.addEventListener('submit',e=>{e.preventDefault();const t=input.value.trim();input.value='';ask(t)});document.querySelectorAll('[data-ai]').forEach(b=>b.addEventListener('click',()=>ask(b.dataset.ai)));}
 }catch(e){console.error('Firebase AI Logic não inicializado',e);window.electroAIError=e;}
