@@ -184,6 +184,37 @@ body{overflow-x:hidden}
 @media(max-width:420px){.hero{background-position:60% center;min-height:620px}.hero .btn{display:inline-flex;margin:5px 4px 0 0}}
 </style>
 
+
+<style id="electro-mobile-fixes-v14">
+/* v14: layout móvel sem deslocamento horizontal e IA sempre acessível */
+html,body{width:100%;max-width:100%;overflow-x:clip}
+img,video,iframe,canvas{max-width:100%}
+.container,.navbar,.hero-content,.official-box,.profile-box,.account-modern,.dashboard-box{min-width:0;max-width:100%}
+section{scroll-margin-top:82px}
+.ai-fab{position:fixed!important;right:max(12px,env(safe-area-inset-right))!important;bottom:max(14px,env(safe-area-inset-bottom))!important;z-index:99999!important;display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+.ai-panel{position:fixed!important;right:10px!important;bottom:76px!important;width:min(390px,calc(100vw - 20px))!important;max-width:calc(100vw - 20px)!important;max-height:calc(100dvh - 95px)!important;z-index:100000!important}
+.ai-input input{min-width:0;width:100%}
+@media(max-width:700px){
+ .navbar{padding:8px 12px;gap:8px;min-height:62px}
+ .logo{width:42px;height:42px}.logo-text strong{font-size:15px}.logo-text small{font-size:9px}
+ .hero{min-height:0!important;padding:48px 16px!important}
+ .hero h1{font-size:clamp(30px,8vw,43px)!important;overflow-wrap:anywhere}
+ .hero p{font-size:15px}
+ section{padding:30px 12px!important}
+ .section-title h2{font-size:25px}
+ .official-box{padding:18px!important;gap:14px}
+ .profile-grid{grid-template-columns:1fr}
+ .profile-grid .full{grid-column:auto}
+ .account-modern{padding:16px;border-radius:16px}
+ .ai-fab{width:54px!important;height:54px!important;right:12px!important;bottom:14px!important}
+}
+@media(max-width:380px){
+ .logo-text small{display:none}
+ .logo-text strong{font-size:13px}
+ .btn{padding:10px 12px}
+ .ai-panel{height:calc(100dvh - 100px)!important}
+}
+</style>
 </head>
 <body>
 <header><div class="navbar">
@@ -326,7 +357,7 @@ body{overflow-x:hidden}
 </div></section>
 
 
-<section id="minha-conta" style="display:none"><div class="container"><div class="section-title"><h2>Meu Perfil</h2><p>Construa o seu perfil Electro Mais e mantenha os seus dados atualizados.</p></div><div class="profile-box">
+<section id="minha-conta" style="display:none"><div class="container"><div class="section-title"><h2>Editar perfil</h2><p>A sua conta já está iniciada. Atualize os seus dados e guarde as alterações quando precisar.</p></div><div class="profile-box">
   <div class="profile-avatar-wrap"><img id="profileAvatar" class="profile-avatar" src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27110%27 height=%27110%27%3E%3Crect width=%27110%27 height=%27110%20fill=%27%23f3f4f6%27/%3E%3Ctext x=%2755%27 y=%2765%27 text-anchor=%27middle%27 font-size=%2748%27%3E%F0%9F%91%A4%3C/text%3E%3C/svg%3E" alt="Foto de perfil"><br><label class="btn btn-outline" style="display:inline-block;margin-top:10px;cursor:pointer">📸 Escolher foto<input id="profilePhoto" type="file" accept="image/*" style="display:none" onchange="uploadProfilePhoto(this)"></label><p id="photoMessage" class="message"></p></div>
   <h3 id="profileName"></h3><p id="profileEmail"></p><p>Tipo: <span id="profileRole" class="badge"></span></p>
   <div id="verificationBox" class="profile-status" style="display:none"></div>
@@ -340,7 +371,7 @@ body{overflow-x:hidden}
     <div class="full"><label>Sobre mim</label><textarea id="editBio" placeholder="Fale brevemente sobre si..."></textarea></div>
     <div id="technicianFields" class="full" style="display:none"><label>Serviços que ofereço</label><input id="editServices" placeholder="Instalação, manutenção, reparação..."><label style="margin-top:10px">Documentos para verificação</label><input id="verificationDocs" type="file" accept="image/*,.pdf" multiple><p style="font-size:12px;color:#6b7280;margin-top:6px">Os documentos serão enviados para análise do Administrador. Não coloque documentos de terceiros.</p><p id="docsMessage" class="message"></p></div>
   </div>
-  <div class="profile-edit-actions"><button class="btn btn-primary" onclick="saveProfile()">💾 Guardar perfil</button><button class="btn btn-danger" onclick="logoutUser()">Sair da conta</button></div>
+  <div class="profile-edit-actions"><button class="btn btn-primary" onclick="saveProfile()">💾 Guardar alterações</button><button class="btn btn-danger" onclick="logoutUser()">Sair da conta</button></div>
   <div id="clientProfileTools" class="client-tools" style="display:none"><h3>Área do Cliente</h3><div class="client-tools-grid"><div><span>📋</span><strong>Meus pedidos</strong><small>Acompanhar solicitações e serviços.</small></div><div><span>✅</span><strong>Serviços concluídos</strong><small>Histórico dos trabalhos realizados.</small></div><div><span>❤️</span><strong>Favoritos</strong><small>Profissionais guardados.</small></div><div><span>⭐</span><strong>Avaliações</strong><small>Avaliações que você deixou.</small></div><div><span>💬</span><strong>Conversas</strong><small>Mensagens com profissionais.</small></div><div><span>🏠</span><strong>Meus projetos</strong><small>Fotos e pedidos dos seus projetos.</small></div></div></div>
 </div></div></section>
 
@@ -921,11 +952,11 @@ import {getAI,getGenerativeModel,GoogleAIBackend} from "https://www.gstatic.com/
 try{
  const app=getApp();
  const ai=getAI(app,{backend:new GoogleAIBackend()});
- const model=getGenerativeModel(ai,{model:"gemini-3.8-flash",systemInstruction:`Você é a Electro Mais IA, assistente oficial da Electro Mais Moçambique. Converse naturalmente, não apenas responda por palavras-chave. Responda em português claro e natural, podendo ser detalhado quando a pergunta pedir. Você pode responder cumprimentos como Olá, perguntas gerais como o que é eletricidade, matemática básica, explicações, aprendizagem, tecnologia e dúvidas do dia a dia, além de eletricidade e serviços da Electro Mais. Quando o assunto for eletricidade, explique de forma didática e segura. Para trabalhos que envolvam risco de choque, incêndio, quadros elétricos ou instalações energizadas, não dê instruções perigosas para execução por leigos; priorize desligar a energia somente se for seguro e procurar profissional qualificado. Sobre a Electro Mais, explique serviços, pedidos, técnicos, loja, pagamentos, M-Pesa, e-Mola e funcionamento da plataforma sem inventar preços, disponibilidade, pagamentos concluídos ou dados privados. Se não souber um dado específico da plataforma, diga que precisa ser confirmado. Seja útil e converse como um verdadeiro assistente, não como um menu de respostas fixas.`});
+ const model=getGenerativeModel(ai,{model:"gemini-2.5-flash",systemInstruction:`Você é a Electro Mais IA, assistente oficial da Electro Mais Moçambique. Converse naturalmente, não apenas responda por palavras-chave. Responda em português claro e natural, podendo ser detalhado quando a pergunta pedir. Você pode responder cumprimentos como Olá, perguntas gerais como o que é eletricidade, matemática básica, explicações, aprendizagem, tecnologia e dúvidas do dia a dia, além de eletricidade e serviços da Electro Mais. Quando o assunto for eletricidade, explique de forma didática e segura. Para trabalhos que envolvam risco de choque, incêndio, quadros elétricos ou instalações energizadas, não dê instruções perigosas para execução por leigos; priorize desligar a energia somente se for seguro e procurar profissional qualificado. Sobre a Electro Mais, explique serviços, pedidos, técnicos, loja, pagamentos, M-Pesa, e-Mola e funcionamento da plataforma sem inventar preços, disponibilidade, pagamentos concluídos ou dados privados. Se não souber um dado específico da plataforma, diga que precisa ser confirmado. Seja útil e converse como um verdadeiro assistente, não como um menu de respostas fixas.`});
  const chat=model.startChat({generationConfig:{maxOutputTokens:900,temperature:0.55}});
  const form=document.getElementById('aiForm'),input=document.getElementById('aiInput'),box=document.getElementById('aiMessages');
  function add(text,who){const d=document.createElement('div');d.className='ai-msg '+who;d.textContent=text;box.appendChild(d);box.scrollTop=box.scrollHeight;return d}
- async function ask(text){if(!text)return;add(text,'user');const loading=add('A pensar...','bot');loading.classList.add('ai-loading');try{const r=await chat.sendMessage(text);loading.classList.remove('ai-loading');loading.textContent=r?.response?.text?.()||'Não consegui gerar uma resposta agora.'}catch(e){console.error('Electro Mais IA',e);loading.classList.remove('ai-loading');loading.textContent='Não consegui ligar à IA neste momento. Verifique se o Firebase AI Logic está ativado no projeto e tente novamente.'}}
+ async function ask(text){if(!text)return;add(text,'user');const loading=add('A preparar resposta…','bot');loading.classList.add('ai-loading');let timer;try{const timeout=new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('timeout')),20000)});const r=await Promise.race([chat.sendMessage(text),timeout]);clearTimeout(timer);loading.classList.remove('ai-loading');loading.textContent=r?.response?.text?.()||'Não consegui gerar uma resposta. Tente reformular a pergunta.'}catch(e){clearTimeout(timer);console.error('Electro Mais IA',e);loading.classList.remove('ai-loading');loading.textContent=e?.message==='timeout'?'A resposta está a demorar. Verifique a ligação à internet e tente novamente.':'A IA não conseguiu responder. Confirme no Firebase se o AI Logic está ativado, se o modelo é permitido e se as regras/App Check estão configuradas.'}}
  window.electroAskAI=ask;
  if(form){form.addEventListener('submit',e=>{e.preventDefault();const t=input.value.trim();input.value='';ask(t)});document.querySelectorAll('[data-ai]').forEach(b=>b.addEventListener('click',()=>ask(b.dataset.ai)));}
 }catch(e){console.error('Firebase AI Logic não inicializado',e);window.electroAIError=e;}
