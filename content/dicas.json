@@ -1,182 +1,32 @@
 [
-{
-"title": "Desliga antes de intervir",
-"category": "Segurança elétrica",
-"excerpt": "A segurança começa antes de qualquer reparação.",
-"content": "Antes de qualquer intervenção elétrica, a alimentação deve ser desligada e a ausência de tensão confirmada com equipamento apropriado por uma pessoa qualificada. Não trabalhes em circuitos energizados."
-},
-{
-"title": "Atenção às tomadas quentes",
-"category": "Segurança elétrica",
-"excerpt": "Uma tomada quente pode indicar um problema.",
-"content": "Tomadas ou fichas excessivamente quentes, com cheiro a queimado ou marcas escuras podem indicar mau contacto ou sobrecarga. Deixa de utilizar o ponto e chama um eletricista qualificado."
-},
-{
-"title": "Evita sobrecarregar extensões",
-"category": "Segurança elétrica",
-"excerpt": "Ligar muitos aparelhos pode ser perigoso.",
-"content": "Ligar vários aparelhos de elevada potência à mesma extensão pode provocar sobreaquecimento. Respeita a capacidade indicada pelo fabricante e pede a um profissional que avalie a instalação."
-},
-{
-"title": "Água e eletricidade não combinam",
-"category": "Segurança elétrica",
-"excerpt": "Mantém aparelhos e ligações longe da água.",
-"content": "Nunca manuseies fichas, tomadas ou aparelhos elétricos com as mãos molhadas ou em zonas inundadas. Se houver água junto de instalações elétricas, não te aproximes e procura assistência qualificada."
-},
-{
-"title": "Protege as crianças",
-"category": "Segurança elétrica",
-"excerpt": "Pequenos cuidados ajudam a evitar acidentes.",
-"content": "Mantém cabos e aparelhos fora do alcance das crianças e utiliza proteções adequadas nas tomadas quando necessário. Explica que nunca devem introduzir objetos nas tomadas."
-},
-{
-"title": "Um disjuntor que dispara merece atenção",
-"category": "Manutenção",
-"excerpt": "Não ignores disparos repetidos.",
-"content": "Um disjuntor pode disparar por sobrecarga, curto-circuito ou outro defeito. Não o bloqueies nem aumentes a sua capacidade sem avaliação técnica. Se o problema se repetir, chama um eletricista."
-},
-{
-"title": "Não ignores o cheiro a queimado",
-"category": "Segurança elétrica",
-"excerpt": "O cheiro pode ser um sinal de perigo.",
-"content": "Cheiro a queimado, fumo, estalidos ou faíscas exigem atenção imediata. Afasta as pessoas, não toques no equipamento e contacta os serviços de emergência se houver incêndio ou perigo iminente."
-},
-{
-"title": "Revê o estado dos cabos",
-"category": "Manutenção",
-"excerpt": "Cabos danificados precisam de atenção.",
-"content": "Cabos com isolamento cortado, partes expostas ou sinais de aquecimento não devem continuar em uso. Não os repares com soluções improvisadas; solicita a substituição adequada."
-},
-{
-"title": "Escolhe lâmpadas eficientes",
-"category": "Economia de energia",
-"excerpt": "A iluminação LED pode reduzir o consumo.",
-"content": "As lâmpadas LED geralmente consomem menos energia do que as incandescentes para produzir luz semelhante. Compara a potência, o fluxo luminoso e a qualidade antes de escolher."
-},
-{
-"title": "Apaga luzes desnecessárias",
-"category": "Economia de energia",
-"excerpt": "Pequenos hábitos podem reduzir o consumo.",
-"content": "Apaga as luzes em espaços vazios quando não forem necessárias. Aproveita a luz natural e considera sensores ou temporizadores onde fizerem sentido."
-},
-{
-"title": "Evita o consumo em espera",
-"category": "Economia de energia",
-"excerpt": "Alguns aparelhos consomem energia mesmo desligados.",
-"content": "Certos equipamentos continuam a consumir energia em modo de espera. Quando for seguro e adequado, desliga-os completamente ou utiliza tomadas com interruptor apropriadas."
-},
-{
-"title": "Usa o ar condicionado com eficiência",
-"category": "Economia de energia",
-"excerpt": "Ajustes adequados ajudam a poupar.",
-"content": "Mantém filtros limpos conforme as instruções do fabricante, fecha portas e janelas durante o funcionamento e escolhe uma temperatura confortável sem arrefecimento excessivo."
-},
-{
-"title": "Verifica a potência dos aparelhos",
-"category": "Economia de energia",
-"excerpt": "A potência ajuda a compreender o consumo.",
-"content": "A potência indicada em watts permite perceber quanto um aparelho consome enquanto funciona. O consumo de energia depende também do tempo de utilização e é normalmente medido em quilowatt-hora."
-},
-{
-"title": "Planeia as instalações elétricas",
-"category": "Instalações elétricas",
-"excerpt": "Um bom projeto evita improvisos.",
-"content": "Antes de construir ou renovar um espaço, identifica os equipamentos previstos, os pontos de iluminação e as tomadas necessárias. Um profissional qualificado deve dimensionar e verificar a instalação."
-},
-{
-"title": "Escolhe materiais adequados",
-"category": "Equipamentos",
-"excerpt": "Nem todos os materiais servem para todas as instalações.",
-"content": "Cabos, disjuntores, tomadas e outros componentes devem ser escolhidos de acordo com as características da instalação e as normas aplicáveis. Não escolhas apenas pelo preço."
-},
-{
-"title": "O disjuntor não substitui toda a proteção",
-"category": "Equipamentos",
-"excerpt": "Cada dispositivo tem uma função específica.",
-"content": "A proteção elétrica pode envolver disjuntores, dispositivos diferenciais e proteção contra sobretensões, conforme os riscos e a instalação. Um profissional deve avaliar quais são necessários."
-},
-{
-"title": "Mantém o quadro elétrico acessível",
-"category": "Manutenção",
-"excerpt": "O acesso ao quadro não deve estar bloqueado.",
-"content": "Evita colocar móveis ou objetos diante do quadro elétrico. Mantém a área seca, organizada e acessível, sem abrir o quadro nem tocar nos componentes internos."
-},
-{
-"title": "A iluminação exterior precisa de proteção",
-"category": "Instalações elétricas",
-"excerpt": "A chuva e a poeira influenciam a escolha dos equipamentos.",
-"content": "As luminárias exteriores devem ter um grau de proteção adequado ao local onde serão instaladas. A seleção e a montagem devem ser feitas de acordo com as condições ambientais e as normas aplicáveis."
-},
-{
-"title": "Usa carregadores adequados",
-"category": "Equipamentos",
-"excerpt": "Carregadores de qualidade ajudam a proteger os aparelhos.",
-"content": "Utiliza carregadores compatíveis e de qualidade, sem cabos danificados. Interrompe a utilização se houver cheiro estranho, deformação ou aquecimento anormal."
-},
-{
-"title": "Protege os equipamentos contra sobretensões",
-"category": "Equipamentos",
-"excerpt": "Picos de tensão podem danificar aparelhos.",
-"content": "Dispositivos de proteção contra sobretensões podem ajudar a proteger equipamentos eletrónicos. A solução adequada depende da instalação e deve ser avaliada por um profissional."
-},
-{
-"title": "Faz manutenção preventiva",
-"category": "Manutenção",
-"excerpt": "Prevenir problemas é melhor do que esperar por avarias.",
-"content": "A manutenção preventiva permite identificar sinais de desgaste antes de ocorrer uma falha. A frequência das inspeções depende do tipo de instalação, do uso e das recomendações técnicas."
-},
-{
-"title": "Não improvises fusíveis ou proteções",
-"category": "Segurança elétrica",
-"excerpt": "Proteções inadequadas podem aumentar o risco.",
-"content": "Nunca substituas fusíveis por arames nem bloqueies dispositivos de proteção. A proteção correta deve ser dimensionada para o circuito por um profissional qualificado."
-},
-{
-"title": "Organiza os cabos",
-"category": "Manutenção",
-"excerpt": "Cabos bem organizados sofrem menos danos.",
-"content": "Evita deixar cabos sob tapetes, presos em portas ou expostos a calor e humidade. Usa soluções apropriadas de organização sem apertar ou danificar o isolamento."
-},
-{
-"title": "Ventila os equipamentos",
-"category": "Equipamentos",
-"excerpt": "O calor excessivo pode reduzir a vida útil.",
-"content": "Não tapes as aberturas de ventilação dos equipamentos. Segue as distâncias recomendadas pelo fabricante e mantém os aparelhos afastados de materiais inflamáveis."
-},
-{
-"title": "Confirma a qualidade antes de comprar",
-"category": "Equipamentos",
-"excerpt": "A escolha certa começa com informação clara.",
-"content": "Antes de comprar material elétrico, verifica as especificações, a compatibilidade, a origem e as garantias disponíveis. Em caso de dúvida, pede aconselhamento a um profissional."
-},
-{
-"title": "A instalação de terra é importante",
-"category": "Segurança elétrica",
-"excerpt": "A ligação à terra faz parte da proteção da instalação.",
-"content": "Um sistema de ligação à terra corretamente concebido e verificado contribui para a segurança elétrica. A sua instalação e medição devem ser realizadas por profissionais habilitados."
-},
-{
-"title": "Planeia os pontos de tomada",
-"category": "Instalações elétricas",
-"excerpt": "Uma boa distribuição reduz o uso de extensões.",
-"content": "Ao planear uma casa ou escritório, considera onde serão utilizados os aparelhos e quantas tomadas serão necessárias. O projeto deve respeitar as regras técnicas e a capacidade dos circuitos."
-},
-{
-"title": "Regista as intervenções realizadas",
-"category": "Manutenção",
-"excerpt": "Um histórico facilita futuras verificações.",
-"content": "Regista a data das intervenções, os componentes substituídos e as observações relevantes. Este histórico ajuda a acompanhar o estado da instalação e a planear a manutenção."
-},
-{
-"title": "Procura um técnico qualificado",
-"category": "Serviços elétricos",
-"excerpt": "A segurança depende de trabalho bem executado.",
-"content": "Para instalações, reparações e diagnósticos elétricos, escolhe um profissional com qualificações adequadas e experiência comprovável. Não arrisques a segurança para resolver problemas complexos por conta própria."
-},
-{
-"title": "A segurança vem primeiro",
-"category": "Segurança elétrica",
-"excerpt": "Nenhuma reparação vale um risco desnecessário.",
-"content": "Perante choques, fumo, faíscas ou danos graves, mantém distância e procura ajuda qualificada. Se existir perigo imediato, contacta os serviços de emergência locais."
-}
-]
+ {"title":"Cheiro a queimado nunca é normal","category":"Segurança elétrica","summary":"Um cheiro estranho pode ser sinal de sobreaquecimento ou falha elétrica.","body":"Se sentires cheiro a queimado, vires fumo ou notares faíscas, afasta as pessoas da zona. Se for seguro e souberes fazê-lo, corta a alimentação no quadro sem tocar em partes danificadas. Não uses a instalação até ser avaliada por um eletricista qualificado.","type":"daily"},
+ {"title":"Tomadas quentes merecem atenção","category":"Segurança elétrica","summary":"Uma tomada quente, escurecida ou com ruído deve ser verificada.","body":"Desliga o equipamento se conseguires fazê-lo sem risco e evita voltar a usar a tomada. Não abras a tomada nem mexas nos fios com a energia ligada. Solicita a avaliação de um profissional qualificado.","type":"daily"},
+ {"title":"Não sobrecarregues extensões","category":"Prevenção","summary":"Ligar muitos aparelhos a uma única extensão pode provocar aquecimento.","body":"Confere a potência indicada na extensão e nos aparelhos. Evita ligar extensões umas às outras e não as escondas debaixo de tapetes. Para cargas elevadas, pede a um eletricista que avalie se existe uma tomada e circuito adequados.","type":"daily"},
+ {"title":"Disjuntor a disparar repetidamente?","category":"Manutenção","summary":"Não forces o disjuntor a ficar ligado sem descobrir a causa.","body":"Um disjuntor pode disparar por sobrecarga, curto-circuito ou outro defeito. Desliga os aparelhos que conseguires identificar com segurança e chama um eletricista se o problema persistir. Nunca bloqueies nem substituas o disjuntor por um de maior capacidade sem avaliação técnica.","type":"daily"},
+ {"title":"Água e eletricidade não combinam","category":"Segurança elétrica","summary":"Mantém mãos, tomadas e equipamentos elétricos longe da água.","body":"Não uses aparelhos elétricos com as mãos molhadas nem perto de água acumulada. Se houver inundação, não entres numa área onde equipamentos possam estar energizados. Afasta-te e pede ajuda aos serviços competentes e a um profissional.","type":"daily"},
+ {"title":"Escolhe lâmpadas LED adequadas","category":"Economia de energia","summary":"LEDs podem reduzir o consumo quando substituem lâmpadas menos eficientes.","body":"Verifica o casquilho, a tensão e a luminosidade necessária antes de comprar uma lâmpada LED. Escolhe produtos de qualidade e evita instalar lâmpadas com potência ou dimensões incompatíveis com a luminária.","type":"daily"},
+ {"title":"Desliga antes de limpar um aparelho","category":"Segurança elétrica","summary":"Antes de limpar, desliga o aparelho e segue as instruções do fabricante.","body":"Retira a ficha da tomada quando isso for seguro e permitido pelo fabricante. Nunca pulverizes líquidos sobre partes elétricas e não abras equipamentos para os quais não tens formação. Em caso de avaria, procura assistência técnica.","type":"daily"},
+ {"title":"Cabos danificados devem ser substituídos","category":"Manutenção","summary":"Fita isoladora não transforma um cabo severamente danificado num cabo seguro.","body":"Não uses cabos com isolamento cortado, cobre exposto, ficha partida ou sinais de aquecimento. Desliga o equipamento com segurança e encaminha-o para reparação por técnico qualificado.","type":"daily"},
+ {"title":"Usa proteção adequada em instalações","category":"Boas práticas","summary":"A proteção elétrica deve ser dimensionada para o circuito e para a instalação.","body":"Disjuntores, diferenciais e ligação à terra cumprem funções diferentes. A escolha depende do projeto, da secção dos condutores e das condições do local. Solicita uma avaliação profissional e não improvises alterações no quadro elétrico.","type":"daily"},
+ {"title":"A ligação à terra é importante","category":"Segurança elétrica","summary":"Uma ligação à terra corretamente executada ajuda a reduzir riscos de choque elétrico.","body":"Não assumas que uma tomada tem terra só porque possui contactos próprios para isso. A continuidade e a eficácia da ligação devem ser verificadas com instrumentos adequados por um profissional qualificado.","type":"daily"},
+ {"title":"Evita reparar equipamentos energizados","category":"Segurança elétrica","summary":"Trabalhar com energia ligada pode causar choque grave ou incêndio.","body":"A intervenção deve ser feita por pessoa competente, com isolamento da alimentação, verificação de ausência de tensão e procedimentos adequados. Se não tens formação e equipamento de proteção, não tentes reparar a instalação.","type":"daily"},
+ {"title":"A iluminação certa melhora o conforto","category":"Iluminação","summary":"A quantidade e a cor da luz devem combinar com a atividade e o espaço.","body":"Para estudar ou trabalhar, procura iluminação uniforme e suficiente. Em áreas de descanso, uma luz mais quente pode ser confortável. Evita encandeamento e pede orientação técnica para espaços de trabalho ou áreas que exijam níveis específicos de iluminação.","type":"daily"},
+ {"title":"Compara produtos antes de comprar","category":"Compras inteligentes","summary":"Confere especificações, qualidade, garantia e compatibilidade.","body":"Antes de comprar cabos, tomadas, disjuntores ou ferramentas, verifica as especificações técnicas e a compatibilidade com a instalação. Não escolhas apenas pelo preço: um produto inadequado pode comprometer a segurança.","type":"daily"},
+ {"title":"Não escondas sinais de humidade","category":"Manutenção","summary":"Humidade junto de tomadas ou quadros elétricos exige avaliação rápida.","body":"A água pode danificar componentes e aumentar o risco de choque. Não toques na zona molhada nem desmontes equipamentos. Mantém as pessoas afastadas e pede uma inspeção profissional antes de voltar a utilizar a área.","type":"daily"},
+ {"title":"Planeia as tomadas antes da obra","category":"Projetos elétricos","summary":"Um bom planeamento reduz extensões improvisadas e facilita o uso diário.","body":"Pensa na posição dos móveis, equipamentos e zonas de trabalho antes de definir tomadas e iluminação. Um profissional pode dimensionar os circuitos e distribuir os pontos conforme as necessidades e as regras aplicáveis.","type":"daily"},
+ {"title":"Protege equipamentos sensíveis","category":"Proteção elétrica","summary":"A proteção contra sobretensões pode ajudar a proteger determinados equipamentos.","body":"Escolhe dispositivos de proteção adequados à instalação e ao equipamento. Nenhum dispositivo garante proteção absoluta em todas as situações. Pede aconselhamento a um eletricista para avaliar os riscos e as necessidades do local.","type":"daily"},
+ {"title":"Ventilação ajuda a evitar sobreaquecimento","category":"Manutenção","summary":"Não tapes as aberturas de ventilação de aparelhos elétricos.","body":"Mantém as grelhas e saídas de ar desobstruídas e segue as distâncias recomendadas pelo fabricante. Se o equipamento aquecer excessivamente, fizer ruídos anormais ou cheirar a queimado, desliga-o com segurança e procura assistência.","type":"daily"},
+ {"title":"Faz inspeções periódicas","category":"Manutenção preventiva","summary":"Uma inspeção pode identificar desgaste antes de se tornar uma avaria grave.","body":"Em casas, lojas e empresas, solicita verificações periódicas adequadas à idade e utilização da instalação. Dá atenção a cabos, tomadas, quadro, proteção e sinais de aquecimento. A frequência deve ser definida conforme o risco e as condições do local.","type":"daily"},
+ {"title":"Usa materiais com especificações corretas","category":"Materiais elétricos","summary":"A secção do cabo e a capacidade dos dispositivos devem corresponder ao circuito.","body":"Não escolhas cabos ou dispositivos apenas pela aparência. O dimensionamento depende da corrente, comprimento, método de instalação e outras condições. Deixa essa decisão para um profissional habilitado.","type":"daily"},
+ {"title":"Mantém o quadro elétrico acessível","category":"Segurança elétrica","summary":"O acesso ao quadro não deve estar bloqueado por móveis ou caixas.","body":"Mantém a zona organizada, seca e sem objetos inflamáveis. Identificar os circuitos pode facilitar uma resposta segura a incidentes. Não retires a tampa nem mexas nos componentes internos sem qualificação.","type":"daily"},
+ {"title":"Poupa energia sem comprometer a segurança","category":"Economia de energia","summary":"Desliga equipamentos que não precisas e aproveita a luz natural.","body":"Aproveita a luz natural, escolhe equipamentos eficientes e evita deixar aparelhos ligados sem necessidade. Não retires dispositivos de segurança nem improvises ligações para reduzir o consumo.","type":"daily"},
+ {"title":"Instalações exteriores exigem materiais próprios","category":"Instalações","summary":"Equipamentos exteriores precisam de proteção adequada ao ambiente.","body":"Sol, chuva, poeira e humidade podem degradar materiais inadequados. Usa produtos próprios para o local e deixa o dimensionamento, a proteção e a instalação a cargo de um profissional qualificado.","type":"daily"},
+ {"title":"Não uses fichas partidas","category":"Prevenção","summary":"Uma ficha solta, partida ou com marcas de queimadura deve deixar de ser usada.","body":"Desliga o aparelho de forma segura e não tentes endireitar contactos com o equipamento ligado. Encaminha a ficha ou o equipamento para substituição ou reparação adequada.","type":"daily"},
+ {"title":"Aprende a reconhecer riscos elétricos","category":"Segurança elétrica","summary":"Faíscas, cheiro a queimado, choques e ruídos são sinais de alerta.","body":"Se notares qualquer um destes sinais, afasta-te e impede que outras pessoas se aproximem. Não toques na pessoa ou objeto que possa estar energizado. Corta a alimentação apenas se for seguro e contacta ajuda qualificada.","type":"daily"},
+ {"title":"A manutenção preventiva evita surpresas","category":"Manutenção preventiva","summary":"Pequenas verificações feitas por profissionais podem revelar problemas ocultos.","body":"Não esperes por uma avaria para avaliar uma instalação usada diariamente. Uma revisão técnica pode verificar proteções, ligações, sinais de desgaste e necessidades de melhoria. Solicita um relatório do que foi inspecionado.","type":"daily"},
+ {"title":"Pede orçamento com escopo claro","category":"Dicas para clientes","summary":"Descreve o problema, o local e o resultado esperado antes de aprovar o serviço.","body":"Um pedido claro ajuda o técnico a avaliar materiais, mão de obra e prazo. Confirma o que está incluído, as garantias aplicáveis e se eventuais trabalhos adicionais precisam da tua aprovação.","type":"daily"},
+ {"title":"Confirma a qualificação do técnico","category":"Dicas para clientes","summary":"Para trabalhos elétricos, procura profissionais qualificados e responsáveis.","body":"Antes de contratar, explica o serviço e pergunta sobre experiência, materiais, prazo e condições. Para intervenções de maior risco, confirma as qualificações e requisitos locais aplicáveis.","type":"daily"},
+ {"title":"Guarda registos dos trabalhos elétricos","category":"Gestão de instalações","summary":"Fotos autorizadas, datas e relatórios ajudam a acompanhar a manutenção.","body":"Regista os serviços realizados, materiais utilizados e recomendações do profissional. Guarda documentos em local acessível e protege dados pessoais e imagens privadas dos clientes.","type":"daily"},
+ {"title":"Não improvises extensões permanentes","category":"Boas práticas","summary":"Uma extensão não deve substituir uma instalação fixa mal planeada.","body":"Se precisas constantemente de extensões, pede uma avaliação para instalar pontos de energia adequados. A solução deve considerar carga, proteção, percurso dos cabos e utilização do espaço.","type":"daily"},
+ {"title":"Segurança vem antes da rapidez","category":"Cultura de segurança","summary":"Um trabalho elétrico bem feito começa por avaliar os riscos.","body":"Não ignores procedimentos, não trabalhes sob pressão sem condições seguras e não energizes uma instalação antes das verificações necessárias. Se houver dúvidas, interrompe o trabalho e consulta um profissional competente.","type":"daily"}
+   ]
