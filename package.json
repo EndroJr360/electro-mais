@@ -1,0 +1,7 @@
+{
+  "name": "electro-mais-agendamento-diario",
+  "private": true,
+  "type": "module",
+  "scripts": {"publish:daily": "node scripts/publish-daily.js"},
+  "dependencies": {"firebase-admin": "^13.5.0"}
+}
