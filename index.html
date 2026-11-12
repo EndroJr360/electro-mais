@@ -487,6 +487,12 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 .em-ads-list{margin-top:14px;display:grid;gap:8px}.em-ads-admin-item{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #e2e8f0;border-radius:10px;padding:10px}.em-ads-admin-item small{color:#64748b}.em-ads-admin-item button{border:0;border-radius:8px;padding:7px 10px;cursor:pointer}.em-ads-admin-item .danger{background:#fee2e2;color:#991b1b}.em-ads-admin-item .toggle{background:#e2e8f0;color:#172033}
 @media(max-width:700px){.em-ads-wrap{padding:0 14px}.em-ads-section{padding:12px 0 4px}.em-ads-head h2{font-size:18px}.em-ads-head p{font-size:11px}.em-ads-badge{font-size:9px;padding:5px 8px}.em-ad-slide{grid-template-columns:1fr;min-height:220px}.em-ad-copy{padding:18px 20px;min-height:220px;z-index:2;background:linear-gradient(90deg,rgba(17,26,36,.97) 0%,rgba(17,26,36,.78) 62%,rgba(17,26,36,.3) 100%)}.em-ad-copy h3{font-size:20px}.em-ad-copy p{font-size:12px}.em-ad-image{position:absolute;inset:0;min-height:220px}.em-ad-image:after{background:linear-gradient(90deg,#111a24 0%,rgba(17,26,36,.7) 58%,rgba(17,26,36,.25) 100%)}.em-ads-carousel{min-height:220px;border-radius:14px}.em-ads-admin-grid{grid-template-columns:1fr}.em-ads-arrow{width:30px;height:30px;font-size:17px}}
 </style>
+<style id="electro-social-toast">
+.electro-social-toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);opacity:0;z-index:10000;max-width:min(92vw,420px);padding:10px 15px;border-radius:999px;background:#172033;color:#fff;box-shadow:0 12px 35px rgba(0,0,0,.22);font-size:12px;font-weight:800;text-align:center;pointer-events:none;transition:opacity .18s ease,transform .18s ease}
+.electro-social-toast.show{opacity:1;transform:translate(-50%,0)}
+.electro-social-toast.success{background:#166534}.electro-social-toast.error{background:#991b1b}
+@media(max-width:550px){.electro-social-toast{bottom:18px;font-size:11px;padding:9px 13px}}
+</style>
 <style id="lalu-admin-chat-compact-v1">
 /* Lalu — chat Administrador com a mesma compactação do chat normal */
 #aiPanel.lalu-admin-chat .ai-body{padding:8px 10px!important;min-height:0!important}
@@ -514,6 +520,47 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 
 .ai-head-actions{display:flex;align-items:center;gap:4px}.ai-head-actions button{border:0;background:transparent;color:#fff;cursor:pointer}.ai-history-btn,.ai-new-btn{width:31px;height:31px;border-radius:9px;font-size:16px}.ai-history-btn:hover,.ai-new-btn:hover{background:rgba(255,255,255,.14)}.ai-history{position:absolute;inset:54px 0 0;background:#fff;z-index:5;display:flex;flex-direction:column;border-top:1px solid #f1f5f9}.ai-history[hidden]{display:none}.ai-history-top{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb}.ai-history-top strong{font-size:13px}.ai-history-top button{border:0;background:transparent;cursor:pointer;color:#64748b}.ai-history-actions{padding:8px 10px;display:flex;gap:6px;border-bottom:1px solid #f1f5f9}.ai-history-actions button{border:1px solid #fed7aa;background:#fff7ed;color:#9a3412;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800;white-space:nowrap}.ai-history-actions input{min-width:0;flex:1;border:1px solid #e5e7eb;border-radius:9px;padding:7px 9px;font-size:11px;outline:none}.ai-history-list{flex:1;overflow:auto;padding:7px}.ai-history-item{display:flex;align-items:center;gap:7px;width:100%;padding:9px;border:0;border-bottom:1px solid #f1f5f9;background:#fff;text-align:left;cursor:pointer}.ai-history-item:hover{background:#fff7ed}.ai-history-main{min-width:0;flex:1}.ai-history-main strong{display:block;font-size:11px;color:#172033;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ai-history-main small{display:block;margin-top:3px;font-size:9px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ai-history-delete{border:0;background:transparent;color:#94a3b8;cursor:pointer;padding:5px}.ai-history-delete:hover{color:#dc2626}.ai-history-empty{padding:22px 14px;text-align:center;color:#94a3b8;font-size:11px}.ai-history-status{padding:7px 10px;font-size:9px;color:#64748b;border-bottom:1px solid #f1f5f9}.ai-history-status.error{color:#b91c1c}.ai-history-title-edit{font-size:11px;border:1px solid #fdba74;border-radius:7px;padding:5px 7px;width:100%;box-sizing:border-box}
 @media(max-width:520px){.ai-history-actions{flex-direction:column}.ai-history-actions button{width:100%}}
+</style>
+<style id="lalu-admin-chat-compact-v2">
+/* Compactação real do chat da Lalu — Administrador. Não altera a lógica do chat. */
+#aiPanel.lalu-admin-chat .ai-head{padding:9px 12px!important;min-height:46px!important}
+#aiPanel.lalu-admin-chat .ai-head strong{font-size:14px!important}
+#aiPanel.lalu-admin-chat .ai-head small{font-size:9px!important;margin-top:1px!important}
+#aiPanel.lalu-admin-chat .ai-head-symbol{width:26px!important;height:26px!important;font-size:13px!important}
+#aiPanel.lalu-admin-chat .ai-close{width:30px!important;height:30px!important}
+#aiPanel.lalu-admin-chat .ai-body{padding:5px 8px 2px!important}
+#aiPanel.lalu-admin-chat .lalu-visual-card{margin:0 0 5px!important;padding:6px 8px!important;gap:7px!important;border-radius:11px!important}
+#aiPanel.lalu-admin-chat .lalu-visual-card img{width:46px!important;height:46px!important;border-radius:9px!important}
+#aiPanel.lalu-admin-chat .lalu-visual-card strong{font-size:11px!important}
+#aiPanel.lalu-admin-chat .lalu-visual-card span{font-size:9px!important;margin-top:1px!important;line-height:1.2!important}
+#aiPanel.lalu-admin-chat .ai-msg{max-width:94%!important;padding:6px 8px!important;margin:0 0 4px!important;font-size:11px!important;line-height:1.3!important;border-radius:11px!important}
+#aiPanel.lalu-admin-chat .lalu-admin-tools{margin:4px 0!important;padding:6px 8px!important;border-radius:10px!important}
+#aiPanel.lalu-admin-chat .lalu-admin-tools p{font-size:9px!important;margin:4px 0!important;line-height:1.25!important}
+#aiPanel.lalu-admin-chat .lalu-admin-badge{font-size:9px!important;padding:3px 6px!important}
+#aiPanel.lalu-admin-chat .lalu-admin-actions{gap:4px!important}
+#aiPanel.lalu-admin-chat .lalu-admin-actions button{padding:5px 7px!important;font-size:9px!important;border-radius:7px!important}
+#aiPanel.lalu-admin-chat .ai-suggestions{padding:3px 7px 2px!important;gap:3px!important}
+#aiPanel.lalu-admin-chat .ai-suggestions button{padding:4px 7px!important;font-size:9px!important}
+#aiPanel.lalu-admin-chat .ai-note{padding:3px 7px!important;font-size:8.5px!important;line-height:1.2!important}
+#aiPanel.lalu-admin-chat .ai-input{display:flex!important;align-items:center!important;gap:5px!important;padding:5px 7px!important}
+#aiPanel.lalu-admin-chat .ai-upload{width:34px!important;height:34px!important;flex:0 0 34px!important;border-radius:9px!important;font-size:15px!important}
+#aiPanel.lalu-admin-chat .ai-input input{height:34px!important;min-height:34px!important;padding:7px 9px!important;font-size:11px!important;box-sizing:border-box!important}
+#aiPanel.lalu-admin-chat .ai-input button{height:34px!important;padding:0 10px!important;font-size:10px!important;border-radius:9px!important}
+#aiPanel.lalu-admin-chat .ai-attachment{padding:3px 7px!important;font-size:9px!important}
+@media(max-width:550px){#aiPanel.lalu-admin-chat{height:min(540px,calc(100dvh - 88px))!important}}
+</style>
+<style id="lalu-admin-chat-compact-v3">
+/* Compactação final: o corpo não ocupa espaço vazio entre a saudação, chips e composer. */
+#aiPanel.lalu-admin-chat{height:auto!important;max-height:min(560px,calc(100dvh - 88px))!important}
+#aiPanel.lalu-admin-chat .ai-body{flex:0 1 auto!important;min-height:0!important;max-height:330px!important;overflow:auto!important}
+#aiPanel.lalu-admin-chat .ai-suggestions{flex:0 0 auto!important;margin:0!important}
+#aiPanel.lalu-admin-chat .ai-note{flex:0 0 auto!important;margin:0!important}
+#aiPanel.lalu-admin-chat .ai-input{flex:0 0 auto!important;margin:0!important;display:flex!important;align-items:center!important}
+#aiPanel.lalu-admin-chat .ai-upload{display:flex!important;align-items:center!important;justify-content:center!important}
+#aiPanel.lalu-admin-chat .ai-input input{min-width:0!important;flex:1 1 auto!important}
+#aiPanel.lalu-admin-chat .ai-input button{flex:0 0 auto!important}
+@media(max-width:550px){#aiPanel.lalu-admin-chat{width:calc(100vw - 30px)!important;max-height:calc(100dvh - 88px)!important}
+#aiPanel.lalu-admin-chat .ai-body{max-height:300px!important}}
 </style>
 <style>
 .lalu-grounding{margin:4px 0 10px 38px;padding:9px 11px;border:1px solid rgba(245,130,32,.22);border-radius:12px;background:rgba(245,130,32,.06);font-size:12px;line-height:1.4}.lalu-sources-title{font-weight:700;margin-bottom:5px}.lalu-sources{display:flex;flex-wrap:wrap;gap:6px}.lalu-sources a{color:#b85c00;text-decoration:none;padding:4px 7px;border-radius:8px;background:rgba(245,130,32,.10)}.lalu-sources a:hover{text-decoration:underline}.lalu-search-suggestions{margin-bottom:7px;overflow:hidden}.lalu-search-suggestions>*{max-width:100%}</style>
@@ -2240,10 +2287,63 @@ window.openStoryPublish=()=>{if(!socialUser){alert('Entre na sua conta para publ
 window.closeStoryPublish=()=>window.closeModal?.('storyPublishModal');
 window.closeStoryViewer=()=>window.closeModal?.('storyViewer');
 window.openStoryViewer=x=>{const v=document.getElementById('storyViewer'),m=document.getElementById('storyMedia'),t=document.getElementById('storyViewerText'),n=document.getElementById('storyViewerName'),tm=document.getElementById('storyViewerTime'),a=document.getElementById('storyViewerAvatar');if(!v)return;n.textContent=x.authorName||'Utilizador';tm.textContent=storyTime(x.createdAt);t.textContent=x.text||'';a.innerHTML=storyAvatarHtml(x);m.innerHTML=x.mediaUrl?(x.mediaType==='video'?`<video src="${escS(x.mediaUrl)}" controls autoplay playsinline></video>`:`<img src="${escS(x.mediaUrl)}" alt="História"/>`):'<div style="width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(135deg,#1f2937,#f58220);padding:35px;box-sizing:border-box;text-align:center;color:#fff;font-size:28px;font-weight:800">'+escS(x.text||'Electro Mais')+'</div>';window.electroOpenOverlay?.('storyViewer')};
-window.publishElectroStory=async()=>{if(!socialUser)return;const text=document.getElementById('storyTextInput')?.value.trim()||'',input=document.getElementById('storyMediaInput'),file=input?.files?.[0],msg=document.getElementById('storyPublishMessage');if(!text&&!file){if(msg){msg.textContent='Adiciona um texto, uma foto ou um vídeo.';msg.className='message error'}return}try{if(msg){msg.textContent='A publicar…';msg.className='message'}let mediaUrl='',mediaType='';if(file){if(file.size>25*1024*1024)throw new Error('O ficheiro deve ter no máximo 25 MB.');mediaType=file.type.startsWith('video/')?'video':'image';const path=`stories/${socialUser.uid}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;const rr=ref(socialStorage,path);await uploadBytes(rr,file,{contentType:file.type});mediaUrl=await getDownloadURL(rr)}const snap=await getDoc(doc(socialDb,'users',socialUser.uid));const d=snap.exists()?snap.data():{};const isOfficial=socialUser.uid===SOCIAL_ADMIN_UID;const role=isOfficial?'empresa':(d.role||'cliente');const authorName=isOfficial?'Electro Mais Moçambique':(d.name||socialUser.displayName||socialUser.email||'Utilizador');const photoURL=isOfficial?'logo.png':(d.photoURL||'');await addDoc(collection(socialDb,'stories'),{authorUid:socialUser.uid,authorName,authorRole:role,photoURL,text,mediaUrl,mediaType,createdAt:new Date().toISOString(),expiresAt:new Date(Date.now()+24*60*60*1000).toISOString()});document.getElementById('storyTextInput').value='';if(input)input.value='';if(msg){msg.textContent='História publicada. ✅';msg.className='message success'}setTimeout(()=>window.closeStoryPublish(),700);await loadStories();}catch(e){console.error(e);if(msg){msg.textContent=e.message||'Não foi possível publicar a história.';msg.className='message error'}}};
+window.publishElectroStory=async()=>{
+ if(!socialUser)return;
+ if(window.__electroStoryPublishing)return;
+ const text=document.getElementById('storyTextInput')?.value.trim()||'',input=document.getElementById('storyMediaInput'),file=input?.files?.[0];
+ if(!text&&!file){const msg=document.getElementById('storyPublishMessage');if(msg){msg.textContent='Adiciona um texto, uma foto ou um vídeo.';msg.className='message error'}return}
+ window.__electroStoryPublishing=true;
+ const user=socialUser;
+ const fileSnapshot=file;
+ const textSnapshot=text;
+ window.closeStoryPublish?.();
+ window.electroSocialToast?.('Publicando história...');
+ (async()=>{
+   try{
+     let mediaUrl='',mediaType='';
+     if(fileSnapshot){
+       if(fileSnapshot.size>25*1024*1024)throw new Error('O ficheiro deve ter no máximo 25 MB.');
+       mediaType=fileSnapshot.type.startsWith('video/')?'video':'image';
+       const path=`stories/${user.uid}/${Date.now()}-${fileSnapshot.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`;
+       const rr=ref(socialStorage,path);
+       await uploadBytes(rr,fileSnapshot,{contentType:fileSnapshot.type});
+       mediaUrl=await getDownloadURL(rr);
+     }
+     const snap=await getDoc(doc(socialDb,'users',user.uid));
+     const d=snap.exists()?snap.data():{};
+     const isOfficial=user.uid===SOCIAL_ADMIN_UID;
+     const role=isOfficial?'empresa':(d.role||'cliente');
+     const authorName=isOfficial?'Electro Mais Moçambique':(d.name||user.displayName||user.email||'Utilizador');
+     const photoURL=isOfficial?'logo.png':(d.photoURL||'');
+     await addDoc(collection(socialDb,'stories'),{authorUid:user.uid,authorName,authorRole:role,photoURL,text:textSnapshot,mediaUrl,mediaType,createdAt:new Date().toISOString(),expiresAt:new Date(Date.now()+24*60*60*1000).toISOString()});
+     const textEl=document.getElementById('storyTextInput'); if(textEl)textEl.value=''; if(input)input.value='';
+     window.electroSocialToast?.('História publicada ✓','success');
+     await loadStories();
+   }catch(e){
+     console.error('Falha ao publicar história:',e);
+     window.electroSocialToast?.(`Falha ao publicar história: ${e?.message||'erro desconhecido'}`,'error');
+   }finally{window.__electroStoryPublishing=false;}
+ })();
+};
 window.openTechnicianStories=async(uid,name)=>{if(!socialUser){alert('Entre na sua conta para ver as histórias.');location.hash='acesso';return}try{const now=new Date().toISOString();const snap=await getDocs(query(collection(socialDb,'stories'),where('authorUid','==',uid),where('expiresAt','>',now),limit(24)));const rows=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));if(!rows.length){alert(`${name||'Este profissional'} não tem histórias ativas neste momento.`);return}openStoryViewer(rows[0]);}catch(e){console.warn(e);alert('Não foi possível carregar as histórias deste profissional. Verifique as regras do Firestore.')}};
 
 const postEsc=escS;
+/* Toast social — feedback discreto para histórias/publicações em segundo plano. */
+window.electroSocialToast=window.electroSocialToast||function(message,type='info'){
+ const old=document.getElementById('electroSocialToast');
+ if(old)old.remove();
+ const el=document.createElement('div');
+ el.id='electroSocialToast';
+ el.className=`electro-social-toast ${type||'info'}`;
+ el.setAttribute('role','status');
+ el.setAttribute('aria-live','polite');
+ el.textContent=message;
+ document.body.appendChild(el);
+ requestAnimationFrame(()=>el.classList.add('show'));
+ const duration=type==='error'?5200:2400;
+ clearTimeout(window.__electroSocialToastTimer);
+ window.__electroSocialToastTimer=setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),220)},duration);
+};
 function postRoleIcon(role){return role==='eletricista'?'👷🏾':role==='vendedor'?'🏪':role==='empresa'?'⚡':'👤'}
 function postAvatarHtml(p){return p.photoURL?`<img src="${postEsc(p.photoURL)}" alt="">`:postRoleIcon(p.authorRole)}
 async function loadSocialPosts(ownerUid,containerId,filter='all'){
@@ -2262,7 +2362,50 @@ async function loadSocialPosts(ownerUid,containerId,filter='all'){
 function postCardHtml(p){return `<article class="em-post-card" id="post_${postEsc(p.id)}"><div class="em-post-head"><div class="em-post-avatar">${postAvatarHtml(p)}</div><div class="em-post-author" onclick="window.openPublicSocialProfile('${postEsc(p.authorUid)}')"><strong>${postEsc(p.authorName||'Utilizador')}</strong><small>${postEsc(p.authorRole==='eletricista'?'Electricista':p.authorRole==='empresa'?'Electro Mais Moçambique':p.authorRole==='vendedor'?'Vendedor':'Cliente')} · ${storyTime(p.createdAt)||'agora'}</small></div></div><div class="em-post-body">${p.text?`<p class="em-post-text">${postEsc(p.text)}</p>`:''}${p.mediaUrl?`<div class="em-post-media">${p.mediaType==='video'?`<video src="${postEsc(p.mediaUrl)}" controls playsinline preload="metadata"></video>`:`<img src="${postEsc(p.mediaUrl)}" alt="Publicação" loading="lazy">`}</div>`:''}</div><div class="em-post-actions"><button type="button" onclick="window.toggleSocialPostLike('${postEsc(p.id)}')">❤️ <span id="likeCount_${postEsc(p.id)}">0</span></button><button type="button" onclick="document.getElementById('comments_${postEsc(p.id)}')?.scrollIntoView({behavior:'smooth',block:'center'})">💬 <span id="commentCount_${postEsc(p.id)}">0</span></button><button type="button" onclick="window.shareSocialPost('${postEsc(p.id)}')">↗️ Partilhar</button></div><div class="em-post-comments" id="comments_${postEsc(p.id)}"><div id="commentList_${postEsc(p.id)}"></div><div class="em-comment-form"><input id="commentInput_${postEsc(p.id)}" maxlength="500" placeholder="Escreva um comentário..."><button class="btn btn-primary" type="button" onclick="window.addSocialComment('${postEsc(p.id)}')">Enviar</button></div></div></article>`}
 async function hydratePostCard(postId){try{const likes=await getDocs(collection(socialDb,'socialPosts',postId,'likes'));const comments=await getDocs(query(collection(socialDb,'socialPosts',postId,'comments'),orderBy('createdAt','asc'),limit(50)));const lc=document.getElementById('likeCount_'+postId),cc=document.getElementById('commentCount_'+postId),list=document.getElementById('commentList_'+postId);if(lc)lc.textContent=likes.size;if(cc)cc.textContent=comments.size;if(list)list.innerHTML=comments.docs.map(d=>{const x=d.data();return `<div class="em-comment"><div class="em-post-avatar" style="width:30px;height:30px;flex-basis:30px;font-size:14px">${postAvatarHtml(x)}</div><div class="em-comment-bubble"><strong>${postEsc(x.authorName||'Utilizador')}</strong><br>${postEsc(x.text||'')}</div></div>`}).join('');}catch(e){console.warn('Interações da publicação:',e)}}
 window.previewSocialPostFile=(input,id)=>{const f=input?.files?.[0],el=document.getElementById(id);if(el)el.textContent=f?`${f.name} · ${(f.size/1024/1024).toFixed(1)} MB`:''};
-window.publishSocialPost=async(type,ownerUid,textId,fileId,msgId)=>{if(!socialUser){alert('Entre na sua conta para publicar.');location.hash='acesso';return}if(type==='company'&&socialUser.uid!==SOCIAL_ADMIN_UID){alert('Apenas a equipa autorizada pode publicar no perfil oficial.');return}const text=document.getElementById(textId)?.value.trim()||'',file=document.getElementById(fileId)?.files?.[0],msg=document.getElementById(msgId);if(!text&&!file){if(msg){msg.textContent='Escreva algo ou adicione uma foto/vídeo.';msg.className='message error'}return}try{if(msg){msg.textContent='A publicar…';msg.className='message'}let mediaUrl='',mediaType='';if(file){if(!/^image\/|^video\//.test(file.type))throw new Error('Formato não suportado.');const max=file.type.startsWith('video/')?50:10;if(file.size>max*1024*1024)throw new Error(`O ficheiro deve ter no máximo ${max} MB.`);mediaType=file.type.startsWith('video/')?'video':'image';const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');const postRef=doc(collection(socialDb,'socialPosts'));const rr=ref(socialStorage,`posts/${socialUser.uid}/${postRef.id}/${Date.now()}-${safeName}`);await uploadBytes(rr,file,{contentType:file.type});mediaUrl=await getDownloadURL(rr);const author={};if(type==='company'){author.authorName='Electro Mais Moçambique';author.authorRole='empresa';author.photoURL='logo.png'}else{const us=await getDoc(doc(socialDb,'users',socialUser.uid));const d=us.exists()?us.data():{};author.authorName=d.name||socialUser.displayName||socialUser.email||'Utilizador';author.authorRole=d.role||'cliente';author.photoURL=d.photoURL||''}await setDoc(postRef,{authorUid:socialUser.uid,...author,text,mediaUrl,mediaType,createdAt:new Date().toISOString()});}else{const author={};if(type==='company'){author.authorName='Electro Mais Moçambique';author.authorRole='empresa';author.photoURL='logo.png'}else{const us=await getDoc(doc(socialDb,'users',socialUser.uid));const d=us.exists()?us.data():{};author.authorName=d.name||socialUser.displayName||socialUser.email||'Utilizador';author.authorRole=d.role||'cliente';author.photoURL=d.photoURL||''}await addDoc(collection(socialDb,'socialPosts'),{authorUid:socialUser.uid,...author,text,mediaUrl:'',mediaType:'',createdAt:new Date().toISOString()})}if(document.getElementById(textId))document.getElementById(textId).value='';if(document.getElementById(fileId))document.getElementById(fileId).value='';if(msg){msg.textContent='Publicado com sucesso. ✅';msg.className='message success'}await loadSocialPosts(ownerUid,type==='company'?'companySocialPosts':`techSocialPosts_${ownerUid}`);setTimeout(()=>{if(msg)msg.textContent=''},1200)}catch(e){console.error(e);if(msg){msg.textContent=e.message||'Não foi possível publicar.';msg.className='message error'}}};
+window.publishSocialPost=async(type,ownerUid,textId,fileId,msgId)=>{
+ if(!socialUser){alert('Entre na sua conta para publicar.');location.hash='acesso';return}
+ if(type==='company'&&socialUser.uid!==SOCIAL_ADMIN_UID){alert('Apenas a equipa autorizada pode publicar no perfil oficial.');return}
+ const text=document.getElementById(textId)?.value.trim()||'',file=document.getElementById(fileId)?.files?.[0];
+ if(!text&&!file){const msg=document.getElementById(msgId);if(msg){msg.textContent='Escreva algo ou adicione uma foto/vídeo.';msg.className='message error'}return}
+ const busyKey=`__electroPostPublishing_${type}_${ownerUid||'main'}`;
+ if(window[busyKey])return; window[busyKey]=true;
+ const user=socialUser, fileSnapshot=file, textSnapshot=text;
+ const containerId=type==='company'?'companySocialPosts':`techSocialPosts_${ownerUid}`;
+ const sourceText=document.getElementById(textId),sourceFile=document.getElementById(fileId);
+ window.electroSocialToast?.('Publicando...');
+ if(sourceText)sourceText.value=''; if(sourceFile)sourceFile.value='';
+ const msg=document.getElementById(msgId); if(msg)msg.textContent='';
+ (async()=>{
+   try{
+     let mediaUrl='',mediaType='';
+     if(fileSnapshot){
+       if(!/^image\/|^video\//.test(fileSnapshot.type))throw new Error('Formato não suportado.');
+       const max=fileSnapshot.type.startsWith('video/')?50:10;
+       if(fileSnapshot.size>max*1024*1024)throw new Error(`O ficheiro deve ter no máximo ${max} MB.`);
+       mediaType=fileSnapshot.type.startsWith('video/')?'video':'image';
+       const safeName=fileSnapshot.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+       const postRef=doc(collection(socialDb,'socialPosts'));
+       const rr=ref(socialStorage,`posts/${user.uid}/${postRef.id}/${Date.now()}-${safeName}`);
+       await uploadBytes(rr,fileSnapshot,{contentType:fileSnapshot.type});
+       mediaUrl=await getDownloadURL(rr);
+       const author={};
+       if(type==='company'){author.authorName='Electro Mais Moçambique';author.authorRole='empresa';author.photoURL='logo.png'}
+       else{const us=await getDoc(doc(socialDb,'users',user.uid));const d=us.exists()?us.data():{};author.authorName=d.name||user.displayName||user.email||'Utilizador';author.authorRole=d.role||'cliente';author.photoURL=d.photoURL||''}
+       await setDoc(postRef,{authorUid:user.uid,...author,text:textSnapshot,mediaUrl,mediaType,createdAt:new Date().toISOString()});
+     }else{
+       const author={};
+       if(type==='company'){author.authorName='Electro Mais Moçambique';author.authorRole='empresa';author.photoURL='logo.png'}
+       else{const us=await getDoc(doc(socialDb,'users',user.uid));const d=us.exists()?us.data():{};author.authorName=d.name||user.displayName||user.email||'Utilizador';author.authorRole=d.role||'cliente';author.photoURL=d.photoURL||''}
+       await addDoc(collection(socialDb,'socialPosts'),{authorUid:user.uid,...author,text:textSnapshot,mediaUrl:'',mediaType:'',createdAt:new Date().toISOString()});
+     }
+     window.electroSocialToast?.('Publicado ✓','success');
+     await loadSocialPosts(ownerUid,containerId);
+   }catch(e){
+     console.error('Falha ao publicar:',e);
+     window.electroSocialToast?.(`Falha ao publicar: ${e?.message||'erro desconhecido'}`,'error');
+   }finally{window[busyKey]=false;}
+ })();
+};
 window.toggleSocialPostLike=async(postId)=>{if(!socialUser){alert('Entre na sua conta para curtir.');location.hash='acesso';return}try{const lr=doc(socialDb,'socialPosts',postId,'likes',socialUser.uid);const s=await getDoc(lr);if(s.exists())await deleteDoc(lr);else{const us=await getDoc(doc(socialDb,'users',socialUser.uid));const d=us.exists()?us.data():{};await setDoc(lr,{uid:socialUser.uid,authorName:d.name||socialUser.displayName||socialUser.email||'Utilizador',createdAt:new Date().toISOString()})}await hydratePostCard(postId)}catch(e){alert('Não foi possível atualizar o gosto.')}};
 window.addSocialComment=async(postId)=>{if(!socialUser){alert('Entre na sua conta para comentar.');location.hash='acesso';return}const input=document.getElementById('commentInput_'+postId),text=input?.value.trim();if(!text)return;try{const us=await getDoc(doc(socialDb,'users',socialUser.uid));const d=us.exists()?us.data():{};await addDoc(collection(socialDb,'socialPosts',postId,'comments'),{uid:socialUser.uid,authorName:d.name||socialUser.displayName||socialUser.email||'Utilizador',authorRole:d.role||'cliente',photoURL:d.photoURL||'',text,createdAt:new Date().toISOString()});input.value='';await hydratePostCard(postId)}catch(e){alert('Não foi possível publicar o comentário.')}};
 window.shareSocialPost=async(postId)=>{const url=location.href.split('#')[0]+'#post-'+postId;try{if(navigator.share)await navigator.share({title:'Electro Mais',text:'Veja esta publicação na Electro Mais.',url});else{await navigator.clipboard.writeText(url);alert('Link da publicação copiado.')}}catch(e){}}
