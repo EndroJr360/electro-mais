@@ -52,7 +52,7 @@ nav{display:flex;gap:18px;align-items:center}nav a{font-size:14px;font-weight:60
 section{padding:48px 20px}.container{max-width:1200px;margin:auto}.section-title{text-align:center;margin-bottom:45px}.section-title h2{font-size:34px;margin-bottom:8px}.section-title p{color:var(--gray)}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:white;padding:18px;border-radius:16px;box-shadow:var(--shadow)}.card-icon{font-size:35px;margin-bottom:15px}.card h3{margin-bottom:8px}.card p{color:var(--gray);font-size:14px}
 .official{background:#111827;color:white}.official-box{max-width:900px;margin:auto;background:#1f2937;padding:35px;border-radius:22px;display:flex;gap:30px;align-items:center}.official-logo{width:130px;height:130px;border-radius:50%;object-fit:cover;background:white}.verified{color:#60a5fa;font-weight:bold;font-size:14px}
-.technicians{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.tech{background:white;border-radius:16px;padding:25px;box-shadow:var(--shadow)}.avatar{width:70px;height:70px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:15px}.rating{color:#f59e0b}.available{color:var(--green);font-weight:bold;font-size:13px}
+.technicians{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.tech{background:#fff;border:1px solid #e8edf3;border-radius:18px;padding:16px;box-shadow:0 8px 24px rgba(15,23,42,.07);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.tech:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(15,23,42,.11);border-color:#f58220}.tech-top{margin-bottom:10px}.tech-avatar{width:56px;height:56px;border-radius:50%;background:#fff3e8;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;flex:0 0 auto}.tech-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}.tech-story-ring{padding:3px;background:linear-gradient(135deg,#f58220,#ffd166,#f58220);border-radius:50%;box-shadow:0 0 0 2px #fff}.tech-story-ring .tech-avatar{width:56px;height:56px;border:2px solid #fff}.tech-card-name{font-size:15px;margin:0}.tech-card-sub{font-size:11px;color:#64748b;margin-top:2px}.tech-card-bio{font-size:12px;color:#64748b;margin:8px 0 0;line-height:1.45}.tech-tags{display:flex;gap:5px;flex-wrap:wrap;margin:9px 0}.tech-tags .tag{font-size:10px;padding:5px 8px;border-radius:999px}.tech-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.tech-actions .btn{padding:8px 10px;font-size:11px}.tech-list-more{display:flex;justify-content:center;margin-top:16px}.tech-list-more .btn{min-width:220px}.tech-all-panel{position:fixed;inset:0;background:rgba(15,23,42,.58);z-index:2100;display:none;align-items:center;justify-content:center;padding:18px}.tech-all-panel.open{display:flex}.tech-all-dialog{background:#fff;width:min(980px,100%);max-height:88vh;overflow:auto;border-radius:22px;box-shadow:0 24px 80px rgba(0,0,0,.25);padding:20px}.tech-all-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}.tech-all-head h2{margin:0}.tech-all-head p{margin:4px 0 0;color:#64748b;font-size:12px}.tech-all-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tech-all-grid .tech{box-shadow:none}.tech-story-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:800;color:#c2410c;margin-top:4px}.tech-story-badge::before{content:'●';font-size:9px;color:#f58220}.tech-empty{padding:20px;border:1px dashed #cbd5e1;border-radius:14px;text-align:center;color:#64748b}@media(max-width:850px){.technicians{grid-template-columns:repeat(2,minmax(0,1fr))}.tech-all-grid{grid-template-columns:1fr}}@media(max-width:550px){.technicians{grid-template-columns:1fr}.tech-all-panel{padding:10px}.tech-all-dialog{padding:14px;border-radius:18px}.tech-list-more .btn{width:100%}}.avatar{width:70px;height:70px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:15px}.rating{color:#f59e0b}.available{color:var(--green);font-weight:bold;font-size:13px}
 .store{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.product{background:white;border-radius:16px;padding:20px;box-shadow:var(--shadow)}.product-img{height:140px;background:#f3f4f6;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:50px;margin-bottom:15px}.price{color:var(--orange);font-weight:bold;margin:10px 0}
 .role-grid,.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.role,.admin-card,.profile-box,.login{background:white;padding:20px;border-radius:18px;box-shadow:var(--shadow)}.role{text-align:center}.role span{font-size:45px}
 .login{max-width:500px;margin:auto}.login input,.login select{width:100%;padding:10px 12px;margin:5px 0 10px;border:1px solid #d1d5db;border-radius:9px}
@@ -554,14 +554,14 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
     </div>
     <div class="em-ads-admin-panel" id="electroAdsAdminPanel">
       <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><div><h3 style="margin:0">📢 Gestão de anúncios</h3><p style="margin:4px 0;color:#64748b;font-size:12px">Somente o Administrador pode publicar, pausar ou remover anúncios.</p></div><button class="btn btn-outline" type="button" onclick="window.electroAdsCloseAdmin()">Fechar</button></div>
-      <form id="electroAdsForm" style="margin-top:12px">
+      <form id="electroAdsForm" style="margin-top:12px"><input type="hidden" id="adEditId">
         <div class="em-ads-admin-grid">
           <label>Título<input id="adTitle" required maxlength="80" placeholder="Ex.: Promoção de material elétrico"></label>
           <label>Imagem (URL)<input id="adImage" placeholder="https://..."></label><label>Ou carregar banner<input id="adImageFile" type="file" accept="image/*"></label>
-          <label>Descrição<textarea id="adText" maxlength="180" placeholder="Mensagem curta do anúncio"></textarea></label>
+          <label>Descrição<textarea id="adText" maxlength="180" placeholder="Mensagem curta do anúncio"></textarea></label><label>Texto do botão<input id="adButtonText" maxlength="28" placeholder="Ex.: Ver oferta / WhatsApp"></label>
           <label>Link do anúncio<input id="adLink" placeholder="https://... ou #loja"></label><label>Início<input id="adStartAt" type="datetime-local"></label><label>Fim<input id="adEndAt" type="datetime-local"></label>
         </div>
-        <div class="em-ads-admin-actions"><button class="btn btn-primary" type="submit">➕ Publicar anúncio</button><button class="btn btn-outline" type="button" onclick="window.electroAdsLoadAdmin()">↻ Atualizar</button></div>
+        <div class="em-ads-admin-actions"><button class="btn btn-primary" type="submit" id="adSubmitBtn">➕ Publicar anúncio</button><button class="btn btn-outline" type="button" onclick="window.electroAdsLoadAdmin()">↻ Atualizar</button></div>
         <p class="message" id="electroAdsAdminMessage"></p>
       </form>
       <div class="em-ads-list" id="electroAdsAdminList"></div>
@@ -572,7 +572,7 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 <section id="servicos"><div class="container"><div class="section-title"><h2>Nossos Serviços</h2><p>Soluções para residências, empresas e indústrias.</p></div><div class="cards">
 <div class="card"><div class="card-icon">⚡</div><h3>Instalações Elétricas</h3><p>Instalações elétricas residenciais, comerciais e industriais.</p></div><div class="card"><div class="card-icon">🔧</div><h3>Manutenção</h3><p>Manutenção preventiva e corretiva de sistemas elétricos.</p></div><div class="card"><div class="card-icon">🛠️</div><h3>Reparações</h3><p>Diagnóstico e reparação de problemas elétricos.</p></div><div class="card"><div class="card-icon">👷</div><h3>Assistência Técnica</h3><p>Conectamos clientes a técnicos qualificados.</p></div>
 </div></div></section>
-<section class="official compact-company" id="empresa"><div class="section-title"><h2>Perfil Oficial</h2><p style="color:#cbd5e1">A presença oficial da Electro Mais Moçambique na plataforma.</p></div><div class="official-box"><img alt="Electro Mais Moçambique" class="official-logo" src="logo.png"/><div><h2>Electro Mais Moçambique <span class="verified">✓ Oficial</span></h2><p style="margin:10px 0;color:#d1d5db">Soluções em instalações, manutenção, reparações e assistência técnica, conectando clientes a profissionais qualificados.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn btn-primary" onclick="openCompanyProfile()">Ver perfil oficial →</button><button class="btn btn-outline" onclick="openService('Assistência técnica')">⚡ Solicitar serviço</button></div></div></div><div class="compact-values"><div><span>🎯</span><strong>Missão</strong><p>Unir clientes, profissionais, tecnologia e produtos de qualidade.</p></div><div><span>🚀</span><strong>Visão</strong><p>Ser referência nacional no setor elétrico.</p></div><div><span>🛡️</span><strong>Compromisso</strong><p>Segurança, qualidade, confiança e satisfação.</p></div></div></section>
+<section class="official compact-company" id="empresa"><div class="section-title"><h2>Perfil Oficial</h2><p style="color:#cbd5e1">A presença oficial da Electro Mais Moçambique na plataforma.</p></div><div class="official-box"><img alt="Electro Mais Moçambique" class="official-logo" src="logo.png" loading="lazy"/><div><h2>Electro Mais Moçambique <span class="verified">✓ Oficial</span></h2><p style="margin:10px 0;color:#d1d5db">Soluções em instalações, manutenção, reparações e assistência técnica, conectando clientes a profissionais qualificados.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn btn-primary" onclick="openCompanyProfile()">Ver perfil oficial →</button><button class="btn btn-outline" onclick="openService('Assistência técnica')">⚡ Solicitar serviço</button></div></div></div><div class="compact-values"><div><span>🎯</span><strong>Missão</strong><p>Unir clientes, profissionais, tecnologia e produtos de qualidade.</p></div><div><span>🚀</span><strong>Visão</strong><p>Ser referência nacional no setor elétrico.</p></div><div><span>🛡️</span><strong>Compromisso</strong><p>Segurança, qualidade, confiança e satisfação.</p></div></div></section>
 <section id="tecnicos"><div class="container">
 <div class="section-title"><h2>Encontrar Técnico</h2><p>Encontre profissionais de acordo com a sua necessidade.</p></div>
 <div class="search-panel">
@@ -584,7 +584,7 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 <button class="btn btn-primary" onclick="filterTechnicians()">Filtrar</button>
 </div>
 </div>
-<div class="technicians" id="techniciansList"></div>
+<div class="technicians" id="techniciansList"></div><div class="tech-list-more" id="techListMore" style="display:none"><button class="btn btn-outline" type="button" onclick="window.openAllTechnicians()">Ver todos os profissionais →</button></div>
 </div></section>
 <section id="como-funciona"><div class="container">
 <div class="section-title"><h2>Como funciona?</h2><p>Da necessidade à solução, com acompanhamento em cada etapa.</p></div>
@@ -724,7 +724,7 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 <section class="workspace-section" id="minha-area" style="display:none"><div class="container">
 <div class="workspace-head"><div><span class="workspace-kicker">ELECTRO MAIS</span><h2 id="workspaceTitle">Minha Área</h2><p id="workspaceSubtitle">Acompanhe pedidos, conversas e atividade da sua conta.</p></div><button class="btn btn-danger" onclick="logoutUser()">Sair</button></div>
 <div class="workspace-tabs"><button class="active" data-workspace-tab="resumo">Resumo</button><button data-workspace-tab="pedidos">Pedidos</button><button data-workspace-tab="mensagens">Mensagens</button><button data-workspace-tab="perfil">Perfil</button></div>
-<div class="workspace-panel active" id="workspaceResumo"><div class="workspace-stats" id="workspaceStats"></div><div class="em-professional-tools" id="technicianWorkspaceTools"><div class="workspace-card"><div class="panel-title"><div><h3>👷 Ferramentas profissionais</h3><p class="muted">A tua área de trabalho como electricista.</p></div></div><div class="em-pro-tools-grid"><button class="em-pro-tool" onclick="document.querySelector('[data-workspace-tab=\"pedidos\"]')?.click()"><strong>📋 Pedidos recebidos</strong><small>Aceitar, recusar e acompanhar pedidos.</small></button><button class="em-pro-tool" onclick="location.hash='chatHub'"><strong>💬 Mensagens</strong><small>Falar com clientes e continuar serviços.</small></button><button class="em-pro-tool" onclick="document.getElementById('perfil-profissional')?.scrollIntoView({behavior:'smooth'})"><strong>👤 Perfil profissional</strong><small>Ver e editar os teus dados públicos.</small></button><button class="em-pro-tool" onclick="location.hash='historias'"><strong>📱 Minhas histórias</strong><small>Publicar atualizações públicas por 24h.</small></button></div></div></div><div class="workspace-grid"><div class="workspace-card"><h3>⚡ Acesso rápido</h3><div class="quick-actions"><button onclick="location.hash='pedido'">📋 Novo pedido</button><button onclick="location.hash='tecnicos'">👷 Encontrar técnico</button><button onclick="location.hash='loja'">🛒 Loja</button><button onclick="openElectroAI()">🤖 Lalu</button></div></div><div class="workspace-card"><h3>🔔 Atividade recente</h3><div id="workspaceRecent"><p class="muted">A carregar...</p></div></div></div></div>
+<div class="workspace-panel active" id="workspaceResumo"><div class="workspace-stats" id="workspaceStats"></div><div class="em-professional-tools" id="technicianWorkspaceTools"><div class="workspace-card"><div class="panel-title"><div><h3>👷 Ferramentas profissionais</h3><p class="muted">A tua área de trabalho como electricista.</p></div></div><div class="em-pro-tools-grid"><button class="em-pro-tool" onclick="document.querySelector('[data-workspace-tab=pedidos]')?.click()"><strong>📋 Pedidos recebidos</strong><small>Aceitar, recusar e acompanhar pedidos.</small></button><button class="em-pro-tool" onclick="location.hash='chatHub'"><strong>💬 Mensagens</strong><small>Falar com clientes e continuar serviços.</small></button><button class="em-pro-tool" onclick="document.getElementById('perfil-profissional')?.scrollIntoView({behavior:'smooth'})"><strong>👤 Perfil profissional</strong><small>Ver e editar os teus dados públicos.</small></button><button class="em-pro-tool" onclick="location.hash='historias'"><strong>📱 Minhas histórias</strong><small>Publicar atualizações públicas por 24h.</small></button></div></div></div><div class="workspace-grid"><div class="workspace-card"><h3>⚡ Acesso rápido</h3><div class="quick-actions"><button onclick="location.hash='pedido'">📋 Novo pedido</button><button onclick="location.hash='tecnicos'">👷 Encontrar técnico</button><button onclick="location.hash='loja'">🛒 Loja</button><button onclick="openElectroAI()">🤖 Lalu</button></div></div><div class="workspace-card"><h3>🔔 Atividade recente</h3><div id="workspaceRecent"><p class="muted">A carregar...</p></div></div></div></div>
 <div class="workspace-panel" id="workspacePedidos"><div class="workspace-card"><div class="panel-title"><div><h3>📋 Pedidos</h3><p class="muted">O cliente acompanha. O técnico avalia e decide.</p></div><button class="btn btn-primary" onclick="location.hash='pedido'">+ Novo pedido</button></div><div class="request-list" id="workspaceRequests"><p class="muted">A carregar pedidos...</p></div></div></div>
 <div class="workspace-panel" id="workspaceMensagens"><div class="workspace-card"><h3>💬 Conversas</h3><p class="muted">O chat continua separado do processo de aceitar ou recusar o serviço.</p><div id="workspaceChats"><p class="muted">Abra uma conversa a partir de um pedido.</p></div></div></div>
 <div class="workspace-panel" id="workspacePerfil"><div class="workspace-card"><h3>👤 Perfil</h3><p>Edite os seus dados na área de perfil abaixo.</p><button class="btn btn-outline" onclick="document.getElementById('perfil-profissional').style.display='block';document.getElementById('perfil-profissional').scrollIntoView({behavior:'smooth'})">Abrir meu perfil profissional</button></div></div>
@@ -745,8 +745,8 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 <label>Máximo de conteúdos/dia<input id="laluLearnDailyLimit" type="number" min="0" max="10" value="1"></label>
 <label>E-mail para alertas importantes<input id="laluAdminAlertEmail" type="email" placeholder="email do administrador"></label>
 </div>
-<div class="admin-errors-head-actions" style="margin-top:12px"><button class="btn btn-primary" onclick="window.saveLaluAutonomyAdmin?.()">💾 Guardar configuração</button><button class="btn btn-outline" onclick="window.laluQueueAutonomousLearn?.()">📚 Criar tarefa para a Lalu</button></div>
-<div class="admin-errors-notice" style="margin-top:12px">ℹ️ A execução realmente independente do navegador exige um worker/server-side (por exemplo, Cloud Functions). O painel abaixo deixa a configuração e a fila preparadas sem dar à Lalu permissões administrativas ilimitadas.</div>
+<div class="admin-errors-head-actions" style="margin-top:12px"><button class="btn btn-primary" onclick="window.saveLaluAutonomyAdmin?.()">💾 Guardar configuração</button><button class="btn btn-outline" onclick="window.laluQueueAutonomousLearn?.()">📚 Criar tarefa para a Lalu</button><button class="btn btn-dark" onclick="window.laluRunSupervisorNow?.()">🛡️ Executar supervisão agora</button></div>
+<div class="admin-errors-notice" style="margin-top:12px">🛡️ <strong>Arquitetura 24/7:</strong> a configuração fica no Firestore e o Supervisor da Lalu pode executar no servidor mesmo quando o site estiver fechado. O navegador continua a servir como painel; as ações críticas, regras de segurança, permissões, credenciais e pagamentos permanecem fora da autonomia automática.</div>
 <div id="laluAutonomyJobs" class="admin-errors-list"></div>
 </div>
 <div class="admin-errors-panel" id="adminErrorsPanel" style="display:none">
@@ -802,7 +802,14 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 </div>
 </div>
 <div class="profile-modal" id="techModal">
-<div class="modal-card"><button class="close-modal" onclick="closeModal('techModal')">✕</button><div id="techModalContent"></div></div>
+<div class="modal-card"><button class="close-modal" type="button" aria-label="Fechar perfil do técnico" onclick="closeModal('techModal')">✕</button><div id="techModalContent"></div></div>
+</div>
+<div class="tech-all-panel" id="techAllPanel" aria-hidden="true">
+  <div class="tech-all-dialog" role="dialog" aria-modal="true" aria-labelledby="techAllTitle">
+    <div class="tech-all-head"><div><h2 id="techAllTitle">👷 Todos os profissionais</h2><p>Explore os técnicos disponíveis na Electro Mais.</p></div><button class="close-modal" type="button" aria-label="Fechar lista de profissionais" onclick="window.closeAllTechnicians()">✕</button></div>
+    <div class="search-panel" style="margin-bottom:14px"><div class="filters"><input id="techAllSearch" placeholder="🔎 Procurar profissional..." aria-label="Pesquisar profissionais"><select id="techAllLocation" aria-label="Filtrar por localização"><option value="">📍 Todas localizações</option><option>Chimoio</option><option>Manica</option><option>Maputo</option><option>Beira</option></select><select id="techAllSpecialty" aria-label="Filtrar por especialidade"><option value="">⚡ Todas especialidades</option><option>Instalações</option><option>Manutenção</option><option>Reparações</option><option>Assistência técnica</option></select></div></div>
+    <div class="tech-all-grid" id="techAllList"></div>
+  </div>
 </div>
 <div class="profile-modal" id="serviceModal">
 <div class="modal-card"><button class="close-modal" onclick="closeModal('serviceModal')">✕</button>
@@ -912,6 +919,7 @@ import {getAnalytics} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-
 import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut,sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 import {getFirestore,doc,setDoc,getDoc,collection,getDocs,addDoc,updateDoc,deleteDoc,runTransaction,query,where,limit} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 import {getStorage,ref,uploadBytes,getDownloadURL} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-storage.js";
+import {getFunctions,httpsCallable} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-functions.js";
 import {initializeAppCheck,ReCaptchaEnterpriseProvider} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app-check.js";
 
 const firebaseConfig={apiKey:"AIzaSyBR3l3CxiWXv7ZEriIMo833p8oWJ_mTw74",authDomain:"electro-mais-mocambique.firebaseapp.com",projectId:"electro-mais-mocambique",storageBucket:"electro-mais-mocambique.firebasestorage.app",messagingSenderId:"620596361441",appId:"1:620596361441:web:fadde283aa7978c2585fa0",measurementId:"G-YNYY117RKE"};
@@ -923,7 +931,10 @@ try{
 }
 try{getAnalytics(app)}catch(e){console.warn("Analytics indisponível",e)}
 const auth=getAuth(app);const db=getFirestore(app);
+window.electroAuth=auth;window.electroDb=db;
 const storage=getStorage(app);
+const functions=getFunctions(app);
+window.electroFunctions=functions;
 const ADMIN_UID="QSnHZagz9jVo4r21WHtoX1T5R9u2";
 // Diagnóstico centralizado: mensagem simples para utilizadores, detalhes restritos ao painel Admin.
 const ERROR_LOCAL_KEY='electroMaisSystemErrorsV16';
@@ -932,6 +943,7 @@ function getLocalErrors(){try{return JSON.parse(localStorage.getItem(ERROR_LOCAL
 function saveLocalError(item){try{const rows=getLocalErrors();rows.unshift(item);localStorage.setItem(ERROR_LOCAL_KEY,JSON.stringify(rows.slice(0,150)))}catch{}}
 const LALU_AUTONOMY_DOC='laluAutonomy';
 async function getLaluAutonomyConfig(){try{const snap=await getDoc(doc(db,LALU_AUTONOMY_DOC,ADMIN_UID));return snap.exists()?snap.data():{enabled:false,learnEnabled:true,autoPublish:false,dailyLimit:1,alertEmail:''}}catch(e){return {enabled:false,learnEnabled:true,autoPublish:false,dailyLimit:1,alertEmail:''}}}
+window.laluRunSupervisorNow=async function(){if(auth.currentUser?.uid!==ADMIN_UID)return {ok:false,error:'Acesso não autorizado.'};const n=document.getElementById('laluAutonomyNotice');if(n)n.textContent='⏳ A executar o supervisor autónomo…';try{const fn=httpsCallable(functions,'laluRunSupervisorNow');const r=await fn({});const d=r.data||{};if(n)n.textContent=`🟢 Supervisor executado. ${Number(d.actions||0)} ação(ões) segura(s). Críticos abertos: ${Number(d.openCritical||0)}.`;await window.loadLaluAutonomyAdmin?.();return {ok:true,...d}}catch(e){console.warn('Supervisor server-side indisponível:',e);if(n)n.textContent='🟠 Supervisor server-side ainda não está disponível. Faça o deploy das Cloud Functions.';return {ok:false,error:e?.message||'Falha ao executar o supervisor.'}}};
 window.openLaluAutonomyAdmin=function(){if(auth.currentUser?.uid!==ADMIN_UID)return alert('Acesso não autorizado.');const p=document.getElementById('laluAutonomyPanel');if(!p)return;p.style.display='block';p.scrollIntoView({behavior:'smooth',block:'start'});window.loadLaluAutonomyAdmin?.()};
 window.closeLaluAutonomyAdmin=function(){const p=document.getElementById('laluAutonomyPanel');if(p)p.style.display='none'};
 window.loadLaluAutonomyAdmin=async function(){if(auth.currentUser?.uid!==ADMIN_UID)return;const c=await getLaluAutonomyConfig();const setCheck=(id,v)=>{const e=document.getElementById(id);if(e)e.checked=!!v};setCheck('laluAutonomyEnabled',c.enabled);setCheck('laluLearnAutonomy',c.learnEnabled!==false);setCheck('laluLearnAutoPublish',c.autoPublish);const lim=document.getElementById('laluLearnDailyLimit');if(lim)lim.value=Number(c.dailyLimit||1);const em=document.getElementById('laluAdminAlertEmail');if(em)em.value=c.alertEmail||auth.currentUser.email||'';const n=document.getElementById('laluAutonomyNotice');if(n)n.textContent=c.enabled?'🟢 Modo autónomo configurado.':'⚪ Modo autónomo desativado.';try{const snap=await getDocs(query(collection(db,'laluJobs'),where('adminUid','==',ADMIN_UID),limit(30)));const jobs=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')));const box=document.getElementById('laluAutonomyJobs');if(box)box.innerHTML=jobs.length?jobs.map(j=>`<article class="admin-error-item"><div><strong>🤖 ${escapeHtml(j.type||'tarefa')}</strong><p>${escapeHtml(j.title||'')}</p><small>Estado: ${escapeHtml(j.status||'pendente')} · ${j.createdAt?escapeHtml(new Date(j.createdAt).toLocaleString('pt-MZ')):''}</small></div></article>`).join(''):'<div class="admin-error-item">Nenhuma tarefa autónoma na fila.</div>'}catch(e){console.warn('Fila Lalu indisponível:',e)}};
@@ -969,6 +981,86 @@ window.getLaluAdminDiagnosticContext=async function(){
 };
 window.laluSaveAdminReport=async function(report){
  if(auth.currentUser?.uid!==ADMIN_UID)return {ok:false,error:'Acesso não autorizado.'};
+// Lalu — Central de Inteligência do Administrador: dados reais + ações seguras explicitamente autorizadas.
+function laluDateValue(v){if(!v)return 0;if(typeof v?.toDate==='function')return v.toDate().getTime();const n=Date.parse(String(v));return Number.isFinite(n)?n:0}
+function laluTodayBounds(){const now=new Date();const start=new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();return {start,end:start+86400000-1}}
+async function laluReadCollection(name){try{const snap=await getDocs(collection(db,name));return {ok:true,rows:snap.docs.map(d=>({id:d.id,...d.data()}))}}catch(e){return {ok:false,rows:[],error:e}}}
+window.getLaluAdminSystemSnapshot=async function(){
+ if(auth.currentUser?.uid!==ADMIN_UID)return {authorized:false};
+ const {start,end}=laluTodayBounds();
+ const names=['systemErrors','users','technicians','vendors','serviceRequests','posts','stories','platformAds'];
+ const results=await Promise.all(names.map(laluReadCollection));const data={};names.forEach((n,i)=>data[n]=results[i]);
+ const errors=data.systemErrors.rows||[], todayErrors=errors.filter(x=>{const t=laluDateValue(x.createdAt);return t>=start&&t<=end}), open=errors.filter(x=>x.status!=='resolved');
+ const serviceRows=data.serviceRequests.rows||[], todayServices=serviceRows.filter(x=>{const t=laluDateValue(x.createdAt||x.requestedAt);return t>=start&&t<=end});
+ const statusCount=(rows,key)=>rows.reduce((a,x)=>{const k=String(x[key]||'novo').toLowerCase();a[k]=(a[k]||0)+1;return a},{});
+ const topCodes=Object.entries(todayErrors.reduce((a,x)=>{const k=x.code||'sem-codigo';a[k]=(a[k]||0)+1;return a},{})).sort((a,b)=>b[1]-a[1]).slice(0,8);
+ const recentActions=(await laluReadCollection('laluActions')).rows.filter(x=>laluDateValue(x.createdAt)>=start).slice(0,20);
+ const recentAlerts=(await laluReadCollection('laluAlerts')).rows.filter(x=>laluDateValue(x.createdAt)>=start);
+ const staleJobs=(await laluReadCollection('laluJobs')).rows.filter(x=>x.status==='stale');
+ return {authorized:true,generatedAt:new Date().toISOString(),period:'today',errors:{today:todayErrors.length,total:errors.length,open:open.length,criticalOpen:open.filter(x=>x.severity==='critical').length,warningsOpen:open.filter(x=>x.severity!=='critical').length,resolved:errors.filter(x=>x.status==='resolved').length,topCodes},collections:Object.fromEntries(names.map(n=>[n,{available:data[n].ok,count:data[n].rows.length}])),services:{today:todayServices.length,statusToday:statusCount(todayServices,'status'),total:serviceRows.length},activeAds:(data.platformAds.rows||[]).filter(x=>x.active!==false).length,autonomy:{todayActions:recentActions.length,todayAlerts:recentAlerts.length,staleJobs:staleJobs.length}};
+};
+window.laluAdminAction=async function(action={}){
+ if(auth.currentUser?.uid!==ADMIN_UID)return {ok:false,error:'Acesso nao autorizado.'};
+ const type=String(action.type||'').trim();
+ if(type==='resolve_error'){
+   const target=String(action.errorId||'').trim();if(!target)return {ok:false,error:'Erro nao identificado.'};
+   try{await updateDoc(doc(db,'systemErrors',target),{status:'resolved',resolvedAt:new Date().toISOString(),resolvedBy:ADMIN_UID,resolvedByLalu:true});await addDoc(collection(db,'laluActions'),{adminUid:ADMIN_UID,type,status:'completed',targetId:target,createdAt:new Date().toISOString(),result:'Erro marcado como resolvido pela Lalu por ordem explicita do Administrador.'});return {ok:true,message:'Erro marcado como resolvido.'}}catch(e){return {ok:false,error:e?.message||'Nao foi possivel marcar o erro como resolvido.'}}
+ }
+ if(type==='disable_ad'){
+   const title=String(action.title||'').trim();if(!title)return {ok:false,error:'Anuncio nao identificado.'};
+   const r=await laluReadCollection('platformAds');const match=r.rows.find(x=>String(x.title||'').trim().toLowerCase()===title.toLowerCase());if(!match)return {ok:false,error:'Nao encontrei um anuncio com esse titulo.'};
+   try{await updateDoc(doc(db,'platformAds',match.id),{active:false,updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID,updatedByLalu:true});await addDoc(collection(db,'laluActions'),{adminUid:ADMIN_UID,type,status:'completed',targetId:match.id,createdAt:new Date().toISOString(),result:`Anuncio "${match.title}" desativado por ordem explicita do Administrador.`});return {ok:true,message:`Anuncio "${match.title}" desativado.`}}catch(e){return {ok:false,error:e?.message||'Nao foi possivel desativar o anuncio.'}}
+ }
+ return {ok:false,error:'Acao nao autorizada ou nao implementada.'};
+};
+
+// Lalu — motor de resolução segura: só executa correções explicitamente autorizadas e verifica o resultado.
+window.laluExecuteSafeRepair=async function(repair={}){
+ if(auth.currentUser?.uid!==ADMIN_UID)return {ok:false,error:'Acesso nao autorizado.'};
+ const type=String(repair.type||'').trim();
+ const startedAt=new Date().toISOString();
+ const log=async(data)=>{try{await addDoc(collection(db,'laluActions'),{adminUid:ADMIN_UID,createdAt:new Date().toISOString(),startedAt,type,status:data.status||'completed',targetId:data.targetId||null,repair:true,result:data.result||'',verification:data.verification||null})}catch(e){console.warn('Nao foi possivel registar a acao da Lalu:',e)}};
+ try{
+   if(type==='resolve_error'){
+     const id=String(repair.errorId||'').trim(); if(!id)return {ok:false,error:'Erro nao identificado.'};
+     const ref=doc(db,'systemErrors',id); const before=await getDoc(ref);
+     if(!before.exists())return {ok:false,error:'O erro nao existe mais.'};
+     const data=before.data();
+     if(data.status==='resolved')return {ok:true,message:'Esse erro ja estava marcado como resolvido.',verified:true};
+     await updateDoc(ref,{status:'resolved',resolvedAt:new Date().toISOString(),resolvedBy:ADMIN_UID,resolvedByLalu:true});
+     const after=await getDoc(ref); const verified=after.exists()&&after.data().status==='resolved';
+     await log({targetId:id,result:verified?'Erro marcado como resolvido.':'A alteracao foi feita, mas a verificacao falhou.',verification:{status:verified?'resolved':'unknown'}});
+     return verified?{ok:true,message:`Erro ${data.code||id} resolvido e verificado.`,verified:true}:{ok:false,error:'A alteracao foi feita, mas nao consegui confirmar o novo estado.'};
+   }
+   if(type==='disable_ad'){
+     const id=String(repair.adId||'').trim(); if(!id)return {ok:false,error:'Anuncio nao identificado.'};
+     const ref=doc(db,'platformAds',id); const before=await getDoc(ref);
+     if(!before.exists())return {ok:false,error:'O anuncio nao existe mais.'};
+     const data=before.data();
+     if(data.active===false)return {ok:true,message:'Esse anuncio ja estava desativado.',verified:true};
+     await updateDoc(ref,{active:false,updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID,updatedByLalu:true});
+     const after=await getDoc(ref); const verified=after.exists()&&after.data().active===false;
+     await log({targetId:id,result:verified?`Anuncio "${data.title||id}" desativado.`:'A alteracao foi feita, mas a verificacao falhou.',verification:{active:verified?false:null}});
+     return verified?{ok:true,message:`Anuncio "${data.title||id}" desativado e verificado.`,verified:true}:{ok:false,error:'A alteracao foi feita, mas nao consegui confirmar o novo estado.'};
+   }
+   if(type==='repair_ai_fallback'){
+     const now=new Date().toISOString();
+     try{localStorage.removeItem('electro_lalu_fallback_until');localStorage.removeItem('lalu_fallback_until')}catch{}
+     await log({targetId:null,result:'Estado local de fallback da Lalu limpo. O próximo pedido poderá testar novamente o modelo principal.',verification:{localStorageClearedAt:now}});
+     return {ok:true,message:'Estado local de fallback da Lalu limpo. O próximo pedido poderá testar novamente o modelo principal.',verified:true};
+   }
+   return {ok:false,error:'Correção não autorizada ou não implementada.'};
+ }catch(e){await log({status:'failed',result:e?.message||String(e)});return {ok:false,error:e?.message||'Falha desconhecida durante a correção.'};}
+};
+window.laluDiagnoseAndRepair=async function(request={}){
+ if(auth.currentUser?.uid!==ADMIN_UID)return {ok:false,error:'Acesso nao autorizado.'};
+ const type=String(request.type||'').trim();
+ if(type==='resolve_error')return window.laluExecuteSafeRepair({type,errorId:request.errorId});
+ if(type==='disable_ad')return window.laluExecuteSafeRepair({type,adId:request.adId});
+ if(type==='repair_ai_fallback')return window.laluExecuteSafeRepair({type});
+ return {ok:false,error:'A Lalu não possui uma rotina segura para esse problema.'};
+};
+
  try{const ref=await addDoc(collection(db,'laluReports'),{...report,adminUid:auth.currentUser.uid,createdAt:new Date().toISOString(),createdAtServer:new Date().toISOString()});return {ok:true,id:ref.id};}catch(e){return {ok:false,error:e?.message||'Não foi possível guardar o relatório.'}}
 };
 window.toggleAdminErrorDetails=function(i){const el=document.getElementById('adminErrorDetails'+i);if(el)el.style.display=el.style.display==='block'?'none':'block'};
@@ -1008,10 +1100,10 @@ window.adminLogin=async()=>{
 window.logoutUser=()=>signOut(auth);
 window.resetPassword=async()=>{const email=document.getElementById("userEmail").value.trim();if(!email)return msg("legacyAuthMessage","Digite o seu e-mail primeiro.","error");try{await sendPasswordResetEmail(auth,email);msg("legacyAuthMessage","Enviámos um link para redefinir a senha.","success")}catch(e){msg("legacyAuthMessage",firebaseError(e),"error")}};
 window.toggleCart=()=>{document.getElementById("cartPanel").classList.toggle("open");renderCart()};
-window.addCart=(p,price)=>{let c=JSON.parse(localStorage.getItem("electroCart")||"[]");const i=c.findIndex(x=>x.product===p);if(i>=0)c[i].qty++;else c.push({product:p,price,qty:1});localStorage.setItem("electroCart",JSON.stringify(c));updateCartCount();renderCart();msg("cartMessage",p+" foi adicionado ao carrinho.","success")};
+window.addCart=(p,price)=>{const now=Date.now();if(window.__lastCartAction&&now-window.__lastCartAction<500)return;window.__lastCartAction=now;let c=JSON.parse(localStorage.getItem("electroCart")||"[]");const i=c.findIndex(x=>x.product===p);if(i>=0)c[i].qty++;else c.push({product:p,price,qty:1});localStorage.setItem("electroCart",JSON.stringify(c));updateCartCount();renderCart();msg("cartMessage",p+" foi adicionado ao carrinho.","success")};
 window.changeQty=(i,d)=>{let c=JSON.parse(localStorage.getItem("electroCart")||"[]");if(!c[i])return;c[i].qty+=d;if(c[i].qty<=0)c.splice(i,1);localStorage.setItem("electroCart",JSON.stringify(c));updateCartCount();renderCart()};
 function updateCartCount(){const c=JSON.parse(localStorage.getItem("electroCart")||"[]");document.getElementById("cartCount").textContent=c.reduce((a,x)=>a+x.qty,0)}
-function renderCart(){const box=document.getElementById("cartItems");if(!box)return;const c=JSON.parse(localStorage.getItem("electroCart")||"[]");if(!c.length){box.innerHTML='<p style="color:#cbd5e1;margin-top:12px">O carrinho está vazio.</p>';document.getElementById("cartTotal").textContent="0 MT";return}let total=0;box.innerHTML=c.map((x,i)=>{total+=x.price*x.qty;return `<div class="cart-row"><div><strong>${safe(x.product)}</strong><div style="color:#cbd5e1">${x.price.toLocaleString("pt-MZ")} MT cada</div></div><div class="qty"><button onclick="changeQty(${i},-1)">−</button><span>${x.qty}</span><button onclick="changeQty(${i},1)">+</button></div><strong>${(x.price*x.qty).toLocaleString("pt-MZ")} MT</strong></div>`}).join("");document.getElementById("cartTotal").textContent=total.toLocaleString("pt-MZ")+" MT"}
+function renderCart(){const box=document.getElementById("cartItems");if(!box)return;const c=JSON.parse(localStorage.getItem("electroCart")||"[]");if(!c.length){box.innerHTML='<p style="color:#cbd5e1;margin-top:12px">O carrinho está vazio.</p>';document.getElementById("cartTotal").textContent="0 MT";return}let total=0;box.innerHTML=c.map((x,i)=>{total+=x.price*x.qty;return `<div class="cart-row"><div><strong>${safe(x.product)}</strong><div style="color:#cbd5e1">${x.price.toLocaleString("pt-MZ")} MT cada</div></div><div class="qty"><button type="button" aria-label="Diminuir quantidade" onclick="changeQty(${i},-1)">−</button><span>${x.qty}</span><button type="button" aria-label="Aumentar quantidade" onclick="changeQty(${i},1)">+</button></div><strong>${(x.price*x.qty).toLocaleString("pt-MZ")} MT</strong></div>`}).join("");document.getElementById("cartTotal").textContent=total.toLocaleString("pt-MZ")+" MT"}
 window.checkoutCart=()=>{if(!auth.currentUser){location.hash="acesso";return msg("cartMessage","Entre na sua conta para finalizar o pedido.","error")}const c=JSON.parse(localStorage.getItem("electroCart")||"[]");if(!c.length)return;alert("Pedido preparado. A próxima etapa pode ligar este checkout ao pagamento e ao Firestore.")};
 window.requestService=(id,name)=>{
   if(!auth.currentUser){alert("Entre na sua conta para solicitar um serviço.");location.hash="acesso";return}
@@ -1049,39 +1141,45 @@ window.closeModal=id=>{const el=document.getElementById(id);if(!el)return;el.cla
 
 function firebaseError(c){return({"auth/email-already-in-use":"Este e-mail já está cadastrado.","auth/invalid-email":"O e-mail não é válido.","auth/weak-password":"A senha deve ter pelo menos 6 caracteres.","auth/invalid-credential":"E-mail ou senha incorretos.","auth/user-not-found":"Utilizador não encontrado.","auth/wrong-password":"Senha incorreta."}[c]||"Ocorreu um erro. Tente novamente.")}
 
-let allTechnicians=[];
+let allTechnicians=[];let activeStoryTechnicianUids=new Set();let visibleTechnicianLimit=4;
 async function loadTechnicians(){
   const box=document.getElementById("techniciansList");
   try{
     const s=await getDocs(collection(db,"technicians"));
     allTechnicians=s.docs.map(d=>({id:d.id,...d.data()}));
+    activeStoryTechnicianUids=new Set();
+    try{
+      const now=new Date().toISOString();
+      const storySnap=await getDocs(query(collection(db,"stories"),where("expiresAt",">",now),limit(500)));
+      storySnap.forEach(d=>{const x=d.data();if(x.authorUid)activeStoryTechnicianUids.add(x.authorUid)});
+    }catch(storyErr){console.warn("Indicadores de histórias indisponíveis:",storyErr)}
     renderTechnicians(allTechnicians);
-  }catch(e){box.innerHTML='<div class="tech"><h3>Não foi possível carregar os técnicos.</h3><p>Tente novamente mais tarde.</p></div>'}
+  }catch(e){box.innerHTML='<div class="tech-empty"><strong>Não foi possível carregar os técnicos.</strong><p>Tente novamente mais tarde.</p></div>'}
+}
+function technicianCardHtml(t){
+  const specialty=t.specialty||"Serviços elétricos",location=t.location||"Moçambique",rating=Number(t.rating||0),hasStory=activeStoryTechnicianUids.has(t.id);
+  const rounded=Math.min(5,Math.round(rating));
+  const stars=rating>0?"★".repeat(rounded)+"☆".repeat(5-rounded):"Sem avaliações";
+  const avatar=t.photoURL?`<img src="${safe(t.photoURL)}" alt="Foto de ${safe(t.name||"Eletricista")}" loading="lazy">`:'👷';
+  return `<article class="tech" data-tech-id="${safe(t.id)}"><div class="tech-top"><div class="${hasStory?'tech-story-ring':''}"><div class="tech-avatar">${avatar}</div></div><div style="min-width:0"><h3 class="tech-card-name">${safe(t.name||"Eletricista")} ${t.verified===true?'<span class="verified">✓</span>':''}</h3><div class="tech-card-sub">📍 ${safe(location)}</div>${hasStory?'<span class="tech-story-badge">História ativa</span>':''}</div></div><div class="tech-tags"><span class="tag">${safe(specialty)}</span><span class="tag">${t.available===false?'Indisponível':'Disponível'}</span></div><p class="tech-card-bio">${safe(t.bio||'Profissional Electro Mais disponível para serviços elétricos.')}</p><p class="rating" style="font-size:12px;margin:7px 0">${stars} ${rating?rating.toFixed(1):''}</p><div class="tech-actions"><button class="btn btn-outline" type="button" aria-label="Ver perfil de ${safe(t.name||'Eletricista')}" onclick="viewTechnician('${js(t.id)}')">Ver perfil</button><button class="btn btn-primary" type="button" aria-label="Solicitar serviço a ${safe(t.name||'Eletricista')}" onclick="requestService('${js(t.id)}','${js(t.name||"Eletricista")}')">Solicitar</button></div></article>`;
 }
 function renderTechnicians(list){
-  const box=document.getElementById("techniciansList");
-  if(!list.length){box.innerHTML='<div class="tech"><div class="avatar">👷</div><h3>Nenhum técnico encontrado</h3><p>Tente alterar os filtros.</p></div>';return}
-  box.innerHTML=list.map(t=>{
-    const specialty=t.specialty||"Serviços elétricos";
-    const location=t.location||"Moçambique";
-    const rating=Number(t.rating||0);
-    const stars=rating>0?"★".repeat(Math.min(5,Math.round(rating)))+"☆".repeat(5-Math.min(5,Math.round(rating))):"Sem avaliações";
-    return `<div class="tech">
-      <div class="tech-top"><div class="tech-avatar">👷</div><div><h3>${safe(t.name||"Eletricista")}</h3><div class="tech-meta">📍 ${safe(location)}</div></div></div>
-      <p>Profissional Electro Mais</p><div class="tech-tags"><span class="tag">${safe(specialty)}</span><span class="tag">${t.available===false?"Indisponível":"Disponível"}</span></div>
-      <p class="rating">${stars} ${rating?rating.toFixed(1):""}</p>
-      <div class="tech-actions"><button class="btn btn-outline" onclick="viewTechnician('${t.id}')">Ver perfil</button><button class="btn btn-primary" onclick="requestService('${t.id}','${js(t.name||"Eletricista")}')">Solicitar</button></div>
-    </div>`;
-  }).join("");
+  const box=document.getElementById("techniciansList"),more=document.getElementById("techListMore");
+  if(!list.length){box.innerHTML='<div class="tech-empty"><strong>Nenhum técnico encontrado</strong><p>Tente alterar os filtros.</p></div>';if(more)more.style.display='none';return}
+  box.innerHTML=list.slice(0,visibleTechnicianLimit).map(technicianCardHtml).join('');
+  if(more)more.style.display=list.length>visibleTechnicianLimit?'flex':'none';
 }
-window.filterTechnicians=()=>{
-  const q=document.getElementById("techSearch").value.toLowerCase(),loc=document.getElementById("techLocation").value,sp=document.getElementById("techSpecialty").value,av=document.getElementById("techAvailability").value;
-  renderTechnicians(allTechnicians.filter(t=>(!q||`${t.name||""} ${t.specialty||""}`.toLowerCase().includes(q))&&(!loc||t.location===loc)&&(!sp||t.specialty===sp)&&(!av||String(t.available!==false)===av)));
-};
+function renderAllTechnicians(list){const box=document.getElementById('techAllList');if(!box)return;box.innerHTML=list.length?list.map(technicianCardHtml).join(''):'<div class="tech-empty">Nenhum profissional corresponde aos filtros.</div>';}
+window.openAllTechnicians=()=>{const p=document.getElementById('techAllPanel');if(!p)return;p.classList.add('open');p.setAttribute('aria-hidden','false');renderAllTechnicians(allTechnicians);setTimeout(()=>document.getElementById('techAllSearch')?.focus(),50)};
+window.closeAllTechnicians=()=>{const p=document.getElementById('techAllPanel');if(!p)return;p.classList.remove('open');p.setAttribute('aria-hidden','true')};
+function filterAllTechnicians(){const q=(document.getElementById('techAllSearch')?.value||'').toLowerCase(),loc=document.getElementById('techAllLocation')?.value||'',sp=document.getElementById('techAllSpecialty')?.value||'';renderAllTechnicians(allTechnicians.filter(t=>(!q||`${t.name||''} ${t.specialty||''}`.toLowerCase().includes(q))&&(!loc||t.location===loc)&&(!sp||t.specialty===sp)))}
+window.filterTechnicians=()=>{const q=document.getElementById("techSearch").value.toLowerCase(),loc=document.getElementById("techLocation").value,sp=document.getElementById("techSpecialty").value,av=document.getElementById("techAvailability").value;renderTechnicians(allTechnicians.filter(t=>(!q||`${t.name||""} ${t.specialty||""}`.toLowerCase().includes(q))&&(!loc||t.location===loc)&&(!sp||t.specialty===sp)&&(!av||String(t.available!==false)===av)))};
+['techAllSearch','techAllLocation','techAllSpecialty'].forEach(id=>document.getElementById(id)?.addEventListener('input',filterAllTechnicians));
 window.viewTechnician=id=>{
   const t=allTechnicians.find(x=>x.id===id);if(!t)return;
   const verified=t.verificationStatus==="verificado"||t.verified===true;
-  document.getElementById("techModalContent").innerHTML=`<div class="social-cover tech-cover"></div><div class="social-profile-head"><div class="tech-avatar big">👷🏾</div><div><h2>${safe(t.name||"Eletricista")} ${verified?'<span class="verified">✓ Verificado</span>':''}</h2><p>📍 ${safe(t.location||"Moçambique")} · ${t.available===false?"🔴 Indisponível":"🟢 Disponível"}</p></div></div><div class="profile-social-actions" style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 24px 0"><button class="btn btn-outline" id="techFollowBtn" onclick="toggleFollowProfile('technician','${t.id}')">+ Seguir</button><button class="btn btn-outline" onclick="window.electroMessageUser?.('${js(t.id)}','${js(t.name||"Eletricista")}','eletricista','${js(t.photoURL||'')}')">💬 Mensagem</button><button class="btn btn-primary" onclick="closeModal('techModal');requestService('${js(t.id)}','${js(t.name||"Eletricista")}')">⚡ Solicitar serviço</button><span class="profile-follow-count" id="techFollowCount">0 seguidores</span></div><div class="notice" style="margin:14px 24px">${verified?'🛡️ Verificado pela Electro Mais':'👷 Perfil profissional na plataforma Electro Mais'}</div><p class="profile-about">${safe(t.bio||'Profissional disponível para apresentar os seus serviços e trabalhos na plataforma.')}</p><div class="profile-tabs tech-public-tabs"><button type="button" class="active" data-tech-tab="posts">Publicações</button><button type="button" data-tech-tab="photos">Fotos</button><button type="button" data-tech-tab="videos">Vídeos</button><button type="button" data-tech-tab="stories">Histórias</button></div><div class="em-profile-posts-wrap"><div id="techSocialPosts_${t.id}"></div></div><div class="profile-info-grid"><div><strong>⚡ Especialidade</strong><p>${safe(t.specialty||'Serviços elétricos')}</p></div><div><strong>🛠️ Experiência</strong><p>${safe(t.experience||'A confirmar')}${t.yearsExperience?` · ${Number(t.yearsExperience)} anos`:''}</p></div><div><strong>⭐ Avaliação</strong><p>${t.rating?Number(t.rating).toFixed(1)+' / 5':'Ainda sem avaliações'}</p></div><div><strong>🔧 Serviços</strong><p>${safe(t.servicesOffered||'Serviços elétricos')}</p></div><div><strong>📍 Atendimento</strong><p>${safe(t.serviceAreas||t.location||'Moçambique')}${t.serviceRadius?` · ${safe(t.serviceRadius)}`:''}</p></div><div><strong>🚨 Emergências</strong><p>${t.emergencyServices==='sim'?'Atende serviços urgentes':'Disponibilidade a confirmar'}</p></div><div><strong>🎓 Formação</strong><p>${safe(t.certifications||'A confirmar')}</p></div><div><strong>🧰 Equipamentos</strong><p>${safe(t.equipment||'A confirmar')}</p></div><div><strong>💳 Pagamento</strong><p>${safe(t.paymentMethods||'A combinar')}</p></div><div><strong>🌍 Idiomas</strong><p>${safe(t.languages||'Português')}</p></div></div>`;
+  const avatar=t.photoURL?`<img src="${safe(t.photoURL)}" alt="Foto de ${safe(t.name||"Eletricista")}" loading="lazy" class="social-avatar">`:'<div class="tech-avatar big">👷🏾</div>';
+  document.getElementById("techModalContent").innerHTML=`<div class="social-cover tech-cover"></div><div class="social-profile-head">${avatar}<div><h2>${safe(t.name||"Eletricista")} ${verified?'<span class="verified">✓ Verificado</span>':''}</h2><p>📍 ${safe(t.location||"Moçambique")} · ${t.available===false?"🔴 Indisponível":"🟢 Disponível"}</p></div></div><div class="profile-social-actions" style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 24px 0"><button class="btn btn-outline" id="techFollowBtn" type="button" aria-label="Seguir ${safe(t.name||'Eletricista')}" onclick="toggleFollowProfile('technician','${t.id}')">+ Seguir</button><button class="btn btn-outline" type="button" aria-label="Enviar mensagem a ${safe(t.name||'Eletricista')}" onclick="window.electroMessageUser?.('${js(t.id)}','${js(t.name||"Eletricista")}','eletricista','${js(t.photoURL||'')}')">💬 Mensagem</button><button class="btn btn-primary" type="button" aria-label="Solicitar serviço a ${safe(t.name||'Eletricista')}" onclick="closeModal('techModal');requestService('${js(t.id)}','${js(t.name||"Eletricista")}')">⚡ Solicitar serviço</button><span class="profile-follow-count" id="techFollowCount">0 seguidores</span></div><div class="notice" style="margin:14px 24px">${verified?'🛡️ Verificado pela Electro Mais':'👷 Perfil profissional na plataforma Electro Mais'}${activeStoryTechnicianUids.has(t.id)?' · 🟠 História ativa':''}</div><p class="profile-about">${safe(t.bio||'Profissional disponível para apresentar os seus serviços e trabalhos na plataforma.')}</p><div class="profile-tabs tech-public-tabs"><button type="button" class="active" data-tech-tab="posts">Publicações</button><button type="button" data-tech-tab="photos">Fotos</button><button type="button" data-tech-tab="videos">Vídeos</button><button type="button" data-tech-tab="stories">Histórias</button></div><div class="em-profile-posts-wrap"><div id="techSocialPosts_${t.id}"></div></div><div class="profile-info-grid"><div><strong>⚡ Especialidade</strong><p>${safe(t.specialty||'Serviços elétricos')}</p></div><div><strong>🛠️ Experiência</strong><p>${safe(t.experience||'A confirmar')}${t.yearsExperience?` · ${Number(t.yearsExperience)} anos`:''}</p></div><div><strong>⭐ Avaliação</strong><p>${t.rating?Number(t.rating).toFixed(1)+' / 5':'Ainda sem avaliações'}</p></div><div><strong>🔧 Serviços</strong><p>${safe(t.servicesOffered||'Serviços elétricos')}</p></div><div><strong>📍 Atendimento</strong><p>${safe(t.serviceAreas||t.location||'Moçambique')}${t.serviceRadius?` · ${safe(t.serviceRadius)}`:''}</p></div><div><strong>🚨 Emergências</strong><p>${t.emergencyServices==='sim'?'Atende serviços urgentes':'Disponibilidade a confirmar'}</p></div><div><strong>🎓 Formação</strong><p>${safe(t.certifications||'A confirmar')}</p></div><div><strong>🧰 Equipamentos</strong><p>${safe(t.equipment||'A confirmar')}</p></div><div><strong>💳 Pagamento</strong><p>${safe(t.paymentMethods||'A combinar')}</p></div><div><strong>🌍 Idiomas</strong><p>${safe(t.languages||'Português')}</p></div></div>`;
   window.electroOpenOverlay?.("techModal");window.refreshFollowUI?.("technician",t.id);window.loadSocialPosts?.(t.id,`techSocialPosts_${t.id}`,"all");
   const techTabRoot=document.getElementById("techModalContent");techTabRoot?.querySelectorAll("[data-tech-tab]").forEach(btn=>btn.onclick=async()=>{techTabRoot.querySelectorAll("[data-tech-tab]").forEach(x=>x.classList.remove("active"));btn.classList.add("active");const tab=btn.dataset.techTab;if(tab==='stories')return window.openTechnicianStories?.(t.id,t.name||'Eletricista');await window.loadSocialPosts?.(t.id,`techSocialPosts_${t.id}`,tab==='photos'?'photos':tab==='videos'?'videos':'all');});
 };
@@ -1320,9 +1418,10 @@ function openUrgent(){
  document.getElementById('pedido')?.scrollIntoView({behavior:'smooth'});
 }
 async function submitMasterRequest(){
+ if(window.__masterRequestBusy)return;window.__masterRequestBusy=true;const submitBtn=document.querySelector('#pedido button[onclick="submitMasterRequest()"]');if(submitBtn)submitBtn.disabled=true;
  const name=document.getElementById('masterName')?.value.trim(),phone=document.getElementById('masterPhone')?.value.trim(),location=document.getElementById('masterLocation')?.value.trim(),service=document.getElementById('masterService')?.value,description=document.getElementById('masterDescription')?.value.trim(),m=document.getElementById('masterMessage');
- if(!name||!phone||!location||!description){if(m){m.textContent='Preencha nome, contacto, localização e descrição.';m.className='message error';}return;}
- if(!auth.currentUser){if(m){m.textContent='Entre na sua conta para enviar o pedido.';m.className='message error';}window.location.hash='acesso';return;}
+ if(!name||!phone||!location||!description){if(m){m.textContent='Preencha nome, contacto, localização e descrição.';m.className='message error';}window.__masterRequestBusy=false;if(submitBtn)submitBtn.disabled=false;return;}
+ if(!auth.currentUser){if(m){m.textContent='Entre na sua conta para enviar o pedido.';m.className='message error';}window.location.hash='acesso';window.__masterRequestBusy=false;if(submitBtn)submitBtn.disabled=false;return;}
  document.getElementById('serviceName').value=name;
  document.getElementById('servicePhone').value=phone;
  document.getElementById('serviceLocation').value=location;
@@ -1331,6 +1430,7 @@ async function submitMasterRequest(){
  document.getElementById('serviceMessage').textContent='';
  document.getElementById('serviceMessage').className='message';
  document.getElementById('serviceModal').classList.add('open');
+ window.__masterRequestBusy=false;if(submitBtn)submitBtn.disabled=false;
 }
 window.addEventListener('DOMContentLoaded',loadDailyWord);
 </script>
@@ -1625,7 +1725,7 @@ Quando a sessão autenticada pertencer ao Administrador autorizado da Electro Ma
 IDENTIDADE:
 O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligência artificial da Electro Mais Moçambique. `;
  let systemInstruction=baseSystemInstruction;
- const generationConfig={maxOutputTokens:900,temperature:0.45};
+ const generationConfig={maxOutputTokens:900};
  let primaryModel=getGenerativeModel(ai,{model:"gemini-3.8-flash",systemInstruction,tools:[{googleSearch:{}}]});
  let fallbackModel=getGenerativeModel(ai,{model:"gemini-3.5-flash-lite",systemInstruction});
  function refreshLaluIdentity(user){isAdminMode=!!(user&&user.uid===ADMIN_UID);systemInstruction=baseSystemInstruction+(isAdminMode?adminSystemInstruction:"\n\nIDENTIDADE:\nO teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligência artificial da Electro Mais Moçambique. ");primaryModel=getGenerativeModel(ai,{model:"gemini-3.8-flash",systemInstruction,tools:[{googleSearch:{}}]});fallbackModel=getGenerativeModel(ai,{model:"gemini-3.5-flash-lite",systemInstruction});document.getElementById("laluAdminTools")?.toggleAttribute("hidden",!isAdminMode);document.getElementById("aiPanel")?.classList.toggle("lalu-admin-chat",isAdminMode);const badge=document.querySelector(".ai-brand small");if(badge)badge.textContent=isAdminMode?"Inteligência Artificial · Modo Administrador":"Inteligência Artificial da Electro Mais";}
@@ -1666,6 +1766,7 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
  function getFallbackUntil(){try{return Number(localStorage.getItem(FALLBACK_KEY)||0)}catch{return 0}}
  function setFallbackUntil(ts){try{localStorage.setItem(FALLBACK_KEY,String(ts))}catch{}}
  function clearFallbackUntil(){try{localStorage.removeItem(FALLBACK_KEY)}catch{}}
+ function isQuotaError(e){const t=String(e?.code||'')+' '+String(e?.message||'');return /(^|[^0-9])429([^0-9]|$)|quota|resource exhausted|rate limit|too many requests/i.test(t)}
  function add(text,who){const d=document.createElement('div');d.className='ai-msg '+who;d.textContent=text;box.appendChild(d);box.scrollTop=box.scrollHeight;return d}
  function rebuildChat(model,history){const prior=history.map(m=>({role:m.role,parts:[{text:m.text}]}));return model.startChat({generationConfig,history:prior})}
  async function streamAnswer(chat,content,answerBubble,thinking,isCurrent){
@@ -1703,7 +1804,7 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
    const chat=rebuildChat(model,conversation);
    return await withTimeout(streamAnswer(chat,content,answerBubble,thinking,isCurrent),ATTEMPT_TIMEOUT,label);
  }
- async function getAdminContext(){if(!isAdminMode||!window.getLaluAdminDiagnosticContext)return null;try{return await window.getLaluAdminDiagnosticContext()}catch(e){return null}}
+ async function getAdminContext(){if(!isAdminMode)return null;try{const diagnostic=await window.getLaluAdminDiagnosticContext?.();const system=await window.getLaluAdminSystemSnapshot?.();return {diagnostic,system}}catch(e){return null}}
  async function askAdminAction(kind){
    if(!isAdminMode)return;
    const ctx=await getAdminContext();
@@ -1713,11 +1814,28 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
    await ask(prompt);
  }
  document.querySelectorAll('[data-lalu-admin]').forEach(btn=>btn.addEventListener('click',()=>askAdminAction(btn.dataset.laluAdmin)));
+ async function tryLaluAdminAction(text){
+   if(!isAdminMode)return null;
+   const t=String(text||'').trim();
+   let m=t.match(/^lalu[,:]?\s*(?:marca|marcar|coloca|colocar)\s+(?:o\s+)?erro\s+(?:com\s+)?(?:codigo\s+)?([A-Za-z0-9_\-\/\.]+)\s+(?:como\s+)?resolvido/i);
+   if(m){const r=await laluReadCollection('systemErrors');const target=r.rows.find(x=>String(x.code||'').toLowerCase()===m[1].toLowerCase()||String(x.id||'').toLowerCase()===m[1].toLowerCase());if(!target)return {text:`Nao encontrei um erro com o codigo/ID "${m[1]}". Nao vou fingir que o resolvi.`};const result=await window.laluAdminAction({type:'resolve_error',errorId:target.id});return {text:result.ok?`Erro ${target.code||target.id} marcado como resolvido. Registei a acao no historico da Lalu.`:`Nao consegui alterar o erro: ${result.error||'falha desconhecida'}.`};}
+   m=t.match(/^lalu[,:]?\s*(?:desativa|desativar|pausa|pausar)\s+(?:o\s+)?anuncio\s+"?(.+?)"?$/i);
+   if(m){const result=await window.laluAdminAction({type:'disable_ad',title:m[1].replace(/["“”]/g,'').trim()});return {text:result.ok?result.message:`Nao consegui desativar o anuncio: ${result.error||'falha desconhecida'}.`};}
+   m=t.match(/^lalu[,:]?.*(?:limpa|limpar|redefine|redefinir|corrige|corrigir).*(?:fallback|modo alternativo)/i);
+   if(m){const result=await window.laluDiagnoseAndRepair({type:'repair_ai_fallback'});return {text:result.ok?`🛠️ ${result.message}`:`⚠️ Não consegui fazer a correção: ${result.error||'falha desconhecida'}.`};}
+   m=t.match(/^lalu[,:]?.*(?:resolve|resolver|corrige|corrigir|repara|reparar).*erro.*(?:codigo\s+|id\s+)?([A-Za-z0-9_\-\/\.]+)$/i);
+   if(m){const r=await laluReadCollection('systemErrors');const target=r.rows.find(x=>String(x.code||'').toLowerCase()===m[1].toLowerCase()||String(x.id||'').toLowerCase()===m[1].toLowerCase());if(!target)return {text:`Não encontrei um erro com o código/ID "${m[1]}". Não vou fingir que o resolvi.`};const result=await window.laluDiagnoseAndRepair({type:'resolve_error',errorId:target.id});return {text:result.ok?`🛠️ ${result.message}`:`⚠️ Não consegui corrigir o erro: ${result.error||'falha desconhecida'}.`};}
+   m=t.match(/^lalu[,:]?.*(?:resolve|resolver|corrige|corrigir|repara|reparar|desativa|desativar).*anuncio\s+["“]?(.+?)["”]?$/i);
+   if(m){const title=m[1].replace(/["“”]/g,'').trim();const r=await laluReadCollection('platformAds');const target=r.rows.find(x=>String(x.title||'').trim().toLowerCase()===title.toLowerCase());if(!target)return {text:`Não encontrei um anúncio chamado "${title}".`};const result=await window.laluDiagnoseAndRepair({type:'disable_ad',adId:target.id});return {text:result.ok?`🛠️ ${result.message}`:`⚠️ Não consegui alterar o anúncio: ${result.error||'falha desconhecida'}.`};}
+   return null;
+ }
  async function ask(text,attachment=null){
    if(!text||!text.trim()||ask.busy)return;
    text=text.trim();ask.busy=true;
+   const directAction=await tryLaluAdminAction(text);
+   if(directAction){add(directAction.text,'bot');ask.busy=false;if(input)input.disabled=false;const submit=form?.querySelector('button[type="submit"]');if(submit)submit.disabled=false;return;}
    let content=text;
-   if(attachment){try{content=[{text:text},await fileToPart(attachment)];}catch(e){ask.busy=false;throw e;}}const requestId=++activeRequestId;
+   if(attachment){try{content=[{text:text},await fileToPart(attachment)];}catch(e){ask.busy=false;throw e;}} else if(isAdminMode && /\b(erro|erros|sistema|site|plataforma|utilizador|usuario|tecnico|servico|pedido|loja|anuncio|historia|publicacao|problema|diagnostico|quantos|quantas|hoje|ontem|semana|relatorio)\b/i.test(text)){try{const ctx=await getAdminContext();content=`[CONTEXTO ADMINISTRATIVO EM TEMPO REAL — fonte de verdade. Se um dado estiver indisponivel, diz isso. Nao inventes metricas.]\n${JSON.stringify(ctx)}\n\nPERGUNTA DO ADMINISTRADOR:\n${text}`;}catch(e){content=text;}}const requestId=++activeRequestId;
    if(input)input.disabled=true;const submit=form?.querySelector('button[type="submit"]');if(submit)submit.disabled=true;
    add((attachment?'📎 '+attachment.name+'\n':'')+text,'user');const thinking=document.createElement('div');thinking.className='ai-thinking';thinking.setAttribute('role','status');thinking.setAttribute('aria-live','polite');thinking.innerHTML='<span>A preparar resposta…</span><span class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></span>';box.appendChild(thinking);const loading=add('','bot');loading.classList.add('ai-loading');loading.setAttribute('aria-live','polite');const setThinking=(label)=>{if(!thinking.isConnected)box.insertBefore(thinking,loading);const labelNode=thinking.querySelector('span');if(labelNode)labelNode.textContent=label;loading.textContent='';loading.classList.add('ai-loading');box.scrollTop=box.scrollHeight;};box.scrollTop=box.scrollHeight;
    try{
@@ -1730,7 +1848,13 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
          answer=await attempt(primaryModel,content,loading,thinking,'Modelo principal',requestId);
          clearFallbackUntil();
        }catch(primaryError){
-         // Qualquer falha do principal ativa o alternativo durante 15 minutos.
+         // 429 é quota/capacidade: não dispare uma segunda chamada imediatamente, para evitar uma cascata de erros.
+         if(isQuotaError(primaryError)){
+           console.warn('Electro Mais IA: quota/capacidade atingida no modelo principal; fallback imediato evitado.',primaryError);
+           window.reportFirebaseError?.(primaryError,'Electro Mais IA',{severity:'warning',event:'quota_exceeded'}).catch(()=>{});
+           throw primaryError;
+         }
+         // Para erros de pedido/configuração, tenta o modelo alternativo.
          setFallbackUntil(Date.now()+FALLBACK_DURATION);
          console.warn('Electro Mais IA: modelo principal falhou; alternativo ativado durante 15 minutos.',primaryError);
          window.reportFirebaseError?.(primaryError,'Electro Mais IA',{severity:'warning',event:'fallback_activated',fallbackMinutes:15}).catch(()=>{});
@@ -1754,6 +1878,8 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
        const raw=String(e?.message||'');
        let msg='❌ A IA não conseguiu responder neste momento.';
        if(/permission|app.check|app-check|unauthenticated|403/i.test(code+' '+raw)) msg='🔐 A Electro Mais IA precisa de uma verificação de segurança válida. O administrador deve confirmar o Firebase App Check e a configuração do AI Logic.';
+       else if(isQuotaError(e)) msg='⏳ A Lalu atingiu temporariamente o limite/capacidade do serviço de IA. Aguarda alguns segundos e tenta novamente.';
+       else if(/400|invalid|invalid-content/i.test(code+' '+raw)) msg='⚠️ O pedido enviado ao modelo de IA foi rejeitado pela configuração atual. A Lalu precisa de uma correção técnica; o erro foi registado para o Administrador.';
        else if(/500|internal|unavailable|fetch/i.test(code+' '+raw)) msg='⚠️ O serviço de IA devolveu um erro temporário. A plataforma continua disponível; tente novamente em instantes.';
        loading.textContent=msg;
        const retry=document.createElement('button');retry.type='button';retry.className='ai-retry';retry.textContent='↻ Tentar novamente';retry.addEventListener('click',()=>{loading.remove();retry.remove();ask(text)});loading.appendChild(retry);
@@ -2162,16 +2288,17 @@ const ADS_ADMIN="QSnHZagz9jVo4r21WHtoX1T5R9u2";
 let adsRows=[],adsIndex=0,adsTimer=null;
 const adsEsc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 function adsFallback(){return [{id:'starter',title:'Anuncie na Electro Mais',text:'Coloque a sua empresa, produto ou serviço em destaque para quem procura soluções elétricas.',image:'',link:'#contactos',active:true,starter:true}]};
-function adsRender(){const track=document.getElementById('electroAdsTrack'),dots=document.getElementById('electroAdsDots');if(!track||!dots)return;const rows=adsRows.length?adsRows:adsFallback();track.innerHTML=rows.map(a=>`<article class="em-ad-slide"><div class="em-ad-copy"><span class="ad-label">${a.starter?'Espaço publicitário':'Anúncio patrocinado'}</span><h3>${adsEsc(a.title)}</h3><p>${adsEsc(a.text)}</p>${a.link?`<a href="${adsEsc(a.link)}" target="_blank" rel="noopener">Ver anúncio →</a>`:''}</div><div class="em-ad-image" style="${a.image?`background-image:url('${adsEsc(a.image)}')`:''}"></div></article>`).join('');dots.innerHTML=rows.map((_,i)=>`<button class="em-ads-dot ${i===adsIndex?'active':''}" onclick="window.electroAdsGo(${i})" aria-label="Anúncio ${i+1}"></button>`).join('');adsIndex=Math.min(adsIndex,rows.length-1);track.style.transform=`translateX(-${adsIndex*100}%)`;if(adsTimer)clearInterval(adsTimer);if(rows.length>1)adsTimer=setInterval(()=>window.electroAdsNext(),6000)}
+function adsRender(){const track=document.getElementById('electroAdsTrack'),dots=document.getElementById('electroAdsDots');if(!track||!dots)return;const rows=adsRows.length?adsRows:adsFallback();track.innerHTML=rows.map(a=>`<article class="em-ad-slide"><div class="em-ad-copy"><span class="ad-label">${a.starter?'Espaço publicitário':'Anúncio patrocinado'}</span><h3>${adsEsc(a.title)}</h3><p>${adsEsc(a.text)}</p>${a.link?`<a href="${adsEsc(a.link)}" target="_blank" rel="noopener">${adsEsc(a.buttonText||'Ver anúncio')} →</a>`:''}</div><div class="em-ad-image" style="${a.image?`background-image:url('${adsEsc(a.image)}')`:''}"></div></article>`).join('');dots.innerHTML=rows.map((_,i)=>`<button class="em-ads-dot ${i===adsIndex?'active':''}" onclick="window.electroAdsGo(${i})" aria-label="Anúncio ${i+1}"></button>`).join('');adsIndex=Math.min(adsIndex,rows.length-1);track.style.transform=`translateX(-${adsIndex*100}%)`;if(adsTimer)clearInterval(adsTimer);if(rows.length>1)adsTimer=setInterval(()=>window.electroAdsNext(),6000)}
 window.electroAdsGo=i=>{const rows=adsRows.length?adsRows:adsFallback();adsIndex=(i+rows.length)%rows.length;adsRender()};
 window.electroAdsNext=()=>window.electroAdsGo(adsIndex+1);window.electroAdsPrev=()=>window.electroAdsGo(adsIndex-1);
 async function adsLoad(){try{const snap=await getDocs(query(collection(adsDb,'platformAds'),where('active','==',true),orderBy('createdAt','desc')));const now=Date.now();adsRows=snap.docs.map(d=>({id:d.id,...d.data()})).filter(a=>(!a.startAt||new Date(a.startAt).getTime()<=now)&&(!a.endAt||new Date(a.endAt).getTime()>=now));adsRender()}catch(e){console.warn('Anúncios:',e);adsRows=[];adsRender()}}
 window.electroOpenAdsAdmin=async()=>{if(adsAuth.currentUser?.uid!==ADS_ADMIN)return alert('Acesso não autorizado.');const p=document.getElementById('electroAdsAdminPanel');if(!p)return;p.classList.add('open');p.scrollIntoView({behavior:'smooth',block:'center'});await window.electroAdsLoadAdmin()};
 window.electroAdsCloseAdmin=()=>document.getElementById('electroAdsAdminPanel')?.classList.remove('open');
-window.electroAdsLoadAdmin=async()=>{const list=document.getElementById('electroAdsAdminList');if(!list||adsAuth.currentUser?.uid!==ADS_ADMIN)return;list.innerHTML='<p style="color:#64748b">A carregar anúncios...</p>';try{const snap=await getDocs(query(collection(adsDb,'platformAds'),orderBy('createdAt','desc')));const rows=snap.docs.map(d=>({id:d.id,...d.data()}));list.innerHTML=rows.length?rows.map(a=>`<div class="em-ads-admin-item"><div><strong>${adsEsc(a.title)}</strong><br><small>${a.active?'🟢 Ativo':'⚪ Pausado'} · ${adsEsc(a.text||'')}</small></div><div style="display:flex;gap:6px"><button class="toggle" onclick="window.electroAdsToggle('${a.id}',${!!a.active})">${a.active?'Pausar':'Ativar'}</button><button class="danger" onclick="window.electroAdsDelete('${a.id}')">Eliminar</button></div></div>`).join(''):'<p style="color:#64748b">Ainda não há anúncios publicados.</p>'}catch(e){list.innerHTML='<p style="color:#b91c1c">Não foi possível carregar os anúncios. Verifique as regras Firestore.</p>'}};
+window.electroAdsLoadAdmin=async()=>{const list=document.getElementById('electroAdsAdminList');if(!list||adsAuth.currentUser?.uid!==ADS_ADMIN)return;list.innerHTML='<p style="color:#64748b">A carregar anúncios...</p>';try{const snap=await getDocs(query(collection(adsDb,'platformAds'),orderBy('createdAt','desc')));const rows=snap.docs.map(d=>({id:d.id,...d.data()}));list.innerHTML=rows.length?rows.map(a=>`<div class="em-ads-admin-item"><div><strong>${adsEsc(a.title)}</strong><br><small>${a.active?'🟢 Ativo':'⚪ Pausado'} · ${adsEsc(a.text||'')} · Botão: ${adsEsc(a.buttonText||'Ver anúncio')}</small></div><div style="display:flex;gap:6px"><button class="toggle" onclick="window.electroAdsToggle('${a.id}',${!!a.active})">${a.active?'Pausar':'Ativar'}</button><button class="toggle" onclick="window.electroAdsEdit('${a.id}')">Editar</button><button class="danger" onclick="window.electroAdsDelete('${a.id}')">Eliminar</button></div></div>`).join(''):'<p style="color:#64748b">Ainda não há anúncios publicados.</p>'}catch(e){list.innerHTML='<p style="color:#b91c1c">Não foi possível carregar os anúncios. Verifique as regras Firestore.</p>'}};
 window.electroAdsToggle=async(id,active)=>{if(adsAuth.currentUser?.uid!==ADS_ADMIN)return;try{await updateDoc(doc(adsDb,'platformAds',id),{active:!active,updatedAt:serverTimestamp()});await adsLoad();await window.electroAdsLoadAdmin()}catch(e){alert('Não foi possível alterar o anúncio.')}};
 window.electroAdsDelete=async id=>{if(adsAuth.currentUser?.uid!==ADS_ADMIN||!confirm('Eliminar este anúncio?'))return;try{await deleteDoc(doc(adsDb,'platformAds',id));await adsLoad();await window.electroAdsLoadAdmin()}catch(e){alert('Não foi possível eliminar o anúncio.')}};
-document.getElementById('electroAdsForm')?.addEventListener('submit',async e=>{e.preventDefault();if(adsAuth.currentUser?.uid!==ADS_ADMIN)return alert('Acesso não autorizado.');const msg=document.getElementById('electroAdsAdminMessage');try{let image=document.getElementById('adImage').value.trim();const file=document.getElementById('adImageFile')?.files?.[0];if(!image&&!file)throw new Error('Adiciona uma URL ou carrega um banner.');if(file){if(file.size>10*1024*1024)throw new Error('O banner deve ter no máximo 10 MB.');const rr=ref(adsStorage,`ads/${adsAuth.currentUser.uid}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`);await uploadBytes(rr,file,{contentType:file.type});image=await getDownloadURL(rr)}await addDoc(collection(adsDb,'platformAds'),{title:document.getElementById('adTitle').value.trim(),text:document.getElementById('adText').value.trim(),image,link:document.getElementById('adLink').value.trim(),startAt:document.getElementById('adStartAt').value||null,endAt:document.getElementById('adEndAt').value||null,active:true,createdAt:serverTimestamp(),createdBy:adsAuth.currentUser.uid});e.target.reset();msg.textContent='Anúncio publicado com sucesso.';await adsLoad();await window.electroAdsLoadAdmin()}catch(err){msg.textContent=err.message||'Falha ao publicar. Verifique as regras Firestore.';console.error(err)}});
+window.electroAdsEdit=async id=>{if(adsAuth.currentUser?.uid!==ADS_ADMIN)return;try{const snap=await getDocs(query(collection(adsDb,'platformAds'),where('__name__','==',id),limit(1)));if(snap.empty)return;const a=snap.docs[0].data();document.getElementById('adEditId').value=id;document.getElementById('adTitle').value=a.title||'';document.getElementById('adText').value=a.text||'';document.getElementById('adButtonText').value=a.buttonText||'';document.getElementById('adImage').value=a.image||'';document.getElementById('adLink').value=a.link||'';document.getElementById('adStartAt').value=a.startAt||'';document.getElementById('adEndAt').value=a.endAt||'';document.getElementById('adSubmitBtn').textContent='✏️ Guardar alterações';document.getElementById('electroAdsAdminMessage').textContent='A editar este anúncio.';document.getElementById('adTitle').scrollIntoView({behavior:'smooth',block:'center'});}catch(e){console.error(e);alert('Não foi possível abrir o anúncio para edição.')}};
+document.getElementById('electroAdsForm')?.addEventListener('submit',async e=>{e.preventDefault();if(adsAuth.currentUser?.uid!==ADS_ADMIN)return alert('Acesso não autorizado.');const msg=document.getElementById('electroAdsAdminMessage');const btn=document.getElementById('adSubmitBtn');try{btn.disabled=true;let image=document.getElementById('adImage').value.trim();const file=document.getElementById('adImageFile')?.files?.[0];if(!image&&!file)throw new Error('Adiciona uma URL ou carrega um banner.');if(file){if(file.size>10*1024*1024)throw new Error('O banner deve ter no máximo 10 MB.');const rr=ref(adsStorage,`ads/${adsAuth.currentUser.uid}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g,'_')}`);await uploadBytes(rr,file,{contentType:file.type});image=await getDownloadURL(rr)}const payload={title:document.getElementById('adTitle').value.trim(),text:document.getElementById('adText').value.trim(),buttonText:document.getElementById('adButtonText').value.trim()||'Ver anúncio',image,link:document.getElementById('adLink').value.trim(),startAt:document.getElementById('adStartAt').value||null,endAt:document.getElementById('adEndAt').value||null,updatedAt:serverTimestamp()};const editId=document.getElementById('adEditId').value.trim();if(editId)await updateDoc(doc(adsDb,'platformAds',editId),payload);else await addDoc(collection(adsDb,'platformAds'),{...payload,active:true,createdAt:serverTimestamp(),createdBy:adsAuth.currentUser.uid});e.target.reset();document.getElementById('adEditId').value='';btn.textContent='➕ Publicar anúncio';msg.textContent=editId?'Anúncio atualizado com sucesso.':'Anúncio publicado com sucesso.';await adsLoad();await window.electroAdsLoadAdmin()}catch(err){msg.textContent=err.message||'Falha ao guardar. Verifique as regras Firestore.';console.error(err)}finally{btn.disabled=false}});
 window.addEventListener('DOMContentLoaded',adsLoad);
 </script>
 
