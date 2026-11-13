@@ -1823,11 +1823,11 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
    if(m){const r=await laluReadCollection('systemErrors');const target=r.rows.find(x=>String(x.code||'').toLowerCase()===m[1].toLowerCase()||String(x.id||'').toLowerCase()===m[1].toLowerCase());if(!target)return {text:`Nao encontrei um erro com o codigo/ID "${m[1]}". Nao vou fingir que o resolvi.`};const result=await window.laluAdminAction({type:'resolve_error',errorId:target.id});return {text:result.ok?`Erro ${target.code||target.id} marcado como resolvido. Registei a acao no historico da Lalu.`:`Nao consegui alterar o erro: ${result.error||'falha desconhecida'}.`};}
    m=t.match(/^lalu[,:]?\s*(?:desativa|desativar|pausa|pausar)\s+(?:o\s+)?anuncio\s+"?(.+?)"?$/i);
    if(m){const result=await window.laluAdminAction({type:'disable_ad',title:m[1].replace(/["“”]/g,'').trim()});return {text:result.ok?result.message:`Nao consegui desativar o anuncio: ${result.error||'falha desconhecida'}.`};}
-   m=t.match(/^lalu[,:]?.*(?:limpa|limpar|redefine|redefinir|corrige|corrigir).*(?:fallback|modo alternativo)/i);
+   m=t.match(/^lalu[,:]?\b.*\b(?:limpa|limpar|redefine|redefinir|corrige|corrigir)\b.*\b(?:fallback|modo alternativo)\b/i);
    if(m){const result=await window.laluDiagnoseAndRepair({type:'repair_ai_fallback'});return {text:result.ok?`🛠️ ${result.message}`:`⚠️ Não consegui fazer a correção: ${result.error||'falha desconhecida'}.`};}
-   m=t.match(/^lalu[,:]?.*(?:resolve|resolver|corrige|corrigir|repara|reparar).*erro.*(?:codigo\s+|id\s+)?([A-Za-z0-9_\-\/\.]+)$/i);
+   m=t.match(/^lalu[,:]?\b.*\b(?:resolve|resolver|corrige|corrigir|repara|reparar)\b.*\berro\b.*(?:codigo\s+|id\s+)?([A-Za-z0-9_\-\/\.]+)$/i);
    if(m){const r=await laluReadCollection('systemErrors');const target=r.rows.find(x=>String(x.code||'').toLowerCase()===m[1].toLowerCase()||String(x.id||'').toLowerCase()===m[1].toLowerCase());if(!target)return {text:`Não encontrei um erro com o código/ID "${m[1]}". Não vou fingir que o resolvi.`};const result=await window.laluDiagnoseAndRepair({type:'resolve_error',errorId:target.id});return {text:result.ok?`🛠️ ${result.message}`:`⚠️ Não consegui corrigir o erro: ${result.error||'falha desconhecida'}.`};}
-   m=t.match(/^lalu[,:]?.*(?:resolve|resolver|corrige|corrigir|repara|reparar|desativa|desativar).*anuncio\s+["“]?(.+?)["”]?$/i);
+   m=t.match(/^lalu[,:]?\b.*\b(?:resolve|resolver|corrige|corrigir|repara|reparar|desativa|desativar)\b.*\banuncio\s+["“]?(.+?)["”]?$/i);
    if(m){const title=m[1].replace(/["“”]/g,'').trim();const r=await laluReadCollection('platformAds');const target=r.rows.find(x=>String(x.title||'').trim().toLowerCase()===title.toLowerCase());if(!target)return {text:`Não encontrei um anúncio chamado "${title}".`};const result=await window.laluDiagnoseAndRepair({type:'disable_ad',adId:target.id});return {text:result.ok?`🛠️ ${result.message}`:`⚠️ Não consegui alterar o anúncio: ${result.error||'falha desconhecida'}.`};}
    return null;
  }
@@ -1840,21 +1840,29 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
    if(attachment){try{content=[{text:text},await fileToPart(attachment)];}catch(e){ask.busy=false;throw e;}} else if(isAdminMode && /\b(erro|erros|sistema|site|plataforma|utilizador|usuario|tecnico|servico|pedido|loja|anuncio|historia|publicacao|problema|diagnostico|quantos|quantas|hoje|ontem|semana|relatorio)\b/i.test(text)){try{const ctx=await getAdminContext();content=`[CONTEXTO ADMINISTRATIVO EM TEMPO REAL — fonte de verdade. Se um dado estiver indisponivel, diz isso. Nao inventes metricas.]\n${JSON.stringify(ctx)}\n\nPERGUNTA DO ADMINISTRADOR:\n${text}`;}catch(e){content=text;}}const requestId=++activeRequestId;
    if(input)input.disabled=true;const submit=form?.querySelector('button[type="submit"]');if(submit)submit.disabled=true;
    if(!options.skipUserBubble){add((attachment?'📎 '+attachment.name+'\n':'')+text,'user');}const thinking=document.createElement('div');thinking.className='ai-thinking';thinking.setAttribute('role','status');thinking.setAttribute('aria-live','polite');thinking.innerHTML='<span>A preparar resposta…</span><span class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></span>';box.appendChild(thinking);const loading=add('','bot');loading.classList.add('ai-loading');loading.setAttribute('aria-live','polite');const setThinking=(label)=>{if(!thinking.isConnected)box.insertBefore(thinking,loading);const labelNode=thinking.querySelector('span');if(labelNode)labelNode.textContent=label;loading.textContent='';loading.classList.add('ai-loading');box.scrollTop=box.scrollHeight;};box.scrollTop=box.scrollHeight;
+   let lastModelAttempted = Date.now()<getFallbackUntil() ? 'gemini-3.5-flash-lite' : 'gemini-3.8-flash';
+   let primaryError = null;
+   let primaryFailed = false;
    try{
      let answer;const fallbackActive=Date.now()<getFallbackUntil();
      if(fallbackActive){
+       lastModelAttempted='gemini-3.5-flash-lite';
        setThinking('A usar o modelo alternativo…');
        answer=await attempt(fallbackModel,content,loading,thinking,'Modelo alternativo',requestId);
      }else{
        try{
+         lastModelAttempted='gemini-3.8-flash';
          answer=await attempt(primaryModel,content,loading,thinking,'Modelo principal',requestId);
          clearFallbackUntil();
-       }catch(primaryError){
+       }catch(primaryErr){
+         primaryError=primaryErr;
+         primaryFailed=true;
          // Qualquer falha recuperável do principal, incluindo 429, ativa o fallback.
          setFallbackUntil(Date.now()+FALLBACK_DURATION);
          console.warn('Electro Mais IA: modelo principal falhou; alternativo ativado durante 15 minutos.',primaryError);
          window.reportFirebaseError?.(primaryError,'Electro Mais IA',{severity:isQuotaError(primaryError)?'warning':'critical',event:isQuotaError(primaryError)?'primary_429_fallback':'fallback_activated',fallbackMinutes:15,model:'gemini-3.8-flash'}).catch(()=>{});
          setThinking('A tentar o modelo alternativo…');
+         lastModelAttempted='gemini-3.5-flash-lite';
          answer=await attempt(fallbackModel,content,loading,thinking,'Modelo alternativo',requestId);
        }
      }
@@ -1877,9 +1885,27 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
        else if(isQuotaError(e)) msg='⏳ A Lalu está temporariamente indisponível. Aguarda alguns instantes e tenta novamente.';
        else if(/400|invalid|invalid-content/i.test(code+' '+raw)) msg='⚠️ O pedido enviado ao modelo de IA foi rejeitado pela configuração atual. A Lalu precisa de uma correção técnica; o erro foi registado para o Administrador.';
        else if(/500|internal|unavailable|fetch/i.test(code+' '+raw)) msg='⚠️ O serviço de IA devolveu um erro temporário. A plataforma continua disponível; tente novamente em instantes.';
-       if(isAdminMode){msg += `\n\n[ADMIN] Código: ${code||'sem-código'}\n[ADMIN] Erro técnico: ${raw.slice(0,700)}\n[ADMIN] Modelo que falhou: ${fallbackActive?'gemini-3.5-flash-lite':'gemini-3.8-flash'}\n[ADMIN] Fallback: ${fallbackActive?'já ativo':'tentado'};`;}
+       if(isAdminMode){
+         const primaryRaw=primaryError?.message?String(primaryError.message).slice(0,700):'';
+         msg += `\n\n[ADMIN] Código: ${code||'sem-código'}\n[ADMIN] Erro técnico: ${raw.slice(0,700)}\n[ADMIN] Modelo que falhou: ${lastModelAttempted}\n[ADMIN] Fallback: ${primaryFailed?'tentado':'não necessário'};`;
+         if(primaryRaw && primaryRaw!==raw) msg += `\n[ADMIN] Erro do principal (${primaryFailed?'gemini-3.8-flash':'—'}): ${primaryRaw}`;
+       }
        loading.textContent=msg;
-       const retry=document.createElement('button');retry.type='button';retry.className='ai-retry';retry.textContent='↻ Tentar novamente';retry.addEventListener('click',()=>{loading.remove();retry.remove();ask(text,attachment,{skipUserBubble:true})});loading.appendChild(retry);
+       const retry=document.createElement('button');
+       retry.type='button';retry.className='ai-retry';retry.textContent='↻ Tentar novamente';
+       retry.addEventListener('click',()=>{
+         if(retry.disabled)return;
+         retry.disabled=true;
+         retry.textContent='↻ A tentar novamente…';
+         loading.remove();
+         // A tentativa anterior terminou; libera o lock antes de reutilizar a mesma mensagem.
+         ask.busy=false;
+         if(input)input.disabled=false;
+         const retrySubmit=form?.querySelector('button[type=submit]');
+         if(retrySubmit)retrySubmit.disabled=false;
+         setTimeout(()=>ask(text,attachment,{skipUserBubble:true}),0);
+       });
+       loading.appendChild(retry);
      }
    }finally{if(requestId===activeRequestId){ask.busy=false;if(input)input.disabled=false;if(submit)submit.disabled=false;if(input)input.focus();}}
  }
@@ -2220,7 +2246,7 @@ if(typeof onAuthStateChanged==='function'){onAuthStateChanged(auth,user=>{if(use
 </script><div class="em-content-manager" id="emContentManager" role="dialog" aria-modal="true" aria-labelledby="emContentManagerTitle"><div class="em-content-manager-box"><div class="em-content-manager-head"><div><h2 id="emContentManagerTitle">📝 Gestão de conteúdos</h2><p style="color:#cbd5e1;font-size:13px">Publicações educativas e portefólio de projetos.</p></div><button class="btn btn-outline" type="button" onclick="window.closeElectroContentManager()">Fechar ✕</button></div><div class="em-content-manager-grid"><form id="emContentForm" class="em-content-form"><input type="hidden" id="emContentId"><label>Tipo<select id="emContentType"><option value="article">Electro Mais Aprende — artigo</option><option value="daily">Dica do dia</option><option value="official">Publicação oficial / notícia</option><option value="project">Projeto ou trabalho realizado</option></select></label><label>Título<input id="emContentTitle" required maxlength="140"></label><label>Categoria<input id="emContentCategory" maxlength="60"></label><label>Resumo<textarea id="emContentSummary" maxlength="500"></textarea></label><label>Conteúdo completo<textarea id="emContentBody" required maxlength="12000"></textarea></label><label>URL da imagem (opcional)<input id="emContentImage" type="url" placeholder="https://..."></label><label>Autor / técnico responsável<input id="emContentAuthor" maxlength="100" value="Electro Mais Moçambique"></label><label>Data de publicação<input id="emContentDate" type="date"></label><label><span><input id="emContentPublish" type="checkbox" checked style="width:auto"> Publicar no site</span></label><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary" type="submit">Guardar publicação</button><button class="btn btn-outline" type="button" onclick="window.resetElectroContentForm()">Limpar</button></div><div id="emContentStatus" class="em-content-status" role="status"></div></form><div><h3>Publicações existentes</h3><p style="color:#cbd5e1;font-size:12px">Editar, publicar/ocultar ou eliminar.</p><div id="emContentList" class="em-content-list">A carregar...</div></div></div></div></div><script type="module" id="electro-social-v1">
 import {getApp} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-import {getFirestore,collection,doc,getDoc,getDocs,addDoc,setDoc,deleteDoc,query,where,orderBy,limit} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import {getFirestore,collection,doc,getDoc,getDocs,addDoc,setDoc,updateDoc,deleteDoc,query,where,orderBy,limit} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 import {getStorage,ref,uploadBytes,getDownloadURL} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-storage.js";
 const socialApp=getApp(),socialAuth=getAuth(socialApp),socialDb=getFirestore(socialApp),socialStorage=getStorage(socialApp);
 const SOCIAL_ADMIN_UID="QSnHZagz9jVo4r21WHtoX1T5R9u2";
@@ -2232,7 +2258,7 @@ async function loadStories(){const bar=document.getElementById('storiesBar');if(
 let followed=new Set();if(socialUser){try{const fs=await getDocs(query(collection(socialDb,'follows'),where('followerUid','==',socialUser.uid),limit(500)));fs.forEach(d=>{const x=d.data();followed.add(`${x.targetType}:${x.targetId}`)});}catch(e){console.warn('Seguimentos indisponíveis:',e)}}rows.sort((a,b)=>{const af=followed.has(`${a.authorRole==='empresa'?'company':a.authorRole==='eletricista'?'technician':'user'}:${a.authorUid}`)?1:0;const bf=followed.has(`${b.authorRole==='empresa'?'company':b.authorRole==='eletricista'?'technician':'user'}:${b.authorUid}`)?1:0;return bf-af||String(b.createdAt).localeCompare(String(a.createdAt))});
 let html='';if(socialUser)html+=`<button class="em-story em-story-add" type="button" onclick="openStoryPublish()"><div class="em-story-avatar"><div class="em-story-avatar-inner"><span>＋</span></div></div><span class="em-story-name">A sua história</span></button>`;
 if(!rows.length&&!socialUser){bar.innerHTML='<div class="em-story-placeholder">Ainda não há histórias públicas. Volta em breve.</div>';return;}
-html+=rows.map(x=>`<button class="em-story" type="button" onclick="openStoryViewer(${JSON.stringify(x).replace(/</g,'\u003c')})"><div class="em-story-avatar"><div class="em-story-avatar-inner">${storyAvatarHtml(x)}</div></div><span class="em-story-name">${escS(x.authorName||'Utilizador')}</span></button>`).join('');bar.innerHTML=html||'<div class="em-story-placeholder">Ainda não há histórias públicas.</div>';}
+html+=rows.map(x=>`<button class="em-story" type="button" data-story-id="${escS(x.id)}"><div class="em-story-avatar"><div class="em-story-avatar-inner">${storyAvatarHtml(x)}</div></div><span class="em-story-name">${escS(x.authorName||'Utilizador')}</span></button>`).join('');bar.innerHTML=html||'<div class="em-story-placeholder">Ainda não há histórias públicas.</div>';bar.querySelectorAll('[data-story-id]').forEach(btn=>btn.addEventListener('click',()=>{const story=(window.__electroActiveStories||[]).find(r=>r.id===btn.dataset.storyId);if(story)window.openStoryViewer(story);}));}
 window.openStoryPublish=()=>{if(!socialUser){alert('Entre na sua conta para publicar uma história.');location.hash='acesso';return}window.electroOpenOverlay?.('storyPublishModal')};
 window.closeStoryPublish=()=>window.closeModal?.('storyPublishModal');
 window.closeStoryViewer=()=>window.closeModal?.('storyViewer');
