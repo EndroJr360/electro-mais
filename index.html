@@ -570,8 +570,11 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 .story-field{width:100%;box-sizing:border-box;padding:10px;border:1px solid #d1d5db;border-radius:10px;font:inherit;margin-top:7px}
 .story-helper{font-size:10px;color:#64748b;margin-top:5px}
 </style>
-<style id="em-human-avatar-v1">.em-human-avatar{width:100%;height:100%;display:grid;place-items:center;font-size:44px;line-height:1;background:#fff7ed;border-radius:50%;overflow:hidden}.profile-avatar-wrap .em-human-avatar{width:110px;height:110px;border:4px solid #f58220;box-sizing:border-box;margin:0 auto}.em-post-avatar .em-human-avatar,.em-story-top .em-human-avatar{font-size:23px}.em-social-profile-avatar .em-human-avatar{font-size:38px}.em-story-avatar-inner .em-human-avatar{font-size:27px}</style></head>
-<body class="em-auth-pending">
+<style id="em-human-avatar-v1">.em-human-avatar{width:100%;height:100%;display:grid;place-items:center;font-size:44px;line-height:1;background:#fff7ed;border-radius:50%;overflow:hidden}.profile-avatar-wrap .em-human-avatar{width:110px;height:110px;border:4px solid #f58220;box-sizing:border-box;margin:0 auto}.em-post-avatar .em-human-avatar,.em-story-top .em-human-avatar{font-size:23px}.em-social-profile-avatar .em-human-avatar{font-size:38px}.em-story-avatar-inner .em-human-avatar{font-size:27px}</style><style id="em-public-profile-fix-css">
+.em-public-profile-info{margin-top:12px}.em-public-profile-info>div{min-width:0}.em-public-profile-info p{overflow-wrap:anywhere}.em-public-profile-empty{grid-column:1/-1;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px;padding:16px;color:#64748b}.em-public-profile-empty strong{display:block;color:#334155;margin-bottom:4px}
+</style>
+</head>
+<body>
 
 <header><div class="navbar">
 <a class="logo-area" href="#inicio"><img alt="Electro Mais Moçambique" class="logo" src="logo.png"/><div class="logo-text"><strong>ELECTRO MAIS</strong><small>ONDE A ENERGIA ENCONTRA A QUALIDADE</small></div></a>
@@ -722,7 +725,7 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 <section id="acesso"><div class="container"><div class="section-title"><h2>Conta Electro Mais</h2><p>Crie uma conta ou entre na sua área.</p></div>
 <div class="login">
 <div class="account-tabs"><button class="active" data-role-tab="cliente" type="button">Cliente</button><button data-role-tab="eletricista" type="button">Eletricista</button></div>
-<label>Tipo de conta</label><select id="accountRole"><option value="cliente">👤 Cliente</option><option value="eletricista">👷 Eletricista</option></select>
+<label>Tipo de conta</label><select id="legacyAccountRole"><option value="cliente">👤 Cliente</option><option value="eletricista">👷 Eletricista</option></select>
 <label>Nome</label><input id="userName" placeholder="Seu nome" type="text"/>
 <label>E-mail</label><input id="userEmail" placeholder="seuemail@gmail.com" type="email"/>
 <label>Senha</label><input id="userPassword" placeholder="Mínimo de 6 caracteres" type="password"/>
@@ -750,7 +753,7 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 <div id="availabilityField"><label>Disponibilidade</label><select id="editAvailable"><option value="true">🟢 Disponível</option><option value="false">🔴 Indisponível</option></select></div>
 <div class="full"><label>Sobre mim</label><textarea id="editBio" placeholder="Fale brevemente sobre si..."></textarea></div>
 <div class="full" id="technicianFields" style="display:none">
-<div class="tech-profile-editor-head"><strong>👷 Perfil profissional do Electricista</strong><small>Preencha o que for relevante. Pode voltar depois e completar sem precisar repetir o cadastro.</small></div>
+<div class="tech-profile-editor-head"><strong>👷 Perfil profissional do Electricista</strong><small>Preencha o que for relevante. Pode voltar depois e completar sem precisar repetir o cadastro.</small><div id="profileCompletionNotice" style="margin-top:8px;font-weight:800;color:#9a3412"></div></div>
 <div class="profile-grid tech-profile-extra-grid">
 <div class="full"><label>Título profissional</label><input id="editProfessionalTitle" placeholder="Ex.: Electricista Instalador Certificado" maxlength="100"/></div>
 <div><label>Anos de experiência</label><input id="editYearsExperience" type="number" min="0" max="60" placeholder="Ex.: 5"/></div>
@@ -832,6 +835,7 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 <div class="em-social-profile-meta"><h2 id="publicSocialName">Perfil</h2><p id="publicSocialRole">Perfil na Electro Mais</p></div>
 <div class="em-social-profile-actions"><button class="btn btn-outline" id="publicSocialFollowBtn">+ Seguir</button><button class="btn btn-outline" id="publicSocialMessageBtn">💬 Mensagem</button><button class="btn btn-primary" id="publicSocialServiceBtn" style="display:none">⚡ Solicitar serviço</button><span class="profile-follow-count" id="publicSocialFollowCount">0 seguidores</span></div>
 <p class="profile-about" id="publicSocialBio">Perfil na plataforma Electro Mais.</p>
+<div class="profile-info-grid em-public-profile-info" id="publicSocialInfoGrid"></div>
 <div class="em-social-tabs"><button class="active" data-public-social-tab="posts">Publicações</button><button data-public-social-tab="photos">Fotos</button><button data-public-social-tab="videos">Vídeos</button><button data-public-social-tab="stories">Histórias</button></div>
 <div class="em-profile-posts-wrap" id="publicSocialPosts"></div>
 </div></div></div>
@@ -985,7 +989,7 @@ try{
 }
 try{getAnalytics(app)}catch(e){console.warn("Analytics indisponível",e)}
 const auth=getAuth(app);const db=getFirestore(app);
-setPersistence(auth,browserLocalPersistence).catch(e=>console.warn("Persistência local do Firebase Auth indisponível:",e));
+const authPersistenceReady=setPersistence(auth,browserLocalPersistence).catch(e=>{console.warn("Persistência local do Firebase Auth indisponível:",e);return false;});
 window.electroAuth=auth;window.electroDb=db;
 const storage=getStorage(app);
 const functions=getFunctions(app);
@@ -1133,7 +1137,8 @@ window.toggleMenu=()=>document.getElementById("menu").classList.toggle("active")
 function msg(id,text,type){const e=document.getElementById(id);e.textContent=text;e.className="message "+type}
 
 window.createAccount=async()=>{
- const name=document.getElementById("userName").value.trim(),email=document.getElementById("userEmail").value.trim(),password=document.getElementById("userPassword").value,role=document.getElementById("accountRole").value;
+ await authPersistenceReady;
+ const name=document.getElementById("userName").value.trim(),email=document.getElementById("userEmail").value.trim(),password=document.getElementById("userPassword").value,role=document.getElementById("legacyAccountRole").value;
  if(!name||!email||!password)return msg("legacyAuthMessage","Preencha todos os campos.","error");
  if(password.length<6)return msg("legacyAuthMessage","A senha deve ter pelo menos 6 caracteres.","error");
  try{const c=await createUserWithEmailAndPassword(auth,email,password);
@@ -1143,10 +1148,12 @@ window.createAccount=async()=>{
  }catch(e){msg("legacyAuthMessage",firebaseError(e),"error")}
 };
 window.loginUser=async()=>{
+ await authPersistenceReady;
  try{await signInWithEmailAndPassword(auth,document.getElementById("userEmail").value.trim(),document.getElementById("userPassword").value);msg("legacyAuthMessage","Login efetuado com sucesso!","success")}
  catch(e){msg("legacyAuthMessage",firebaseError(e),"error")}
 };
 window.adminLogin=async()=>{
+ await authPersistenceReady;
  try{const c=await signInWithEmailAndPassword(auth,document.getElementById("adminEmail").value.trim(),document.getElementById("adminPassword").value);
  if(c.user.uid!==ADMIN_UID){await signOut(auth);return msg("adminMessage","Esta conta não tem acesso administrativo.","error")}
  msg("adminMessage","Acesso autorizado.","success")
@@ -1304,6 +1311,9 @@ async function loadMyProfile(u){
  document.getElementById("editPortfolioUrl").value=t.portfolioUrl||"";
  document.getElementById("editProfessionalSummary").value=t.professionalSummary||"";
  document.getElementById("editAvailable").value=String(t.available!==false);
+ const completionFields=["editName","editPhone","editLocation","editSpecialty","editExperience","editServices","editProfessionalTitle","editYearsExperience","editSpecialtyArea","editServiceAreas","editAvailabilitySchedule","editCertifications","editEquipment","editAdditionalSkills","editPaymentMethods","editLanguages","editProfessionalSummary"];
+ const filled=completionFields.filter(id=>String(document.getElementById(id)?.value||"").trim()).length;
+ const notice=document.getElementById("profileCompletionNotice");if(notice)notice.textContent=`Perfil preenchido: ${Math.round(filled/completionFields.length*100)}% · ${completionFields.length-filled} campo(s) por preencher`;
  const techFields=document.getElementById("technicianFields"); techFields.style.display=d.role==="eletricista"?"block":"none";
  const expField=document.getElementById("experienceField"),specField=document.getElementById("specialtyField"),availField=document.getElementById("availabilityField");
  [expField,specField,availField].forEach(el=>{if(el)el.style.display=d.role==="eletricista"?"block":"none"});
@@ -1322,11 +1332,11 @@ window.saveProfile=async()=>{
  const name=document.getElementById("editName").value.trim(),phone=document.getElementById("editPhone").value.trim(),location=document.getElementById("editLocation").value.trim(),bio=document.getElementById("editBio").value.trim();
  if(!name)return alert("Informe o seu nome.");
  try{
-  await updateDoc(doc(db,"users",u.uid),{name,phone,location,bio,updatedAt:new Date().toISOString()});
+  await setDoc(doc(db,"users",u.uid),{uid:u.uid,name,phone,location,bio,role,active:true,updatedAt:new Date().toISOString()},{merge:true});
   if(role==="eletricista"){
    const specialty=document.getElementById("editSpecialty").value.trim(),experience=document.getElementById("editExperience").value.trim(),servicesOffered=document.getElementById("editServices").value.trim(),available=document.getElementById("editAvailable").value==="true";
    const professionalTitle=document.getElementById("editProfessionalTitle").value.trim(),yearsExperience=Number(document.getElementById("editYearsExperience").value||0),workType=document.getElementById("editWorkType").value,specialtyArea=document.getElementById("editSpecialtyArea").value.trim(),serviceAreas=document.getElementById("editServiceAreas").value.trim(),serviceRadius=document.getElementById("editServiceRadius").value.trim(),availabilitySchedule=document.getElementById("editAvailabilitySchedule").value.trim(),emergencyServices=document.getElementById("editEmergency").value,certifications=document.getElementById("editCertifications").value.trim(),licenseNumber=document.getElementById("editLicenseNumber").value.trim(),equipment=document.getElementById("editEquipment").value.trim(),additionalSkills=document.getElementById("editAdditionalSkills").value.trim(),paymentMethods=document.getElementById("editPaymentMethods").value.trim(),languages=document.getElementById("editLanguages").value.trim(),portfolioUrl=document.getElementById("editPortfolioUrl").value.trim(),professionalSummary=document.getElementById("editProfessionalSummary").value.trim();
-   await updateDoc(doc(db,"technicians",u.uid),{name,phone,location,bio,specialty,experience,servicesOffered,available,professionalTitle,yearsExperience,workType,specialtyArea,serviceAreas,serviceRadius,availabilitySchedule,emergencyServices,certifications,licenseNumber,equipment,additionalSkills,paymentMethods,languages,portfolioUrl,professionalSummary,updatedAt:new Date().toISOString()});
+   await setDoc(doc(db,"technicians",u.uid),{uid:u.uid,name,phone,location,bio,specialty,experience,servicesOffered,available,professionalTitle,yearsExperience,workType,specialtyArea,serviceAreas,serviceRadius,availabilitySchedule,emergencyServices,certifications,licenseNumber,equipment,additionalSkills,paymentMethods,languages,portfolioUrl,professionalSummary,updatedAt:new Date().toISOString()},{merge:true});
    const files=document.getElementById("verificationDocs").files;
    if(files.length){
     msg("docsMessage","A enviar documentos...","success");
@@ -1373,7 +1383,7 @@ window.loadAdminTechniciansVerification=async function(){
 window.setTechnicianVerification=async function(id,status){
  if(auth.currentUser?.uid!==ADMIN_UID)return alert('Apenas o Administrador pode alterar a verificação.');
  try{if(!auth.currentUser){throw new Error('ADMIN_NOT_AUTHENTICATED')} await updateDoc(doc(db,'technicians',id),{verificationStatus:status,verified:status==='verificado',verificationUpdatedAt:new Date().toISOString(),verificationUpdatedBy:auth.currentUser.uid});await window.loadAdminTechniciansVerification();await loadTechnicians();alert(status==='verificado'?'Selo atribuído com sucesso. 🛡️':'Estado de verificação atualizado.');}catch(e){console.error('Erro ao atualizar verificação do técnico:',e);window.reportFirebaseError?.(e,'Verificação de técnicos',{severity:'critical'}).catch(()=>{});alert('Ocorreu um problema ao atualizar a verificação. Tente novamente. Os detalhes foram enviados para o diagnóstico do Administrador.')}};
-onAuthStateChanged(auth,async u=>{document.body.classList.remove("em-auth-pending");document.body.classList.add("em-auth-ready");document.getElementById("emAuthBoot")?.remove();window.currentElectroUser=u||null;
+onAuthStateChanged(auth,async u=>{window.currentElectroUser=u||null;
  const dash=document.getElementById("dashboard"),adm=document.getElementById("adminLoginSection"),acc=document.getElementById("minha-conta"),access=document.getElementById("acesso");
  window.currentElectroAdminUID=u?.uid||null;
  if(!u){dash.style.display="none";acc.style.display="none";if(access)access.style.display="block";const pp=document.getElementById("perfil-profissional");if(pp)pp.style.display="none";hideAdminLogin();return}
@@ -1385,7 +1395,7 @@ onAuthStateChanged(auth,async u=>{document.body.classList.remove("em-auth-pendin
 document.querySelectorAll('[data-role-tab]').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('[data-role-tab]').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('accountRole').value=btn.getAttribute('data-role-tab');
+  document.getElementById('legacyAccountRole').value=btn.getAttribute('data-role-tab');
 }));
 updateCartCount();renderCart();loadTechnicians();
 
@@ -1631,13 +1641,14 @@ async function saveNewUser(user){
 }
 window.accountProfileNext=()=>{const st=state();if(!st.role)return setMsg('signupProfileMsg','Escolha Cliente ou Eletricista.','error');if(!val('signupName')||!val('signupPhone')||!val('signupLocation'))return setMsg('signupProfileMsg','Preencha nome, telefone e localização.','error');if(st.role==='eletricista'&&!val('signupSpecialty'))return setMsg('signupProfileMsg','Indique a sua especialidade.','error');if(st.role==='vendedor'&&(!val('signupVendorName')||!val('signupVendorDescription')||!val('signupVendorCategory')))return setMsg('signupProfileMsg','Preencha nome da loja, descrição e categoria.','error');if(st.role==='vendedor'&&val('signupHasPhysical')==='sim'&&!val('signupVendorCity'))return setMsg('signupProfileMsg','Indique pelo menos a cidade da loja física.','error');document.getElementById('signupPhoneAuth').value=normalizePhone(val('signupPhone'));window.accountGo(3)};
 window.setupSignupRecaptcha=async()=>{if(signupVerifier)return signupVerifier;try{signupVerifier=new RecaptchaVerifier(auth,'recaptcha-container',{size:'normal'});await signupVerifier.render();return signupVerifier}catch(e){signupVerifier=null;window.reportFirebaseError?.(e,'Recaptcha — criação de conta',{severity:'critical',event:'signup-recaptcha'}).catch(()=>{});setMsg('authMessage','Não foi possível preparar a verificação SMS. Verifique o domínio autorizado no Firebase.','error');throw e}};
-window.sendSignupSMS=async()=>{try{const phone=normalizePhone(val('signupPhone'));if(!/^\+\d{8,15}$/.test(phone))return setMsg('authMessage','Digite um número válido com código do país, por exemplo +258...','error');await window.setupSignupRecaptcha();const result=await signInWithPhoneNumber(auth,phone,signupVerifier);window.accountState.confirmation=result;document.getElementById('signupCodeBox').style.display='block';setMsg('authMessage','Código enviado por SMS.','success')}catch(e){window.reportFirebaseError?.(e,'Autenticação por telefone — envio de SMS',{severity:'critical',event:'signup-sms'}).catch(()=>{});setMsg('authMessage',firebaseError(e),'error')}};
+window.sendSignupSMS=async()=>{try{await authPersistenceReady;const phone=normalizePhone(val('signupPhone'));if(!/^\+\d{8,15}$/.test(phone))return setMsg('authMessage','Digite um número válido com código do país, por exemplo +258...','error');await window.setupSignupRecaptcha();const result=await signInWithPhoneNumber(auth,phone,signupVerifier);window.accountState.confirmation=result;document.getElementById('signupCodeBox').style.display='block';setMsg('authMessage','Código enviado por SMS.','success')}catch(e){window.reportFirebaseError?.(e,'Autenticação por telefone — envio de SMS',{severity:'critical',event:'signup-sms'}).catch(()=>{});setMsg('authMessage',firebaseError(e),'error')}};
 window.confirmSignupSMS=async()=>{let authCreated=false;try{const code=val('signupCode');if(!window.accountState.confirmation||!/^\d{6}$/.test(code))return setMsg('authMessage','Digite o código de 6 dígitos.','error');const c=await window.accountState.confirmation.confirm(code);authCreated=true;try{await saveNewUser(c.user)}catch(profileError){profileError.authCreated=true;throw profileError}setMsg('authMessage','Conta criada com sucesso!','success');setTimeout(()=>window.accountGo(1),900)}catch(e){window.reportFirebaseError?.(e,'Criação de conta por telefone',{severity:'critical',event:'signup-phone-confirm'}).catch(()=>{});setMsg('authMessage',firebaseError(e,authCreated||e.authCreated),'error')}};
-window.finishEmailSignup=async()=>{const email=val('signupEmail'),password=document.getElementById('signupPassword')?.value||'';if(!email||!password)return setMsg('authMessage','Preencha e-mail e palavra-passe.','error');if(password.length<6)return setMsg('authMessage','A palavra-passe deve ter pelo menos 6 caracteres.','error');let authCreated=false;try{const c=await createUserWithEmailAndPassword(auth,email,password);authCreated=true;try{await saveNewUser(c.user)}catch(profileError){profileError.authCreated=true;throw profileError}setMsg('authMessage','Conta criada com sucesso!','success');setTimeout(()=>window.accountGo(1),900)}catch(e){window.reportFirebaseError?.(e,'Criação de conta por e-mail',{severity:'critical',event:'signup-email'}).catch(()=>{});setMsg('authMessage',firebaseError(e,authCreated||e.authCreated),'error')}};
+window.finishEmailSignup=async()=>{
+ await authPersistenceReady;const email=val('signupEmail'),password=document.getElementById('signupPassword')?.value||'';if(!email||!password)return setMsg('authMessage','Preencha e-mail e palavra-passe.','error');if(password.length<6)return setMsg('authMessage','A palavra-passe deve ter pelo menos 6 caracteres.','error');let authCreated=false;try{const c=await createUserWithEmailAndPassword(auth,email,password);authCreated=true;try{await saveNewUser(c.user)}catch(profileError){profileError.authCreated=true;throw profileError}setMsg('authMessage','Conta criada com sucesso!','success');setTimeout(()=>window.accountGo(1),900)}catch(e){window.reportFirebaseError?.(e,'Criação de conta por e-mail',{severity:'critical',event:'signup-email'}).catch(()=>{});setMsg('authMessage',firebaseError(e,authCreated||e.authCreated),'error')}};
 function detectMethod(v){return v.includes('@')?'email':'phone'}
-window.loginModern=async()=>{const id=val('loginIdentifier'),pass=document.getElementById('loginPassword')?.value||'';if(!id)return setMsg('loginMessage','Digite o seu e-mail ou telefone.','error');if(detectMethod(id)==='phone'){return window.sendLoginSMS()}try{await signInWithEmailAndPassword(auth,id,pass);setMsg('loginMessage','Login efetuado com sucesso!','success')}catch(e){window.reportFirebaseError?.(e,'Login — e-mail ou telefone',{severity:'critical',event:'login'}).catch(()=>{});setMsg('loginMessage',firebaseError(e),'error')}};
-window.sendLoginSMS=async()=>{try{const phone=normalizePhone(val('loginIdentifier'));if(!/^\+\d{8,15}$/.test(phone))return setMsg('loginMessage','Digite um telefone válido com código do país.','error');document.getElementById('loginPasswordBox').style.display='none';document.getElementById('loginMainBtn').style.display='none';if(!loginVerifier){loginVerifier=new RecaptchaVerifier(auth,'login-recaptcha-container',{size:'normal'});await loginVerifier.render()}window.accountState.loginConfirmation=await signInWithPhoneNumber(auth,phone,loginVerifier);document.getElementById('loginPhoneBox').style.display='block';document.getElementById('loginCodeBox').style.display='block';setMsg('loginMessage','Código enviado por SMS.','success')}catch(e){window.reportFirebaseError?.(e,'Login — e-mail ou telefone',{severity:'critical',event:'login'}).catch(()=>{});setMsg('loginMessage',firebaseError(e),'error')}};
-window.confirmLoginSMS=async()=>{try{const code=val('loginCode');if(!window.accountState.loginConfirmation)return setMsg('loginMessage','Peça primeiro o código por SMS.','error');await window.accountState.loginConfirmation.confirm(code);setMsg('loginMessage','Login efetuado com sucesso!','success')}catch(e){window.reportFirebaseError?.(e,'Login — e-mail ou telefone',{severity:'critical',event:'login'}).catch(()=>{});setMsg('loginMessage',firebaseError(e),'error')}};
+window.loginModern=async()=>{await authPersistenceReady;const id=val('loginIdentifier'),pass=document.getElementById('loginPassword')?.value||'';if(!id)return setMsg('loginMessage','Digite o seu e-mail ou telefone.','error');if(detectMethod(id)==='phone'){return window.sendLoginSMS()}try{await signInWithEmailAndPassword(auth,id,pass);setMsg('loginMessage','Login efetuado com sucesso!','success')}catch(e){window.reportFirebaseError?.(e,'Login — e-mail ou telefone',{severity:'critical',event:'login'}).catch(()=>{});setMsg('loginMessage',firebaseError(e),'error')}};
+window.sendLoginSMS=async()=>{try{await authPersistenceReady;const phone=normalizePhone(val('loginIdentifier'));if(!/^\+\d{8,15}$/.test(phone))return setMsg('loginMessage','Digite um telefone válido com código do país.','error');document.getElementById('loginPasswordBox').style.display='none';document.getElementById('loginMainBtn').style.display='none';if(!loginVerifier){loginVerifier=new RecaptchaVerifier(auth,'login-recaptcha-container',{size:'normal'});await loginVerifier.render()}window.accountState.loginConfirmation=await signInWithPhoneNumber(auth,phone,loginVerifier);document.getElementById('loginPhoneBox').style.display='block';document.getElementById('loginCodeBox').style.display='block';setMsg('loginMessage','Código enviado por SMS.','success')}catch(e){window.reportFirebaseError?.(e,'Login — e-mail ou telefone',{severity:'critical',event:'login'}).catch(()=>{});setMsg('loginMessage',firebaseError(e),'error')}};
+window.confirmLoginSMS=async()=>{try{await authPersistenceReady;const code=val('loginCode');if(!window.accountState.loginConfirmation)return setMsg('loginMessage','Peça primeiro o código por SMS.','error');await window.accountState.loginConfirmation.confirm(code);setMsg('loginMessage','Login efetuado com sucesso!','success')}catch(e){window.reportFirebaseError?.(e,'Login — e-mail ou telefone',{severity:'critical',event:'login'}).catch(()=>{});setMsg('loginMessage',firebaseError(e),'error')}};
 window.resetModernPassword=async()=>{const id=val('loginIdentifier');if(!id||!id.includes('@'))return setMsg('loginMessage','A recuperação por palavra-passe usa o e-mail da conta.','error');try{await sendPasswordResetEmail(auth,id);setMsg('loginMessage','Enviámos um link para redefinir a palavra-passe.','success')}catch(e){window.reportFirebaseError?.(e,'Login — e-mail ou telefone',{severity:'critical',event:'login'}).catch(()=>{});setMsg('loginMessage',firebaseError(e),'error')}};
 function firebaseError(error,authCreated=false){const c=typeof error==='string'?error:(error?.code||'');const known={'auth/email-already-in-use':'Este e-mail já está cadastrado.','auth/invalid-email':'O e-mail não é válido.','auth/weak-password':'A senha deve ter pelo menos 6 caracteres.','auth/invalid-credential':'Dados de acesso incorretos.','auth/user-not-found':'Utilizador não encontrado.','auth/wrong-password':'Senha incorreta.','auth/invalid-phone-number':'Número de telefone inválido.','auth/too-many-requests':'Muitas tentativas. Aguarde um pouco e tente novamente.','auth/quota-exceeded':'O limite de SMS foi atingido. Tente novamente mais tarde.','auth/captcha-check-failed':'A verificação de segurança falhou.','auth/operation-not-allowed':'Este método de autenticação não está ativado no Firebase.','auth/network-request-failed':'Não foi possível comunicar com o Firebase. Verifique a ligação à internet.','auth/internal-error':'O Firebase devolveu um erro interno.','auth/app-check-token-is-invalid':'A verificação de segurança do Firebase falhou.','auth/app-check-token-expired':'A verificação de segurança do Firebase expirou.'};if(authCreated)return `A conta de acesso foi criada, mas o perfil não foi concluído. Código: ${c||'erro no perfil'}. Não crie outra conta; o acesso pode já existir.`;if(known[c])return known[c];const raw=String(error?.message||'').replace(/\s+/g,' ').trim();return `Não foi possível concluir a operação${c?` (${c})`:''}.${raw?` Detalhe: ${raw.slice(0,180)}`:''}`}
 </script>
@@ -2370,7 +2381,56 @@ window.publishSocialPost=async(type,ownerUid,textId,fileId,msgId)=>{if(!socialUs
 window.toggleSocialPostLike=async(postId)=>{if(!socialUser){alert('Entre na sua conta para curtir.');location.hash='acesso';return}try{const lr=doc(socialDb,'socialPosts',postId,'likes',socialUser.uid);const s=await getDoc(lr);if(s.exists())await deleteDoc(lr);else{const us=await getDoc(doc(socialDb,'users',socialUser.uid));const d=us.exists()?us.data():{};await setDoc(lr,{uid:socialUser.uid,authorName:d.name||socialUser.displayName||socialUser.email||'Utilizador',createdAt:new Date().toISOString()})}await hydratePostCard(postId)}catch(e){alert('Não foi possível atualizar o gosto.')}};
 window.addSocialComment=async(postId)=>{if(!socialUser){alert('Entre na sua conta para comentar.');location.hash='acesso';return}const input=document.getElementById('commentInput_'+postId),text=input?.value.trim();if(!text)return;try{const us=await getDoc(doc(socialDb,'users',socialUser.uid));const d=us.exists()?us.data():{};await addDoc(collection(socialDb,'socialPosts',postId,'comments'),{uid:socialUser.uid,authorName:d.name||socialUser.displayName||socialUser.email||'Utilizador',authorRole:d.role||'cliente',photoURL:d.photoURL||'',text,createdAt:new Date().toISOString()});input.value='';await hydratePostCard(postId)}catch(e){alert('Não foi possível publicar o comentário.')}};
 window.shareSocialPost=async(postId)=>{const url=location.href.split('#')[0]+'#post-'+postId;try{if(navigator.share)await navigator.share({title:'Electro Mais',text:'Veja esta publicação na Electro Mais.',url});else{await navigator.clipboard.writeText(url);alert('Link da publicação copiado.')}}catch(e){}}
-window.openPublicSocialProfile=async(uid)=>{if(!uid)return;try{const us=await getDoc(doc(socialDb,'users',uid));const d=us.exists()?us.data():{};const name=d.name||'Utilizador';const role=d.role||'cliente';document.getElementById('publicSocialName').textContent=name;document.getElementById('publicSocialRole').textContent=role==='eletricista'?'👷 Electricista · Perfil profissional':role==='vendedor'?'🏪 Vendedor / Empresa':'👤 Cliente · Perfil na Electro Mais';document.getElementById('publicSocialBio').textContent=d.bio||'Perfil na plataforma Electro Mais.';document.getElementById('publicSocialAvatar').innerHTML=d.photoURL?`<img src="${postEsc(d.photoURL)}" alt="Foto de perfil">`:(d.avatarId&&EM_HUMAN_AVATARS[d.avatarId]?`<span class="em-human-avatar">${EM_HUMAN_AVATARS[d.avatarId]}</span>`:postRoleIcon(role));const fb=document.getElementById('publicSocialFollowBtn');fb.onclick=()=>window.toggleFollowProfile('user',uid);document.getElementById('publicSocialMessageBtn').onclick=()=>window.electroMessageUser?.(uid,name,role,d.photoURL||'');const sb=document.getElementById('publicSocialServiceBtn');sb.style.display=role==='eletricista'?'inline-flex':'none';sb.onclick=()=>{closeModal('publicSocialProfileModal');requestService(uid,name)};document.getElementById('publicSocialProfileModal').classList.add('open');await refreshPublicSocialFollow(uid);await loadSocialPosts(uid,'publicSocialPosts','all');const pub=document.getElementById('publicSocialProfileModal');pub?.querySelectorAll('[data-public-social-tab]').forEach(btn=>btn.onclick=async()=>{pub.querySelectorAll('[data-public-social-tab]').forEach(x=>x.classList.remove('active'));btn.classList.add('active');const tab=btn.dataset.publicSocialTab;if(tab==='stories')return window.openTechnicianStories?.(uid,name);await loadSocialPosts(uid,'publicSocialPosts',tab==='photos'?'photos':tab==='videos'?'videos':'all')});}catch(e){console.warn(e);alert('Não foi possível abrir este perfil.')}};
+window.openPublicSocialProfile=async(uid)=>{if(!uid)return;try{
+ const us=await getDoc(doc(socialDb,'users',uid));
+ const d=us.exists()?us.data():{};
+ let extra={};
+ if((d.role||'cliente')==='eletricista'){
+   const ts=await getDoc(doc(socialDb,'technicians',uid));extra=ts.exists()?ts.data():{};
+ }else if((d.role||'cliente')==='vendedor'){
+   const vs=await getDoc(doc(socialDb,'vendors',uid));extra=vs.exists()?vs.data():{};
+ }
+ const profile={...d,...extra};
+ const name=profile.name||profile.ownerName||profile.vendorName||'Utilizador';
+ const role=profile.role||((extra.uid===uid&&extra.category)?'vendedor':'cliente');
+ const roleLabel=role==='eletricista'?'👷 Electricista · Perfil profissional':role==='vendedor'?'🏪 Vendedor / Empresa':'👤 Cliente · Perfil na Electro Mais';
+ document.getElementById('publicSocialName').textContent=name;
+ document.getElementById('publicSocialRole').textContent=roleLabel;
+ document.getElementById('publicSocialBio').textContent=profile.bio||profile.description||'Perfil na plataforma Electro Mais.';
+ document.getElementById('publicSocialAvatar').innerHTML=profile.photoURL?`<img src="${postEsc(profile.photoURL)}" alt="Foto de perfil">`:(profile.avatarId&&EM_HUMAN_AVATARS[profile.avatarId]?`<span class="em-human-avatar">${EM_HUMAN_AVATARS[profile.avatarId]}</span>`:postRoleIcon(role));
+ const info=document.getElementById('publicSocialInfoGrid');
+ if(info){
+   const rows=[];
+   const add=(icon,label,value)=>{if(value!==undefined&&value!==null&&String(value).trim()&&String(value).trim()!=='A confirmar')rows.push(`<div><strong>${icon} ${postEsc(label)}</strong><p>${postEsc(String(value))}</p></div>`)};
+   add('📍','Localização',profile.location||profile.city&&[profile.city,profile.province].filter(Boolean).join(', '));
+   add('🎯','Título profissional',profile.professionalTitle);
+   add('⚡','Especialidade',profile.specialtyArea||profile.specialty);
+   add('🛠️','Experiência',profile.experience||(profile.yearsExperience?`${profile.yearsExperience} anos`:''));
+   add('🔧','Serviços',profile.servicesOffered);
+   add('📍','Zona de atendimento',profile.serviceAreas||(profile.physicalStore?[profile.city,profile.province].filter(Boolean).join(', '):''));
+   add('📏','Raio de atendimento',profile.serviceRadius);
+   add('🕒','Horário',profile.availabilitySchedule||profile.hours);
+   add('🚨','Emergências',profile.emergencyServices==='sim'?'Atende serviços urgentes':profile.emergencyServices==='nao'?'Não atende emergências':'');
+   add('🎓','Formação / certificações',profile.certifications);
+   add('🧰','Equipamentos',profile.equipment);
+   add('🧩','Especialidades adicionais',profile.additionalSkills);
+   add('💳','Formas de pagamento',profile.paymentMethods);
+   add('🌍','Idiomas',profile.languages);
+   add('🏪','Tipo de vendedor',profile.vendorType==='empresa'?'Empresa':profile.vendorType==='individual'?'Vendedor individual':'');
+   add('🛍️','Categoria',profile.category);
+   add('🏬','Loja física',profile.physicalStore?'Sim':'');
+   add('🔗','Portfólio',profile.portfolioUrl);
+   info.innerHTML=rows.length?rows.join(''):'<div class="em-public-profile-empty"><strong>Perfil em construção</strong><p>Este utilizador ainda não adicionou mais informações públicas.</p></div>';
+ }
+ const fb=document.getElementById('publicSocialFollowBtn');fb.onclick=()=>window.toggleFollowProfile('user',uid);
+ document.getElementById('publicSocialMessageBtn').onclick=()=>window.electroMessageUser?.(uid,name,role,profile.photoURL||'');
+ const sb=document.getElementById('publicSocialServiceBtn');sb.style.display=role==='eletricista'?'inline-flex':'none';sb.onclick=()=>{closeModal('publicSocialProfileModal');requestService(uid,name)};
+ document.getElementById('publicSocialProfileModal').classList.add('open');
+ await refreshPublicSocialFollow(uid);
+ await loadSocialPosts(uid,'publicSocialPosts','all');
+ const pub=document.getElementById('publicSocialProfileModal');
+ pub?.querySelectorAll('[data-public-social-tab]').forEach(btn=>btn.onclick=async()=>{pub.querySelectorAll('[data-public-social-tab]').forEach(x=>x.classList.remove('active'));btn.classList.add('active');const tab=btn.dataset.publicSocialTab;if(tab==='stories')return window.openTechnicianStories?.(uid,name);await window.loadSocialPosts?.(uid,'publicSocialPosts',tab==='photos'?'photos':tab==='videos'?'videos':'all')});
+ }catch(e){console.warn(e);window.reportFirebaseError?.(e,'Perfil público',{severity:'warning',event:'public_profile_load_failed'}).catch(()=>{});alert('Não foi possível abrir este perfil. Tente novamente.')}};
 async function refreshPublicSocialFollow(uid){const btn=document.getElementById('publicSocialFollowBtn'),count=document.getElementById('publicSocialFollowCount');try{const following=socialUser?(await getDoc(doc(socialDb,'follows',`${socialUser.uid}_user_${uid}`))).exists():false;const snap=await getDocs(query(collection(socialDb,'follows'),where('targetType','==','user'),where('targetId','==',uid),limit(500)));btn.textContent=following?'✓ Seguindo':'+ Seguir';count.textContent=`${snap.size} ${snap.size===1?'seguidor':'seguidores'}`}catch(e){}}
 
 async function followKey(type,id){return `${socialUser?.uid||''}_${type}_${id}`};
@@ -2411,7 +2471,6 @@ window.addEventListener('DOMContentLoaded',adsLoad);
 .em-global-back.visible{display:flex}.em-global-back span{font-size:18px;line-height:1;color:#F58220}.em-global-back:hover{transform:translateY(-1px)}
 @media(max-width:600px){.em-global-back{left:12px;bottom:calc(14px + env(safe-area-inset-bottom));padding:9px 12px}}
 </style>
-<style id="em-auth-boot-style"> #emAuthBoot{position:fixed;inset:0;z-index:200000;background:rgba(248,250,252,.98);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;font-weight:800;color:#1f2937}.em-auth-pending>header,.em-auth-pending>main,.em-auth-pending>section{visibility:hidden}.em-auth-pending  #emAuthBoot{visibility:visible}#emAuthBoot div{font-size:28px}#emAuthBoot span{font-size:13px;color:#64748b}.em-auth-ready  #emAuthBoot{display:none}</style>
 <button id="emGlobalBack" class="em-global-back" type="button" aria-label="Voltar"> <span>‹</span> Voltar</button>
 <script>
 (function(){
