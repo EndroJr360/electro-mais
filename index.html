@@ -52,7 +52,7 @@ nav{display:flex;gap:18px;align-items:center}nav a{font-size:14px;font-weight:60
 section{padding:48px 20px}.container{max-width:1200px;margin:auto}.section-title{text-align:center;margin-bottom:45px}.section-title h2{font-size:34px;margin-bottom:8px}.section-title p{color:var(--gray)}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:white;padding:18px;border-radius:16px;box-shadow:var(--shadow)}.card-icon{font-size:35px;margin-bottom:15px}.card h3{margin-bottom:8px}.card p{color:var(--gray);font-size:14px}
 .official{background:#111827;color:white}.official-box{max-width:900px;margin:auto;background:#1f2937;padding:35px;border-radius:22px;display:flex;gap:30px;align-items:center}.official-logo{width:130px;height:130px;border-radius:50%;object-fit:cover;background:white}.verified{color:#60a5fa;font-weight:bold;font-size:14px}
-.technicians{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.tech{background:#fff;border:1px solid #e8edf3;border-radius:18px;padding:16px;box-shadow:0 8px 24px rgba(15,23,42,.07);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.tech:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(15,23,42,.11);border-color:#f58220}.tech-top{margin-bottom:10px}.tech-avatar{width:56px;height:56px;border-radius:50%;background:#fff3e8;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;flex:0 0 auto}.tech-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}.tech-story-ring{padding:3px;background:linear-gradient(135deg,#f58220,#ffd166,#f58220);border-radius:50%;box-shadow:0 0 0 2px #fff}.tech-story-ring .tech-avatar{width:56px;height:56px;border:2px solid #fff}.tech-card-name{font-size:15px;margin:0}.tech-card-sub{font-size:11px;color:#64748b;margin-top:2px}.tech-card-bio{font-size:12px;color:#64748b;margin:8px 0 0;line-height:1.45}.tech-tags{display:flex;gap:5px;flex-wrap:wrap;margin:9px 0}.tech-tags .tag{font-size:10px;padding:5px 8px;border-radius:999px}.tech-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.tech-actions .btn{padding:8px 10px;font-size:11px}.tech-list-more{display:flex;justify-content:center;margin-top:16px}.tech-list-more .btn{min-width:220px}.tech-all-panel{position:fixed;inset:0;background:rgba(15,23,42,.58);z-index:2100;display:none;align-items:center;justify-content:center;padding:18px}.tech-all-panel.open{display:flex}.tech-all-dialog{background:#fff;width:min(980px,100%);max-height:88vh;overflow:auto;border-radius:22px;box-shadow:0 24px 80px rgba(0,0,0,.25);padding:20px}.tech-all-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}.tech-all-head h2{margin:0}.tech-all-head p{margin:4px 0 0;color:#64748b;font-size:12px}.tech-all-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tech-all-grid .tech{box-shadow:none}.tech-story-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:800;color:#c2410c;margin-top:4px}.tech-story-badge::before{content:'●';font-size:9px;color:#f58220}.tech-empty{padding:20px;border:1px dashed #cbd5e1;border-radius:14px;text-align:center;color:#64748b}@media(max-width:850px){.technicians{grid-template-columns:repeat(2,minmax(0,1fr))}.tech-all-grid{grid-template-columns:1fr}}@media(max-width:550px){.technicians{grid-template-columns:1fr}.tech-all-panel{padding:10px}.tech-all-dialog{padding:14px;border-radius:18px}.tech-list-more .btn{width:100%}}.avatar{width:70px;height:70px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:15px}.rating{color:#f59e0b}.available{color:var(--green);font-weight:bold;font-size:13px}
+.technicians{display:flex;gap:16px;overflow-x:auto;overflow-y:visible;padding:4px 4px 14px;scroll-snap-type:x mandatory;scrollbar-width:thin;-webkit-overflow-scrolling:touch}.technicians>.tech{flex:0 0 min(350px,82vw);scroll-snap-align:start}.tech{background:#fff;border:1px solid #e8edf3;border-radius:18px;padding:16px;box-shadow:0 8px 24px rgba(15,23,42,.07);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.tech:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(15,23,42,.11);border-color:#f58220}.tech-top{margin-bottom:10px}.tech-avatar{width:56px;height:56px;border-radius:50%;background:#fff3e8;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;flex:0 0 auto}.tech-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}.tech-story-ring{padding:3px;background:linear-gradient(135deg,#f58220,#ffd166,#f58220);border-radius:50%;box-shadow:0 0 0 2px #fff}.tech-story-ring .tech-avatar{width:56px;height:56px;border:2px solid #fff}.tech-card-name{font-size:15px;margin:0}.tech-card-sub{font-size:11px;color:#64748b;margin-top:2px}.tech-card-bio{font-size:12px;color:#64748b;margin:8px 0 0;line-height:1.45}.tech-tags{display:flex;gap:5px;flex-wrap:wrap;margin:9px 0}.tech-tags .tag{font-size:10px;padding:5px 8px;border-radius:999px}.tech-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.tech-actions .btn{padding:8px 10px;font-size:11px}.tech-list-more{display:flex;justify-content:center;margin-top:16px}.tech-list-more .btn{min-width:220px}.tech-all-panel{position:fixed;inset:0;background:rgba(15,23,42,.58);z-index:2100;display:none;align-items:center;justify-content:center;padding:18px}.tech-all-panel.open{display:flex}.tech-all-dialog{background:#fff;width:min(980px,100%);max-height:88vh;overflow:auto;border-radius:22px;box-shadow:0 24px 80px rgba(0,0,0,.25);padding:20px}.tech-all-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}.tech-all-head h2{margin:0}.tech-all-head p{margin:4px 0 0;color:#64748b;font-size:12px}.tech-all-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tech-all-grid .tech{box-shadow:none}.tech-story-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:800;color:#c2410c;margin-top:4px}.tech-story-badge::before{content:'●';font-size:9px;color:#f58220}.tech-empty{padding:20px;border:1px dashed #cbd5e1;border-radius:14px;text-align:center;color:#64748b}@media(max-width:850px){.technicians>.tech{flex-basis:min(340px,78vw)}.tech-all-grid{grid-template-columns:1fr}}@media(max-width:550px){.technicians>.tech{flex-basis:86vw}.tech-all-panel{padding:10px}.tech-all-dialog{padding:14px;border-radius:18px}.tech-list-more .btn{width:100%}}.avatar{width:70px;height:70px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:15px}.rating{color:#f59e0b}.available{color:var(--green);font-weight:bold;font-size:13px}
 .store{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.product{background:white;border-radius:16px;padding:20px;box-shadow:var(--shadow)}.product-img{height:140px;background:#f3f4f6;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:50px;margin-bottom:15px}.price{color:var(--orange);font-weight:bold;margin:10px 0}
 .role-grid,.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.role,.admin-card,.profile-box,.login{background:white;padding:20px;border-radius:18px;box-shadow:var(--shadow)}.role{text-align:center}.role span{font-size:45px}
 .login{max-width:500px;margin:auto}.login input,.login select{width:100%;padding:10px 12px;margin:5px 0 10px;border:1px solid #d1d5db;border-radius:9px}
@@ -225,7 +225,7 @@ body{overflow-x:hidden}
 @media(max-width:550px){#contactos .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#contactos .card{padding:12px 10px}#contactos .card h3{font-size:13px}#contactos .card p{font-size:11px}#contactos .card .btn{padding:8px 10px;font-size:11px}}
 
 /* Electro Mais — iconografia premium inspirada nos mascotes */
-.em-mascot-icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(145deg,#fff7ed,#f58220);border:1px solid rgba(245,130,32,.28);display:inline-grid;place-items:center;overflow:hidden;box-shadow:0 8px 20px rgba(245,130,32,.16);vertical-align:middle}.em-mascot-icon img{width:100%;height:100%;object-fit:contain;padding:5px;display:block}.card-icon,.notification-icon{font-size:0!important;width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#fff7ed,#fff);border:1px solid #fed7aa;display:grid!important;place-items:center;overflow:hidden}.card-icon::before,.notification-icon::before{content:'EM';font-size:11px;font-weight:900;color:#f58220;letter-spacing:-.04em;background:#1f2937;border-radius:10px;padding:8px 6px;line-height:1}.marketplace-hero-art strong{font-size:0!important;width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#fff7ed,#fff);display:grid;place-items:center;color:#f58220;box-shadow:0 8px 18px rgba(15,23,42,.08)}.marketplace-hero-art strong::before{content:'EM';font-size:11px;font-weight:900;color:#f58220;background:#1f2937;border-radius:9px;padding:8px 6px}.em-store-catalog .product-img{background:linear-gradient(145deg,#f8fafc,#fff);border:1px solid #eef2f7}.em-store-catalog .product-img img{mix-blend-mode:multiply}
+.em-mascot-icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(145deg,#fff7ed,#f58220);border:1px solid rgba(245,130,32,.28);display:inline-grid;place-items:center;overflow:hidden;box-shadow:0 8px 20px rgba(245,130,32,.16);vertical-align:middle}.em-mascot-icon img{width:100%;height:100%;object-fit:contain;padding:5px;display:block}.card-icon,.notification-icon{font-size:0!important;width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#fff7ed,#fff);border:1px solid rgba(245,130,32,.25);display:grid!important;place-items:center;overflow:hidden;box-shadow:0 8px 20px rgba(15,23,42,.08)}.card-icon .em-svg,.notification-icon .em-svg{width:28px;height:28px;display:block;filter:drop-shadow(0 3px 5px rgba(245,130,32,.18))}.em-control-icon{display:inline-grid;place-items:center;vertical-align:middle;margin-right:6px}.em-control-icon .em-svg{width:16px;height:16px;display:block}.marketplace-nav button,.seller-v2-tabs button{display:inline-flex;align-items:center;gap:2px}.marketplace-hero-art strong{font-size:0!important;width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#fff7ed,#fff);display:grid;place-items:center;color:#f58220;box-shadow:0 8px 18px rgba(15,23,42,.08)}.marketplace-hero-art strong .em-svg{width:27px;height:27px}.em-store-catalog .product-img{background:linear-gradient(145deg,#f8fafc,#fff);border:1px solid #eef2f7}.em-store-catalog .product-img img{mix-blend-mode:multiply}
 </style>
 <style id="v10-functional-profile-css">
 .company-admin-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 14px}.company-admin-actions .btn{font-size:12px;padding:8px 11px}.profile-tabs.company-tabs{display:flex;gap:0;border-bottom:1px solid #e5e7eb;margin-top:8px}.profile-tabs.company-tabs button{flex:1;border:0;background:none;padding:11px 8px;font-weight:800;color:#6b7280;cursor:pointer;border-bottom:3px solid transparent}.profile-tabs.company-tabs button.active{color:#F58220;border-bottom-color:#F58220}.company-media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.company-media-item{position:relative;background:#f8fafc;border-radius:12px;overflow:hidden;min-height:110px}.company-media-item img,.company-media-item video{width:100%;height:150px;object-fit:cover;display:block}.company-media-delete{position:absolute;right:6px;top:6px;border:0;border-radius:50%;width:30px;height:30px;background:#111827;color:#fff;cursor:pointer}.company-empty{padding:20px;text-align:center;color:#6b7280;background:#f8fafc;border-radius:12px}.company-editor-label{font-size:12px;font-weight:800;color:#374151}@media(max-width:600px){.company-media-grid{grid-template-columns:repeat(2,1fr)}.company-admin-actions{display:grid;grid-template-columns:1fr 1fr}.company-admin-actions .btn{width:100%;box-sizing:border-box;text-align:center}}
@@ -669,7 +669,7 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 <button class="btn btn-primary" onclick="filterTechnicians()">Filtrar</button>
 </div>
 </div>
-<div class="technicians" id="techniciansList"></div><div class="tech-list-more" id="techListMore" style="display:none"><button class="btn btn-outline" type="button" onclick="window.openAllTechnicians()">Ver todos os profissionais →</button></div>
+<div class="technicians" id="techniciansList"></div><div class="tech-list-more" id="techListMore" style="display:none"><button class="btn btn-outline" type="button" onclick="window.location.href='profissionais.html'">Ver todos os profissionais →</button></div>
 </div></section>
 <section id="como-funciona"><div class="container">
 <div class="section-title"><h2>Como funciona?</h2><p>Da necessidade à solução, com acompanhamento em cada etapa.</p></div>
@@ -1251,7 +1251,12 @@ async function loadTechnicians(){
   const box=document.getElementById("techniciansList");
   try{
     const s=await getDocs(collection(db,"technicians"));
-    allTechnicians=s.docs.map(d=>({id:d.id,...d.data()}));
+    const technicianDocs=s.docs.map(d=>({id:d.id,...d.data()}));
+    const enriched=await Promise.all(technicianDocs.map(async t=>{
+      try{const us=await getDoc(doc(db,"users",t.id));const u=us.exists()?us.data():{};return {...u,...t,id:t.id,role:u.role||t.role||"eletricista"};}
+      catch(_){return t;}
+    }));
+    allTechnicians=enriched;
     activeStoryTechnicianUids=new Set();
     try{
       const now=new Date().toISOString();
@@ -1259,13 +1264,16 @@ async function loadTechnicians(){
       storySnap.forEach(d=>{const x=d.data();if(x.authorUid)activeStoryTechnicianUids.add(x.authorUid)});
     }catch(storyErr){console.warn("Indicadores de histórias indisponíveis:",storyErr)}
     renderTechnicians(allTechnicians);
+    const hash=decodeURIComponent(location.hash||'');
+    const match=hash.match(/^#tecnico=([^&]+)/);
+    if(match){setTimeout(()=>window.viewTechnician?.(match[1]),80);}
   }catch(e){box.innerHTML='<div class="tech-empty"><strong>Não foi possível carregar os técnicos.</strong><p>Tente novamente mais tarde.</p></div>'}
 }
 function technicianCardHtml(t){
   const specialty=t.specialty||"Serviços elétricos",location=t.location||"Moçambique",rating=Number(t.rating||0),hasStory=activeStoryTechnicianUids.has(t.id);
   const rounded=Math.min(5,Math.round(rating));
   const stars=rating>0?"★".repeat(rounded)+"☆".repeat(5-rounded):"Sem avaliações";
-  const avatar=t.photoURL?`<img src="${safe(t.photoURL)}" alt="Foto de ${safe(t.name||"Eletricista")}" loading="lazy">`:'👷';
+  const avatar=t.photoURL?`<img src="${safe(t.photoURL)}" alt="Foto de ${safe(t.name||"Eletricista")}" loading="lazy">`:emIconSvg('worker');
   return `<article class="tech" data-tech-id="${safe(t.id)}"><div class="tech-top"><div class="${hasStory?'tech-story-ring':''}"><div class="tech-avatar">${avatar}</div></div><div style="min-width:0"><h3 class="tech-card-name">${safe(t.name||"Eletricista")} ${t.verified===true?'<span class="verified">✓</span>':''}</h3><div class="tech-card-sub">📍 ${safe(location)}</div>${hasStory?'<span class="tech-story-badge">História ativa</span>':''}</div></div><div class="tech-tags"><span class="tag">${safe(specialty)}</span><span class="tag">${t.available===false?'Indisponível':'Disponível'}</span></div><p class="tech-card-bio">${safe(t.bio||'Profissional Electro Mais disponível para serviços elétricos.')}</p><p class="rating" style="font-size:12px;margin:7px 0">${stars} ${rating?rating.toFixed(1):''}</p><div class="tech-actions"><button class="btn btn-outline" type="button" aria-label="Ver perfil de ${safe(t.name||'Eletricista')}" onclick="viewTechnician('${js(t.id)}')">Ver perfil</button><button class="btn btn-primary" type="button" aria-label="Solicitar serviço a ${safe(t.name||'Eletricista')}" onclick="requestService('${js(t.id)}','${js(t.name||"Eletricista")}')">Solicitar</button></div></article>`;
 }
 function renderTechnicians(list){
@@ -1290,6 +1298,55 @@ window.viewTechnician=id=>{
 };
 function safe(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function js(s){return String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}
+function emIconSvg(name){
+ const paths={
+  bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',
+  wrench:'<path d="m14.7 6.3 3-3a5 5 0 0 0-6.8 6.8l-7 7a2.1 2.1 0 0 0 3 3l7-7a5 5 0 0 0 6.8-6.8l-3 3-3-3Z"/>',
+  tools:'<path d="m14 6 4-4 4 4-4 4"/><path d="M18 10 8 20a2 2 0 1 1-3-3L15 7"/><path d="m5 5 4 4"/>',
+  worker:'<path d="M6 9a6 6 0 0 1 12 0v2H6Z"/><path d="M4 11h16v3H4z"/><path d="M8 14v4m8-4v4"/><circle cx="12" cy="9" r="1"/>',
+  search:'<circle cx="11" cy="11" r="6"/><path d="m16 16 5 5"/>',
+  clipboard:'<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V2h6v2M9 9h6M9 13h6M9 17h4"/>',
+  chat:'<path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v6A3.5 3.5 0 0 1 16.5 15H11l-5 4v-4.5A3.5 3.5 0 0 1 4 11.5Z"/><path d="M8 7h8M8 10h5"/>',
+  home:'<path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 21v-6h6v6"/>',
+  building:'<path d="M4 21V5a2 2 0 0 1 2-2h12v18M4 21h16"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2"/>',
+  factory:'<path d="M3 21V9l6 3V8l6 4V5h6v16Z"/><path d="M7 16h2M12 16h2M17 16h2M7 19h2M12 19h2M17 19h2"/>',
+  bulb:'<path d="M9 18h6M10 21h4"/><path d="M8 14a7 7 0 1 1 8 0c-1 .8-1.5 1.8-1.5 3h-5c0-1.2-.5-2.2-1.5-3Z"/><path d="M12 4v2M5.6 6.6l1.4 1.4M18.4 6.6 17 8"/>',
+  plug:'<path d="M9 3v6M15 3v6M7 9h10v2a5 5 0 0 1-5 5v5M12 16v5"/>',
+  shield:'<path d="M12 3 20 6v5c0 5-3.3 8-8 10-4.7-2-8-5-8-10V6Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/>',
+  money:'<rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M7 9h.01M17 15h.01"/>',
+  email:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
+  phone:'<path d="M7 3h3l1.5 4-2 1.5a14 14 0 0 0 6 6L17 12l4 1.5v3c0 1.1-.9 2-2 2C10.2 18.5 5.5 13.8 5.5 5c0-1.1.9-2 2-2Z"/>',
+  flag:'<path d="M5 21V4"/><path d="M5 5c4-3 7 3 14 0v9c-7 3-10-3-14 0"/>',
+  star:'<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z"/>',
+  store:'<path d="M4 10h16v10H4z"/><path d="M3 10 5 4h14l2 6"/><path d="M7 10v3m5-3v3m5-3v3M8 20v-4h8v4"/>',
+  cart:'<path d="M3 4h2l2 12h10l3-8H6"/><circle cx="9" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/>',
+  pin:'<path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.2"/>',
+  fire:'<path d="M12 22c4 0 7-2.8 7-7 0-3.3-2-6-5-9 .1 3-1 4.5-2.4 5.5.2-3-1.2-5.3-3.6-7.5.2 4.3-3 6.2-3 10 0 4.2 3 7 7 7Z"/>',
+  folder:'<path d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
+  chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  users:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.5a3 3 0 0 1 0 5.8M18 14c2.2.7 3.8 2.5 3.9 5"/>',
+  settings:'<path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="M4.9 15.5 3.5 17l2 2 1.5-1.4M19.1 15.5l1.4 1.5-2 2-1.5-1.4M8.5 4.9 7 3.5l-2 2 1.4 1.5M15.5 4.9 17 3.5l2 2-1.4 1.5"/>',
+  package:'<path d="m4 7 8-4 8 4-8 4-8-4Z"/><path d="M4 7v10l8 4 8-4V7M12 11v10"/>',
+  camera:'<path d="M4 7h3l1.5-2h7L17 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/><circle cx="12" cy="13" r="3.5"/>',
+  video:'<rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/>',
+  lock:'<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+  warning:'<path d="m12 3 9 17H3L12 3Z"/><path d="M12 9v5M12 17h.01"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  refresh:'<path d="M20 11a8 8 0 1 0 1 4"/><path d="M20 4v7h-7"/>',
+  thought:'<path d="M6 17.5A5.5 5.5 0 0 1 7.5 7 6 6 0 0 1 18 9.5a5.5 5.5 0 0 1-2 10.5H9l-4 2 1-4Z"/>',
+  book:'<path d="M4 5a3 3 0 0 1 3-3h5v18H7a3 3 0 0 0-3 3Z"/><path d="M20 5a3 3 0 0 0-3-3h-5v18h5a3 3 0 0 1 3 3Z"/>'
+ };
+ const p=paths[name]||paths.bolt;
+ return `<svg class="em-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+}
+function upgradePremiumIcons(){
+ const map={"⚡":'bolt',"🔧":'wrench',"🛠️":'tools',"👷":'worker',"🔎":'search',"📋":'clipboard',"💬":'chat',"🏠":'home',"🏢":'building',"🏭":'factory',"💡":'bulb',"🔌":'plug',"🛡️":'shield',"💰":'money',"📧":'email',"📱":'phone',"🇲🇿":'flag',"⭐":'star'};
+ document.querySelectorAll('.card-icon,.notification-icon').forEach(el=>{if(el.querySelector('.em-svg'))return;const raw=el.textContent.trim();const key=map[raw]||(raw.includes('💡')?'bulb':raw.includes('🔌')?'plug':raw.includes('🧰')?'tools':raw.includes('🛡️')?'shield':raw.includes('💰')?'money':'bolt');el.innerHTML=emIconSvg(key);el.setAttribute('aria-hidden','true');});
+ document.querySelectorAll('.marketplace-hero-art strong').forEach(el=>{if(!el.querySelector('.em-svg'))el.innerHTML=emIconSvg('store');});
+ const controls=[['.marketplace-nav button',{ '🛍️':'cart','🏪':'store','📍':'pin','🔥':'fire','📂':'folder'}],['.seller-v2-tabs button',{ '📊':'chart','📦':'package','🛒':'cart','👥':'users','💬':'chat','⭐':'star','📈':'chart','🏪':'store','⚙️':'settings'}],['.btn',{ '➕':'plus','↻':'refresh','⚡':'bolt','💭':'thought','🔎':'search','📚':'book','🛡️':'shield','🚨':'warning'}]];
+ controls.forEach(([sel,map2])=>document.querySelectorAll(sel).forEach(el=>{if(el.querySelector('.em-control-icon'))return;const text=el.textContent.trim();const key=Object.keys(map2).find(k=>text.startsWith(k));if(!key)return;el.innerHTML=`<span class="em-control-icon">${emIconSvg(map2[key])}</span><span>${text.slice(key.length).trim()}</span>`;}));
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',upgradePremiumIcons);else upgradePremiumIcons();
 
 let currentProfileData={};
 window.toggleProfileEditor=(open)=>{const wrap=document.getElementById("profileEditWrap");if(!wrap)return;wrap.classList.toggle("open",!!open);if(open)wrap.scrollIntoView({behavior:"smooth",block:"start"});};
