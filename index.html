@@ -2024,11 +2024,20 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
    const s=String(v||'');
    return s.startsWith('data:image/')?s:`data:image/jpeg;base64,${s}`;
  }
+ let laluGeneratedImageCurrent='';
+ function closeLaluGeneratedImageViewer(){
+   const v=document.getElementById('laluGeneratedImageViewer');
+   if(v)v.classList.remove('open');
+ }
  function openLaluGeneratedImageViewer(dataUri){
+   if(!dataUri)return;
+   laluGeneratedImageCurrent=dataUri;
    let v=document.getElementById('laluGeneratedImageViewer');
-   if(!v){v=document.createElement('div');v.id='laluGeneratedImageViewer';v.className='lalu-image-viewer';v.innerHTML='<button type="button" class="lalu-image-viewer-close" aria-label="Fechar">✕</button><img alt="Imagem gerada pela Lalu"><a class="lalu-image-viewer-download" download>⬇️ Baixar imagem</a>';document.body.appendChild(v);v.addEventListener('click',e=>{if(e.target===v||e.target.closest('.lalu-image-viewer-close'))v.classList.remove('open')});}
+   if(!v){v=document.createElement('div');v.id='laluGeneratedImageViewer';v.className='lalu-image-viewer';v.innerHTML='<button type="button" class="lalu-image-viewer-close" aria-label="Fechar">✕</button><img alt="Imagem gerada pela Lalu"><a class="lalu-image-viewer-download" download>⬇️ Baixar imagem</a>';document.body.appendChild(v);v.addEventListener('click',e=>{if(e.target===v||e.target.closest('.lalu-image-viewer-close'))closeLaluGeneratedImageViewer()});}
    const img=v.querySelector('img'),dl=v.querySelector('.lalu-image-viewer-download');img.src=dataUri;dl.href=dataUri;dl.download=`lalu-imagem-${Date.now()}.jpg`;v.classList.add('open');
  }
+ window.openLaluImageViewer=openLaluGeneratedImageViewer;
+ window.closeLaluImageViewer=closeLaluGeneratedImageViewer;
  async function useGeneratedImageAsProfileOrCover(dataUri,type){
    const user=auth.currentUser;
    if(!user){alert('Entre na sua conta para usar esta imagem no perfil.');return;}
@@ -2037,15 +2046,23 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
    try{
      const path=`profiles/${user.uid}/${type==='cover'?'cover':'profile'}-${Date.now()}.jpg`;
      const r=ref(storage,path);const blob=await (await fetch(dataUri)).blob();await uploadBytes(r,blob,{contentType:blob.type||'image/jpeg'});const url=await getDownloadURL(r);
-     const userData=(await getDoc(doc(db,'users',user.uid))).data()||{};const role=userData.role||'cliente';
-     const field=type==='cover'?'coverURL':'photoURL';await updateDoc(doc(db,'users',user.uid),{[field]:url,updatedAt:new Date().toISOString()});
-     if(role==='eletricista')await updateDoc(doc(db,'technicians',user.uid),{[field]:url,updatedAt:new Date().toISOString()});
-     if(role==='vendedor')await updateDoc(doc(db,'vendors',user.uid),{[field]:url,updatedAt:new Date().toISOString()});
+     const userData=(await getDoc(doc(db,'users',user.uid))).data()||{};
+     const role=userData.role||window.currentProfileData?.role||'cliente';
+     const field=type==='cover'?'coverURL':'photoURL';
+     const payload={[field]:url,updatedAt:new Date().toISOString()};
+     // setDoc + merge também cria o documento caso ainda não exista.
+     await setDoc(doc(db,'users',user.uid),payload,{merge:true});
+     if(role==='eletricista')await setDoc(doc(db,'technicians',user.uid),payload,{merge:true});
+     if(role==='vendedor')await setDoc(doc(db,'vendors',user.uid),payload,{merge:true});
      if(type==='profile'){const a=document.getElementById('profileAvatar');if(a)a.src=url;const mini=document.getElementById('accountMiniAvatar');if(mini)mini.innerHTML=`<img src="${url}" alt="Foto de perfil">`;const pv=document.getElementById('profileViewAvatar');if(pv)pv.innerHTML=`<img src="${url}" alt="Foto de perfil">`;}
-     if(type==='cover'){document.querySelectorAll('.tech-cover').forEach(el=>{el.style.backgroundImage=`url("${url}")`;el.style.backgroundSize='cover';el.style.backgroundPosition='center';});}
+     if(type==='cover'){document.querySelectorAll('.tech-cover,.em-social-profile-cover').forEach(el=>{el.style.backgroundImage=`url("${url}")`;el.style.backgroundSize='cover';el.style.backgroundPosition='center';});}
      add(`✅ A imagem foi definida como ${label}.`,'bot');
    }catch(e){console.error('Lalu — aplicar imagem no perfil/capa',e);window.reportFirebaseError?.(e,'Lalu / Imagem de perfil ou capa',{severity:'warning',event:'generated_image_profile_update_failed',imageType:type}).catch(()=>{});add('Não consegui aplicar a imagem ao teu perfil neste momento. Tenta novamente mais tarde.','bot');}
  }
+ window.useLaluGeneratedImage=async function(kind){
+   if(!laluGeneratedImageCurrent)return;
+   await useGeneratedImageAsProfileOrCover(laluGeneratedImageCurrent,kind==='cover'?'cover':'profile');
+ };
  function makeImageCard(dataUri,prompt){
    const wrap=document.createElement('div');wrap.className='ai-generated-image';
    const img=document.createElement('img');img.alt='Imagem gerada pela Lalu';img.src=dataUri;img.loading='lazy';img.addEventListener('click',()=>openLaluGeneratedImageViewer(dataUri));
@@ -2087,6 +2104,8 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
  function clearFallbackUntil(){try{localStorage.removeItem(FALLBACK_KEY)}catch{}}
  function isQuotaError(e){const t=String(e?.code||'')+' '+String(e?.message||'');return /(^|[^0-9])429([^0-9]|$)|quota|resource exhausted|rate limit|too many requests/i.test(t)}
  function add(text,who){const d=document.createElement('div');d.className='ai-msg '+who;d.textContent=text;box.appendChild(d);box.scrollTop=box.scrollHeight;return d}
+ // API pública para integrações externas; a função interna continua encapsulada no módulo.
+ window.electroLaluAdd=(text,who='bot')=>add(String(text??''),who==='user'?'user':'bot');
  function rebuildChat(model,history){const prior=history.map(m=>({role:m.role,parts:[{text:m.text}]}));return model.startChat({generationConfig,history:prior})}
  async function streamAnswer(chat,content,answerBubble,thinking,isCurrent){
    const result=await chat.sendMessageStream(content);let full='',receivedFirstChunk=false;
@@ -2160,7 +2179,20 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
      return;
    }
    ask.busy=true;
-   const directAction=await tryLaluAdminAction(text);
+   let directAction=null;
+   try{
+     directAction=await tryLaluAdminAction(text);
+   }catch(adminActionError){
+     console.error('Lalu — falha numa ação administrativa:',adminActionError);
+     window.reportFirebaseError?.(adminActionError,'Lalu / Ação administrativa',{severity:'critical',event:'lalu_admin_action_failed'}).catch(()=>{});
+     add('Não consegui concluir essa ação administrativa. O erro foi registado. Podes tentar novamente ou pedir à Lalu um diagnóstico.','bot');
+     ask.busy=false;
+     if(input)input.disabled=false;
+     const adminSubmit=form?.querySelector('button[type="submit"]');
+     if(adminSubmit)adminSubmit.disabled=false;
+     if(input)input.focus();
+     return;
+   }
    if(directAction){add(directAction.text,'bot');ask.busy=false;if(input)input.disabled=false;const submit=form?.querySelector('button[type="submit"]');if(submit)submit.disabled=false;return;}
    let content=text;
    if(attachment){try{content=[{text:text},await fileToPart(attachment)];}catch(e){ask.busy=false;throw e;}} else if(isAdminMode && /\b(erro|erros|sistema|site|plataforma|utilizador|usuario|tecnico|servico|pedido|loja|anuncio|historia|publicacao|problema|diagnostico|quantos|quantas|hoje|ontem|semana|relatorio)\b/i.test(text)){try{const ctx=await getAdminContext();content=`[CONTEXTO ADMINISTRATIVO EM TEMPO REAL — fonte de verdade. Se um dado estiver indisponivel, diz isso. Nao inventes metricas.]\n${JSON.stringify(ctx)}\n\nPERGUNTA DO ADMINISTRADOR:\n${text}`;}catch(e){content=text;}}const requestId=++activeRequestId;
