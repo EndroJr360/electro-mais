@@ -695,6 +695,9 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 #aiPanel.lalu-admin-chat .ai-msg{padding:10px 12px!important}
 @media(max-width:600px){#aiPanel .ai-body{padding:12px 11px 8px!important}#aiPanel .ai-msg{font-size:14px!important;max-width:92%!important}#aiPanel .lalu-visual-card img{width:54px!important;height:54px!important;flex-basis:54px!important}}
 </style>
+<style id="lalu-recovery-status-css">
+.ai-admin-recovery-status{margin-top:8px;padding:7px 9px;border-radius:8px;background:#f8fafc;color:#475569;font-size:10px;line-height:1.4;border:1px solid #e5e7eb}
+</style>
 </head>
 <body>
 
@@ -1978,15 +1981,28 @@ Quando a sessão autenticada pertencer ao Administrador autorizado da Electro Ma
 
 IDENTIDADE:
 O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligência artificial da Electro Mais Moçambique. `;
+ const LALU_PRIMARY_MODEL="gemini-4-hydrogen";
+ const LALU_FALLBACK_1_MODEL="gemini-3.8-flash";
+ const LALU_FALLBACK_2_MODEL="gemini-3.5-flash-lite";
  let systemInstruction=baseSystemInstruction;
- const generationConfig={maxOutputTokens:900};
- let primaryModel=getGenerativeModel(ai,{model:"gemini-3.8-flash",systemInstruction,tools:[{googleSearch:{}}]});
- let fallbackModel=getGenerativeModel(ai,{model:"gemini-3.5-flash-lite",systemInstruction});
- function refreshLaluIdentity(user){isAdminMode=!!(user&&user.uid===ADMIN_UID);systemInstruction=baseSystemInstruction+(isAdminMode?adminSystemInstruction:"\n\nIDENTIDADE:\nO teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligência artificial da Electro Mais Moçambique. ");primaryModel=getGenerativeModel(ai,{model:"gemini-3.8-flash",systemInstruction,tools:[{googleSearch:{}}]});fallbackModel=getGenerativeModel(ai,{model:"gemini-3.5-flash-lite",systemInstruction});document.getElementById("laluAdminTools")?.toggleAttribute("hidden",!isAdminMode);document.getElementById("aiPanel")?.classList.toggle("lalu-admin-chat",isAdminMode);const badge=document.querySelector(".ai-brand small");if(badge)badge.textContent=isAdminMode?"Inteligência Artificial · Modo Administrador":"Inteligência Artificial da Electro Mais";}
+ const generationConfig={maxOutputTokens:900,thinkingConfig:{thinkingLevel:"LOW"}};
+ let primaryModel=getGenerativeModel(ai,{model:LALU_PRIMARY_MODEL,systemInstruction,tools:[{googleSearch:{}}]});
+ let fallbackModel1=getGenerativeModel(ai,{model:LALU_FALLBACK_1_MODEL,systemInstruction,tools:[{googleSearch:{}}]});
+ let fallbackModel2=getGenerativeModel(ai,{model:LALU_FALLBACK_2_MODEL,systemInstruction});
+ function refreshLaluIdentity(user){
+   isAdminMode=!!(user&&user.uid===ADMIN_UID);
+   systemInstruction=baseSystemInstruction+(isAdminMode?adminSystemInstruction:"\n\nIDENTIDADE:\nO teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligência artificial da Electro Mais Moçambique. ");
+   primaryModel=getGenerativeModel(ai,{model:LALU_PRIMARY_MODEL,systemInstruction,tools:[{googleSearch:{}}]});
+   fallbackModel1=getGenerativeModel(ai,{model:LALU_FALLBACK_1_MODEL,systemInstruction,tools:[{googleSearch:{}}]});
+   fallbackModel2=getGenerativeModel(ai,{model:LALU_FALLBACK_2_MODEL,systemInstruction});
+   document.getElementById("laluAdminTools")?.toggleAttribute("hidden",!isAdminMode);
+   document.getElementById("aiPanel")?.classList.toggle("lalu-admin-chat",isAdminMode);
+   const badge=document.querySelector(".ai-brand small");
+   if(badge)badge.textContent=isAdminMode?"Inteligência Artificial · Modo Administrador":"Inteligência Artificial da Electro Mais";
+ }
  onAuthStateChanged(auth,user=>{laluUser=user;refreshLaluIdentity(user);fetchLaluHistory();});
  refreshLaluIdentity(auth.currentUser);
- let primaryChat=primaryModel.startChat({generationConfig});
- let fallbackChat=fallbackModel.startChat({generationConfig});
+ if(Date.now()<getFallbackUntil())schedulePrimaryRecovery();
  const form=document.getElementById('aiForm'),input=document.getElementById('aiInput'),box=document.getElementById('aiMessages');
  const conversation=[];
  let selectedAttachment=null;
@@ -2111,15 +2127,68 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
      add('Não consegui gerar a imagem neste momento. Tenta novamente daqui a pouco.','bot');throw e;
    }
  }
- const FALLBACK_KEY='electroMaisAI.fallbackUntil.v1';
+ const FALLBACK_KEY='electroMaisAI.fallbackUntil.v2';
+ const RECOVERY_KEY='electroMaisAI.primaryRecovery.v1';
  const FALLBACK_DURATION=15*60*1000;
+ const RECOVERY_MIN_INTERVAL=60*1000;
+ const RECOVERY_MAX_INTERVAL=15*60*1000;
+ const RECOVERY_TEST_TIMEOUT=7000;
  const ATTEMPT_TIMEOUT=10000;
  let activeRequestId=0;let activeAttemptId=0;
+ let recoveryTimer=null;
+ let recoveryInFlight=false;
  function getFallbackUntil(){try{return Number(localStorage.getItem(FALLBACK_KEY)||0)}catch{return 0}}
  function setFallbackUntil(ts){try{localStorage.setItem(FALLBACK_KEY,String(ts))}catch{}}
  function clearFallbackUntil(){try{localStorage.removeItem(FALLBACK_KEY)}catch{}}
+ function getRecoveryState(){try{return JSON.parse(localStorage.getItem(RECOVERY_KEY)||'{}')||{}}catch{return {}}}
+ function setRecoveryState(v){try{localStorage.setItem(RECOVERY_KEY,JSON.stringify(v||{}))}catch{}}
  function isQuotaError(e){const t=String(e?.code||'')+' '+String(e?.message||'');return /(^|[^0-9])429([^0-9]|$)|quota|resource exhausted|rate limit|too many requests/i.test(t)}
- function add(text,who){const d=document.createElement('div');d.className='ai-msg '+who;d.textContent=text;box.appendChild(d);box.scrollTop=box.scrollHeight;return d}
+ function isRecoverableModelError(e){
+   const t=String(e?.code||'')+' '+String(e?.message||'');
+   return /(^|[^0-9])(429|500|502|503|504)([^0-9]|$)|quota|resource exhausted|rate limit|too many requests|temporarily|high demand|unavailable|internal|timeout|timed out|fetch failed/i.test(t);
+ }
+ function getRecoveryWaitMs(){
+   const st=getRecoveryState();
+   const n=Math.max(0,Number(st.failures||0));
+   return Math.min(RECOVERY_MAX_INTERVAL,RECOVERY_MIN_INTERVAL*Math.pow(2,Math.min(n,4)));
+ }
+ async function testPrimaryRecovery(reason='scheduled'){
+   if(recoveryInFlight||Date.now()<getFallbackUntil())return false;
+   recoveryInFlight=true;
+   const started=Date.now();
+   try{
+     const chat=primaryModel.startChat({generationConfig});
+     const result=await withTimeout(chat.sendMessage('Responde apenas: OK'),RECOVERY_TEST_TIMEOUT,'Teste de recuperação do modelo principal');
+     const text=String(result?.response?.text?.()||'').trim();
+     if(!text)throw new Error('Teste de recuperação sem resposta.');
+     clearFallbackUntil();
+     setRecoveryState({failures:0,lastAttemptAt:Date.now(),lastSuccessAt:Date.now(),lastReason:reason,lastDurationMs:Date.now()-started});
+     window.reportFirebaseError?.({message:'Primary model recovered',code:'lalu/primary-recovered'},'Electro Mais IA',{severity:'info',event:'primary_recovered',model:LALU_PRIMARY_MODEL,recoveryReason:reason,durationMs:Date.now()-started}).catch(()=>{});
+     return true;
+   }catch(e){
+     const st=getRecoveryState();
+     const failures=Math.min(8,Number(st.failures||0)+1);
+     setRecoveryState({failures,lastAttemptAt:Date.now(),lastSuccessAt:st.lastSuccessAt||null,lastReason:reason,lastError:String(e?.message||e).slice(0,500)});
+     window.reportFirebaseError?.(e,'Electro Mais IA',{severity:'warning',event:'primary_recovery_failed',model:LALU_PRIMARY_MODEL,recoveryReason:reason,recoveryFailures:failures,durationMs:Date.now()-started}).catch(()=>{});
+     return false;
+   }finally{
+     recoveryInFlight=false;
+     schedulePrimaryRecovery();
+   }
+ }
+ function schedulePrimaryRecovery(){
+   if(recoveryTimer)clearTimeout(recoveryTimer);
+   const until=getFallbackUntil();
+   if(!until)return;
+   const st=getRecoveryState();
+   const target=Math.max(until,Number(st.lastAttemptAt||0)+getRecoveryWaitMs());
+   const delay=Math.max(1000,target-Date.now());
+   recoveryTimer=setTimeout(async()=>{
+     if(Date.now()<getFallbackUntil()){schedulePrimaryRecovery();return;}
+     await testPrimaryRecovery('15-minute recovery window');
+   },delay);
+ }
+  function add(text,who){const d=document.createElement('div');d.className='ai-msg '+who;d.textContent=text;box.appendChild(d);box.scrollTop=box.scrollHeight;return d}
  function rebuildChat(model,history){const prior=history.map(m=>({role:m.role,parts:[{text:m.text}]}));return model.startChat({generationConfig,history:prior})}
  async function streamAnswer(chat,content,answerBubble,thinking,isCurrent){
    const result=await chat.sendMessageStream(content);let full='',receivedFirstChunk=false;
@@ -2198,30 +2267,58 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
    else if(isAdminMode && /\b(erro|erros|sistema|site|plataforma|utilizador|usuario|tecnico|servico|pedido|loja|anuncio|historia|publicacao|problema|diagnostico|quantos|quantas|hoje|ontem|semana|relatorio)\b/i.test(text)){try{const ctx=await getAdminContext();content=`[CONTEXTO ADMINISTRATIVO EM TEMPO REAL — fonte de verdade. Se um dado estiver indisponivel, diz isso. Nao inventes metricas.]\n${JSON.stringify(ctx)}\n\nPERGUNTA DO ADMINISTRADOR:\n${text}`;}catch(e){content=text;}}const requestId=++activeRequestId;
    if(input)input.disabled=true;const submit=form?.querySelector('button[type="submit"]');if(submit)submit.disabled=true;
    if(!options.skipUserBubble){add((attachment?'📎 '+attachment.name+'\n':'')+text,'user');}const thinking=document.createElement('div');thinking.className='ai-thinking';thinking.setAttribute('role','status');thinking.setAttribute('aria-live','polite');thinking.innerHTML='<span>A preparar resposta…</span><span class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></span>';box.appendChild(thinking);const loading=add('','bot');loading.classList.add('ai-loading');loading.setAttribute('aria-live','polite');const setThinking=(label)=>{if(!thinking.isConnected)box.insertBefore(thinking,loading);const labelNode=thinking.querySelector('span');if(labelNode)labelNode.textContent=label;loading.textContent='';loading.classList.add('ai-loading');box.scrollTop=box.scrollHeight;};box.scrollTop=box.scrollHeight;
-   let lastModelAttempted = Date.now()<getFallbackUntil() ? 'gemini-3.5-flash-lite' : 'gemini-3.8-flash';
+   let lastModelAttempted = Date.now()<getFallbackUntil() ? LALU_FALLBACK_1_MODEL : LALU_PRIMARY_MODEL;
    let primaryError = null;
    let primaryFailed = false;
+   let fallback1Error = null;
+   let fallback2Failed = false;
    try{
-     let answer;const fallbackActive=Date.now()<getFallbackUntil();
+     let answer;
+     const fallbackActive=Date.now()<getFallbackUntil();
      if(fallbackActive){
-       lastModelAttempted='gemini-3.5-flash-lite';
-       setThinking('A usar o modelo alternativo…');
-       answer=await attempt(fallbackModel,content,loading,thinking,'Modelo alternativo',requestId,{nonStream:true});
+       // A janela de 15 minutos protege o principal de tentativas repetidas.
+       // O fallback 1 atende normalmente; o fallback 2 só entra se o fallback 1 falhar.
+       lastModelAttempted=LALU_FALLBACK_1_MODEL;
+       setThinking('A usar o modelo de recuperação…');
+       try{
+         answer=await attempt(fallbackModel1,content,loading,thinking,'Fallback 1',requestId,{nonStream:true});
+       }catch(fallback1Err){
+         fallback1Error=fallback1Err;
+         if(!isRecoverableModelError(fallback1Err))throw fallback1Err;
+         setThinking('A usar o segundo modelo de recuperação…');
+         lastModelAttempted=LALU_FALLBACK_2_MODEL;
+         fallback2Failed=true;
+         answer=await attempt(fallbackModel2,content,loading,thinking,'Fallback 2',requestId,{nonStream:true});
+       }
      }else{
        try{
-         lastModelAttempted='gemini-3.8-flash';
+         lastModelAttempted=LALU_PRIMARY_MODEL;
          answer=await attempt(primaryModel,content,loading,thinking,'Modelo principal',requestId);
          clearFallbackUntil();
+         setRecoveryState({failures:0,lastAttemptAt:Date.now(),lastSuccessAt:Date.now(),lastReason:'normal request'});
        }catch(primaryErr){
          primaryError=primaryErr;
          primaryFailed=true;
-         // Qualquer falha recuperável do principal, incluindo 429, ativa o fallback.
-         setFallbackUntil(Date.now()+FALLBACK_DURATION);
-         console.warn('Electro Mais IA: modelo principal falhou; alternativo ativado durante 15 minutos.',primaryError);
-         window.reportFirebaseError?.(primaryError,'Electro Mais IA',{severity:isQuotaError(primaryError)?'warning':'critical',event:isQuotaError(primaryError)?'primary_429_fallback':'fallback_activated',fallbackMinutes:15,model:'gemini-3.8-flash'}).catch(()=>{});
-         setThinking('A tentar o modelo alternativo…');
-         lastModelAttempted='gemini-3.5-flash-lite';
-         answer=await attempt(fallbackModel,content,loading,thinking,'Modelo alternativo',requestId,{nonStream:true});
+         // Apenas falhas recuperáveis entram na rotação. 400/403/404 permanecem visíveis para correção técnica.
+         if(!isRecoverableModelError(primaryErr))throw primaryErr;
+         const recoveryUntil=Date.now()+FALLBACK_DURATION;
+         setFallbackUntil(recoveryUntil);
+         setRecoveryState({...getRecoveryState(),failures:0,lastAttemptAt:0,lastReason:'primary failure',lastError:String(primaryErr?.message||primaryErr).slice(0,500)});
+         schedulePrimaryRecovery();
+         console.warn('Electro Mais IA: principal indisponível; fallback 1 ativado por 15 minutos.',primaryErr);
+         window.reportFirebaseError?.(primaryErr,'Electro Mais IA',{severity:isQuotaError(primaryErr)?'warning':'critical',event:isQuotaError(primaryErr)?'primary_429_fallback':'primary_recoverable_failure',fallbackMinutes:15,model:LALU_PRIMARY_MODEL,recoveryUntil}).catch(()=>{});
+         setThinking('A tentar o primeiro modelo de recuperação…');
+         lastModelAttempted=LALU_FALLBACK_1_MODEL;
+         try{
+           answer=await attempt(fallbackModel1,content,loading,thinking,'Fallback 1',requestId,{nonStream:true});
+         }catch(fallback1Err){
+           fallback1Error=fallback1Err;
+           if(!isRecoverableModelError(fallback1Err))throw fallback1Err;
+           setThinking('A tentar o segundo modelo de recuperação…');
+           lastModelAttempted=LALU_FALLBACK_2_MODEL;
+           fallback2Failed=true;
+           answer=await attempt(fallbackModel2,content,loading,thinking,'Fallback 2',requestId,{nonStream:true});
+         }
        }
      }
      if(requestId!==activeRequestId)return;
@@ -2233,7 +2330,7 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
      clearAttachment();
    }catch(e){
      console.error('Electro Mais IA — falha de resposta:',e);
-     window.reportFirebaseError?.(e,'Electro Mais IA',{severity:'critical',event:'answer_failed',fallbackUntil:getFallbackUntil()||null}).catch(()=>{});
+     window.reportFirebaseError?.(e,'Electro Mais IA',{severity:'critical',event:'answer_failed',fallbackUntil:getFallbackUntil()||null,primaryModel:LALU_PRIMARY_MODEL,fallback1Model:LALU_FALLBACK_1_MODEL,fallback2Model:LALU_FALLBACK_2_MODEL,primaryFailed,fallback1Failed:!!fallback1Error,fallback2Failed}).catch(()=>{});
      if(requestId===activeRequestId){
        thinking.remove();loading.classList.remove('ai-loading');
        const code=String(e?.code||'');
@@ -2245,8 +2342,8 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
        else if(/500|internal|unavailable|fetch/i.test(code+' '+raw)) msg='⚠️ O serviço de IA devolveu um erro temporário. A plataforma continua disponível; tente novamente em instantes.';
        if(isAdminMode){
          const primaryRaw=primaryError?.message?String(primaryError.message).slice(0,700):'';
-         msg += `\n\n[ADMIN] Código: ${code||'sem-código'}\n[ADMIN] Erro técnico: ${raw.slice(0,700)}\n[ADMIN] Modelo que falhou: ${lastModelAttempted}\n[ADMIN] Fallback: ${primaryFailed?'tentado':'não necessário'};`;
-         if(primaryRaw && primaryRaw!==raw) msg += `\n[ADMIN] Erro do principal (${primaryFailed?'gemini-3.8-flash':'—'}): ${primaryRaw}`;
+         msg += `\n\n[ADMIN] Código: ${code||'sem-código'}\n[ADMIN] Erro técnico: ${raw.slice(0,700)}\n[ADMIN] Modelo em falha: ${lastModelAttempted}\n[ADMIN] Rotação: ${primaryFailed?'principal → fallback 1 → fallback 2 conforme necessário':'não necessária'};`;
+         if(primaryRaw && primaryRaw!==raw) msg += `\n[ADMIN] Erro do principal (${primaryFailed?LALU_PRIMARY_MODEL:'—'}): ${primaryRaw}`;
        }
        loading.textContent='';
        loading.classList.add('ai-error-bubble');
@@ -2258,7 +2355,7 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
          const details=document.createElement('details');
          details.className='ai-admin-details';
          const sum=document.createElement('summary');sum.textContent='Detalhes técnicos';details.appendChild(sum);
-         const pre=document.createElement('pre');pre.textContent=msg;details.appendChild(pre);
+         const pre=document.createElement('pre');pre.textContent=msg;details.appendChild(pre);const recovery=document.createElement('div');recovery.className='ai-admin-recovery-status';recovery.textContent=`Recuperação: ${Date.now()<getFallbackUntil()?'ativa':'livre'} · Principal: ${LALU_PRIMARY_MODEL} · Fallback 1: ${LALU_FALLBACK_1_MODEL} · Fallback 2: ${LALU_FALLBACK_2_MODEL}`;details.appendChild(recovery);
          loading.appendChild(details);
        }
        const retry=document.createElement('button');
