@@ -698,6 +698,66 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 <style id="lalu-recovery-status-css">
 .ai-admin-recovery-status{margin-top:8px;padding:7px 9px;border-radius:8px;background:#f8fafc;color:#475569;font-size:10px;line-height:1.4;border:1px solid #e5e7eb}
 </style>
+
+<style id="w1-visual-backgrounds-and-fixes">
+/* W1 — fundo oficial nas conversas */
+#aiPanel .ai-body{
+  background-color:#f8fafc!important;
+  background-image:linear-gradient(rgba(248,250,252,.91),rgba(248,250,252,.91)),url("assets/electro-mais-logo-bg.webp")!important;
+  background-size:170px auto!important;
+  background-position:center 42%!important;
+  background-repeat:no-repeat!important;
+  background-attachment:local!important;
+}
+#aiPanel.lalu-admin-chat .ai-body{
+  background-image:linear-gradient(rgba(31,41,55,.93),rgba(31,41,55,.93)),url("assets/electro-mais-logo-bg.webp")!important;
+}
+.chat-thread-body{
+  background-color:#f8fafc!important;
+  background-image:linear-gradient(rgba(248,250,252,.91),rgba(248,250,252,.91)),url("assets/electro-mais-logo-bg.webp")!important;
+  background-size:150px auto!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+}
+/* W1 — Nossos Momentos com a foto do Descola como fundo */
+.em-moments-teaser{
+  position:relative!important;
+  overflow:hidden!important;
+  background-image:linear-gradient(rgba(255,255,255,.88),rgba(255,255,255,.94)),url("assets/descola-momentos.webp")!important;
+  background-size:cover!important;
+  background-position:center 42%!important;
+}
+.em-moments-teaser:before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.84) 55%,rgba(255,255,255,.66) 100%);
+  pointer-events:none;
+}
+.em-moments-teaser>*{position:relative;z-index:1}
+/* W1 — Palavra do Dia compacta sem esconder o mascote oficial */
+.daily-word-box .daily-mascot-visual{
+  flex:0 0 82px!important;width:82px!important;height:92px!important;
+  background:#fff!important;overflow:hidden!important;
+}
+.daily-word-box .daily-mascot-visual img{
+  width:100%!important;height:100%!important;object-fit:contain!important;
+}
+@media(max-width:600px){
+  .daily-word-box{padding:10px!important;gap:9px!important}
+  .daily-word-box .daily-mascot-visual{flex-basis:62px!important;width:62px!important;height:70px!important}
+}
+/* W1 — o chat do Administrador continua compacto, mas sem esmagar o chat normal */
+#aiPanel.lalu-admin-chat .lalu-admin-tools,
+#aiPanel.lalu-admin-chat .lalu-report-card,
+#aiPanel.lalu-admin-chat .ai-admin-details,
+#aiPanel.lalu-admin-chat .ai-error-summary{
+  font-size:10px!important;
+  line-height:1.3!important;
+}
+#aiPanel.lalu-admin-chat .lalu-admin-tools{padding:6px 8px!important;margin:4px 7px!important}
+#aiPanel.lalu-admin-chat .lalu-admin-tools button{padding:5px 8px!important;font-size:10px!important}
+#aiPanel.lalu-admin-chat .lalu-report-card{padding:6px 8px!important;margin:4px 7px!important}
+</style>
+
 </head>
 <body>
 
@@ -827,7 +887,7 @@ footer .em-credits .em-credits-motto{color:#F58220;font-weight:600;font-size:12p
 <div class="card"><div class="card-icon">🔧</div><h3>Manutenção</h3><p>Orientações sobre sinais de problemas e manutenção preventiva.</p><button aria-label="Abrir conteúdo: Manutenção" class="btn btn-outline learn-open-btn" data-learn-topic="Manutenção" type="button">Ler conteúdo →</button></div>
 <div class="card"><div class="card-icon">⚡</div><h3>Equipamentos</h3><p>Explicações simples sobre cabos, disjuntores, iluminação e outros materiais.</p><button aria-label="Abrir conteúdo: Equipamentos" class="btn btn-outline learn-open-btn" data-learn-topic="Equipamentos" type="button">Ler conteúdo →</button></div>
 </div></details></div></section>
-<section class="official" id="palavra-do-dia"><div class="container"><div class="section-title"><h2>💡 Palavra do Dia</h2><p style="color:#cbd5e1">Uma pequena mensagem para acompanhar a nossa comunidade.</p></div><div class="daily-word-box"><div class="daily-mascot-visual" aria-hidden="true"><img id="dailyMascotImage" alt="Mascote Electro Mais"/><div><div class="daily-mascot-name" id="dailyMascotName"></div><div class="daily-mascot-tagline" id="dailyMascotTagline"></div></div></div><div class="daily-mascot-copy"><div class="daily-mascot-label">⚡ A Malta Electro acompanha-te</div><span id="dailyDate"></span><h2 id="dailyWord">Persistência</h2><p id="dailyMessage">Nem todo avanço é rápido. Continue a construir, um passo de cada vez.</p><p class="daily-source" id="dailyAuthor">Reflexão Electro Mais</p><button type="button" id="dailyReflectionToggle" class="btn btn-outline" aria-expanded="false" aria-controls="dailyReflection" style="margin-top:10px;padding:7px 12px;font-size:12px">💭 Ver reflexão</button><p class="daily-reflection" id="dailyReflection" hidden>Reflexão Electro Mais</p><div class="daily-mascot-name" id="dailyMascotName">ELECTRO — O ELETRICISTA</div><div class="daily-mascot-tagline" id="dailyMascotTagline">Onde há um problema, a Electro Mais encontra a solução.</div></div></div></div></section>
+<section class="official" id="palavra-do-dia"><div class="container"><div class="section-title"><h2>💡 Palavra do Dia</h2><p style="color:#cbd5e1">Uma pequena mensagem para acompanhar a nossa comunidade.</p></div><div class="daily-word-box"><div class="daily-mascot-visual" aria-hidden="true"><img id="dailyMascotImage" alt="Mascote Electro Mais"/></div><div class="daily-mascot-copy"><div class="daily-mascot-label">⚡ A Malta Electro acompanha-te</div><span id="dailyDate"></span><h2 id="dailyWord">Persistência</h2><p id="dailyMessage">Nem todo avanço é rápido. Continue a construir, um passo de cada vez.</p><p class="daily-source" id="dailyAuthor">Reflexão Electro Mais</p><button type="button" id="dailyReflectionToggle" class="btn btn-outline" aria-expanded="false" aria-controls="dailyReflection" style="margin-top:10px;padding:7px 12px;font-size:12px">💭 Ver reflexão</button><p class="daily-reflection" id="dailyReflection" hidden>Reflexão Electro Mais</p><div class="daily-mascot-name" id="dailyMascotName">ELECTRO — O ELETRICISTA</div><div class="daily-mascot-tagline" id="dailyMascotTagline">Onde há um problema, a Electro Mais encontra a solução.</div></div></div></div></section>
 <section id="notificacoes"><div class="container"><div class="section-title"><h2>🔔 Notificações</h2><p>Aceda rapidamente aos pedidos, conversas, técnicos e loja.</p></div><div class="notifications-list">
 <div class="notification-item"><div class="notification-icon">📋</div><div><h3>Pedidos</h3><p>Consulte a sua área de trabalho e acompanhe pedidos.</p></div><a aria-label="Abrir área de pedidos" class="notification-link" href="#minha-area" data-notification-target="minha-area">Ver →</a></div>
 <div class="notification-item"><div class="notification-icon">💬</div><div><h3>Comunicação</h3><p>Abra as conversas e continue a falar com clientes ou técnicos.</p></div><a aria-label="Abrir conversas" class="notification-link" href="mensagens.html">Ver →</a></div>
@@ -1342,7 +1402,7 @@ window.loadAdminFinance=async()=>{
 };
 window.closeModal=id=>{const el=document.getElementById(id);if(!el)return;if(window.electroCloseOverlay){window.electroCloseOverlay(id)}else{el.classList.remove("open");}};
 
-function firebaseError(c){return({"auth/email-already-in-use":"Este e-mail já está cadastrado.","auth/invalid-email":"O e-mail não é válido.","auth/weak-password":"A senha deve ter pelo menos 6 caracteres.","auth/invalid-credential":"E-mail ou senha incorretos.","auth/user-not-found":"Utilizador não encontrado.","auth/wrong-password":"Senha incorreta."}[c]||"Ocorreu um erro. Tente novamente.")}
+function firebaseError(c){const x=String(c||"");return({"auth/email-already-in-use":"Este e-mail já está cadastrado.","auth/invalid-email":"O e-mail não é válido.","auth/weak-password":"A palavra-passe deve ter pelo menos 6 caracteres.","auth/invalid-credential":"E-mail ou palavra-passe incorretos.","auth/user-not-found":"Utilizador não encontrado.","auth/wrong-password":"Palavra-passe incorreta.","auth/invalid-phone-number":"Número de telefone inválido. Use o formato +258XXXXXXXXX.","auth/too-many-requests":"Muitas tentativas. Aguarde alguns minutos e tente novamente.","auth/quota-exceeded":"O limite de SMS foi atingido. Tente novamente mais tarde.","auth/captcha-check-failed":"A verificação de segurança do SMS falhou. Atualize a página e tente novamente.","auth/operation-not-allowed":"A autenticação por este método ainda não está ativada no Firebase.","auth/network-request-failed":"Não foi possível comunicar com o Firebase neste momento. Verifique a internet e tente novamente.","auth/internal-error":"O Firebase devolveu um erro interno. Tente novamente.","auth/unauthorized-domain":"Este domínio ainda não está autorizado no Firebase.","auth/code-expired":"O código SMS expirou. Peça um novo código.","auth/invalid-verification-code":"O código SMS não está correto."}[x]||( /app.?check|appcheck/i.test(x)?"A verificação de segurança da Electro Mais precisa de ser ajustada. Isto não significa que a sua internet esteja desligada.":/recaptcha|captcha/i.test(x)?"Não foi possível concluir a verificação de segurança do SMS. Tente novamente.":/network|offline|fetch/i.test(x)?"Não foi possível comunicar com o Firebase neste momento. Verifique a internet e tente novamente.":"Não foi possível concluir esta operação agora. Tente novamente em instantes."))}
 
 let allTechnicians=[];let activeStoryTechnicianUids=new Set();let visibleTechnicianLimit=4;
 async function loadTechnicians(){
@@ -1770,7 +1830,7 @@ window.addEventListener('DOMContentLoaded',loadDailyWord);
       <div id="phoneSignupBox" style="display:none;margin-top:16px">
         <div class="compact-field"><label>Número</label><input id="signupPhoneAuth" readonly></div>
         <div id="recaptcha-container" class="recaptcha-box"></div>
-        <button class="btn btn-primary" style="width:100%;margin-top:8px" type="button" onclick="sendSignupSMS()">Enviar código por SMS</button>
+        <button class="btn btn-primary" style="width:100%;margin-top:8px" type="button" onclick="sendSignupSMS()">Enviar código por SMS</button><p class="sms-help">O SMS depende da autenticação por telefone estar ativada e do domínio estar autorizado no Firebase.</p>
         <div id="signupCodeBox" style="display:none;margin-top:12px"><div class="compact-field"><label>Código recebido</label><input id="signupCode" class="phone-code" inputmode="numeric" maxlength="6" placeholder="000000"></div><button class="btn btn-primary" style="width:100%" type="button" onclick="confirmSignupSMS()">Confirmar e criar conta</button></div>
       </div>
       <p id="authMessage" class="message account-error"></p>
@@ -1823,7 +1883,7 @@ async function saveNewUser(user){
 }
 window.accountProfileNext=()=>{const st=state();if(!st.role)return setMsg('signupProfileMsg','Escolha Cliente ou Eletricista.','error');if(!val('signupName')||!val('signupPhone')||!val('signupLocation'))return setMsg('signupProfileMsg','Preencha nome, telefone e localização.','error');if(st.role==='eletricista'&&!val('signupSpecialty'))return setMsg('signupProfileMsg','Indique a sua especialidade.','error');if(st.role==='vendedor'&&(!val('signupVendorName')||!val('signupVendorDescription')||!val('signupVendorCategory')))return setMsg('signupProfileMsg','Preencha nome da loja, descrição e categoria.','error');if(st.role==='vendedor'&&val('signupHasPhysical')==='sim'&&!val('signupVendorCity'))return setMsg('signupProfileMsg','Indique pelo menos a cidade da loja física.','error');document.getElementById('signupPhoneAuth').value=normalizePhone(val('signupPhone'));window.accountGo(3)};
 window.setupSignupRecaptcha=async()=>{if(signupVerifier)return signupVerifier;try{signupVerifier=new RecaptchaVerifier(auth,'recaptcha-container',{size:'normal'});await signupVerifier.render();return signupVerifier}catch(e){signupVerifier=null;window.reportFirebaseError?.(e,'Recaptcha — criação de conta',{severity:'critical',event:'signup-recaptcha'}).catch(()=>{});setMsg('authMessage','Não foi possível preparar a verificação SMS. Verifique o domínio autorizado no Firebase.','error');throw e}};
-window.sendSignupSMS=async()=>{try{const phone=normalizePhone(val('signupPhone'));if(!/^\+\d{8,15}$/.test(phone))return setMsg('authMessage','Digite um número válido com código do país, por exemplo +258...','error');await window.setupSignupRecaptcha();const result=await signInWithPhoneNumber(auth,phone,signupVerifier);window.accountState.confirmation=result;document.getElementById('signupCodeBox').style.display='block';setMsg('authMessage','Código enviado por SMS.','success')}catch(e){window.reportFirebaseError?.(e,'Autenticação por telefone — envio de SMS',{severity:'critical',event:'signup-sms'}).catch(()=>{});setMsg('authMessage',firebaseError(e),'error')}};
+window.sendSignupSMS=async()=>{try{const phone=normalizePhone(val('signupPhone'));if(document.getElementById('phoneSignupBox'))document.getElementById('phoneSignupBox').classList.add('sms-started');if(!/^\+\d{8,15}$/.test(phone))return setMsg('authMessage','Digite um número válido com código do país, por exemplo +258...','error');await window.setupSignupRecaptcha();const result=await signInWithPhoneNumber(auth,phone,signupVerifier);window.accountState.confirmation=result;document.getElementById('signupCodeBox').style.display='block';setMsg('authMessage','Código enviado por SMS.','success')}catch(e){window.reportFirebaseError?.(e,'Autenticação por telefone — envio de SMS',{severity:'critical',event:'signup-sms'}).catch(()=>{});setMsg('authMessage',firebaseError(e),'error')}};
 window.confirmSignupSMS=async()=>{let authCreated=false;try{const code=val('signupCode');if(!window.accountState.confirmation||!/^\d{6}$/.test(code))return setMsg('authMessage','Digite o código de 6 dígitos.','error');const c=await window.accountState.confirmation.confirm(code);authCreated=true;try{await saveNewUser(c.user)}catch(profileError){profileError.authCreated=true;throw profileError}setMsg('authMessage','Conta criada com sucesso!','success');setTimeout(()=>window.accountGo(1),900)}catch(e){window.reportFirebaseError?.(e,'Criação de conta por telefone',{severity:'critical',event:'signup-phone-confirm'}).catch(()=>{});setMsg('authMessage',firebaseError(e,authCreated||e.authCreated),'error')}};
 window.finishEmailSignup=async()=>{const email=val('signupEmail'),password=document.getElementById('signupPassword')?.value||'';if(!email||!password)return setMsg('authMessage','Preencha e-mail e palavra-passe.','error');if(password.length<6)return setMsg('authMessage','A palavra-passe deve ter pelo menos 6 caracteres.','error');let authCreated=false;try{const c=await createUserWithEmailAndPassword(auth,email,password);authCreated=true;try{await saveNewUser(c.user)}catch(profileError){profileError.authCreated=true;throw profileError}setMsg('authMessage','Conta criada com sucesso!','success');setTimeout(()=>window.accountGo(1),900)}catch(e){window.reportFirebaseError?.(e,'Criação de conta por e-mail',{severity:'critical',event:'signup-email'}).catch(()=>{});setMsg('authMessage',firebaseError(e,authCreated||e.authCreated),'error')}};
 function detectMethod(v){return v.includes('@')?'email':'phone'}
@@ -2261,6 +2321,24 @@ O teu nome é Lalu. Se perguntarem quem és, responde que és a Lalu, inteligên
    text=text.trim();ask.busy=true;
    const directAction=await tryLaluAdminAction(text);
    if(directAction){add(directAction.text,'bot');ask.busy=false;if(input)input.disabled=false;const submit=form?.querySelector('button[type="submit"]');if(submit)submit.disabled=false;return;}
+   // Pedidos de imagem seguem diretamente para o gerador FLUX. Não devem passar pelo Gemini,
+   // para evitar que a Lalu apenas diga "vou gerar" sem apresentar a imagem.
+   if(!attachment && isImageGenerationRequest(text)){
+     if(input)input.disabled=true;
+     const submit=form?.querySelector('button[type="submit"]');if(submit)submit.disabled=true;
+     add(text,'user');
+     try{
+       await generateLaluImage(cleanImagePrompt(text));
+     }catch(e){
+       console.error('Lalu — geração de imagem:',e);
+     }finally{
+       ask.busy=false;
+       if(input)input.disabled=false;
+       if(submit)submit.disabled=false;
+       if(input)input.focus();
+     }
+     return;
+   }
    let content=text;
    if(attachment){try{content=[{text:text},await fileToPart(attachment)];}catch(e){ask.busy=false;throw e;}}
    else if(laluGeneratedImageCurrent&&looksLikeImageReference(text)){const imagePart=imageSourceToInlinePart(laluGeneratedImageCurrent);if(imagePart)content=[{text:text},imagePart];}
@@ -2718,6 +2796,10 @@ const socialApp=getApp(),socialAuth=getAuth(socialApp),socialDb=getFirestore(soc
 const SOCIAL_ADMIN_UID="QSnHZagz9jVo4r21WHtoX1T5R9u2";
 let socialUser=null;
 const escS=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* Compatibilidade: o painel administrativo deste módulo foi incorporado depois do módulo v13.
+   Mantemos os aliases locais para não depender do escopo de outro <script type="module">. */
+const auth13=socialAuth,db13=socialDb,esc13=escS;
+const info13=(title,body)=>{const t=document.getElementById("v13InfoTitle"),b=document.getElementById("v13InfoBody");if(t)t.textContent=title;if(b)b.innerHTML=body;window.electroOpenOverlay?.("v13InfoModal")};
 function storyTime(v){try{const d=new Date(v),mins=Math.max(1,Math.floor((Date.now()-d.getTime())/60000));return mins<60?`há ${mins} min`:mins<1440?`há ${Math.floor(mins/60)} h`:'expirada'}catch{return ''}}
 function storyAvatarHtml(x){return x.photoURL?`<img src="${escS(x.photoURL)}" alt="">`:`<span>${x.authorRole==='eletricista'?'👷🏾':x.authorRole==='vendedor'?'🏪':x.authorRole==='empresa'?'⚡':'👤'}</span>`}
 // Seller marketplace v2 — storefront + seller workspace
